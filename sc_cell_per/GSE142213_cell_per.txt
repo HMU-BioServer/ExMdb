@@ -1,0 +1,5 @@
+mix	AYL050	OX1164
+Malignant_cell	0.5996	0.6487
+Mono_Macro_cell	0.1182	0.1777
+NK_cell	0.2787	0.1641
+Plasma_cell	0.0035	0.0096

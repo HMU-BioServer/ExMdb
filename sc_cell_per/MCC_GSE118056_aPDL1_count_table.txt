@@ -1,0 +1,10 @@
+mix	MCC_sample
+B_cell	0.0513
+CD4Tconv_cell	0.2123
+CD8T_cell	0.046
+CD8Tex_cell	0.0106
+DC_cell	0.0102
+Malignant_cell	0.4518
+Mono_Macro_cell	0.1484
+Myofibroblasts_cell	0.0076
+NK_cell	0.0618

@@ -1,0 +1,2 @@
+mix	NA_Sample
+Malignant_cell	1

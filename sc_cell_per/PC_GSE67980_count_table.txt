@@ -1,0 +1,2 @@
+mix	Pr10	Pr11	Pr12	Pr13	Pr14	Pr15	Pr16	Pr17	Pr18	Pr19	Pr2	Pr20	Pr21	Pr22	Pr3	Pr4	Pr5	Pr6	Pr7	Pr8	Pr9
+Malignant_cell	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1

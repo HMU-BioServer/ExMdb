@@ -1,0 +1,4 @@
+mix	GSM5093965	GSM5093972
+Mono_Macro_cell	0.5246	0.1254
+Others_cell	0	0.0484
+T_cell	0.4754	0.8262

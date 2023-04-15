@@ -1,0 +1,9 @@
+mix	S1
+B_cell	0.1232
+CD4Tconv_cell	0.3412
+CD8T_cell	0.2043
+DC_cell	0.0172
+Mono_Macro_cell	0.2526
+NK_cell	0.0549
+Plasma_cell	0.0026
+Tprolif_cell	0.0041

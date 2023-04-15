@@ -1,0 +1,7 @@
+mix	S1
+B_cell	0.1466
+CD4Tconv_cell	0.2725
+CD8T_cell	0.2573
+DC_cell	0.0338
+Mono_Macro_cell	0.2539
+NK_cell	0.0359

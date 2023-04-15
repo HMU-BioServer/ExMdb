@@ -1,0 +1,4 @@
+mix	GSM5093962
+CD4_T_cell	0.9673
+CD8T_cell	0.0261
+Others_cell	0.0066

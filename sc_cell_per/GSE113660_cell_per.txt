@@ -1,0 +1,2 @@
+mix	clust1	clust2
+Malignant_cell	1	1
