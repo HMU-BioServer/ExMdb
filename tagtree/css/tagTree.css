@@ -1,0 +1,164 @@
+@import url('Montserrat.css');
+body{
+	font-family: 'Montserrat';
+}
+a{
+	text-decoration: none;
+	cursor: pointer;
+	color:black;
+}
+
+a:hover{
+	color:white;
+}
+
+ul ul{
+	max-height:15%;
+	overflow-y:scroll;
+	
+}
+
+
+ul ul::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.1);
+	background-color: #F5F5F5;
+	border-radius: 5px;
+}
+
+ul ul::-webkit-scrollbar
+{
+	width: 15px;
+	background-color: #F5F5F5;
+}
+
+ul ul::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	width: 15px;
+	height: 5px;
+	background-color: #80b3ff;
+}
+
+.browse_right{
+	border: 1px solid #d7d7d7;
+    background-color: #ffffff;
+    padding: 10px;
+    width:72.5%;
+    float:right;
+}
+
+.tagtree {
+    border: 1px solid #d7d7d7;
+    background-color: #fcfcfc;
+    padding: 10px;
+    width:25%;
+    float:left;
+}
+.tagtree ul{
+    margin-left:-20px;
+}
+.tagtree li {
+    margin:0;
+    padding:10px 5px 0 5px;
+    position:relative;
+    list-style-type:none;
+}
+.tagtree li::before, .tagtree li::after {
+    content:'';
+    left:-20px;
+    position:absolute;
+    right:auto
+}
+.tagtree li::before {	
+    border-left:1px dashed #795548;
+    bottom:50px;
+    height:100%;
+    top:-4;
+    width:1px
+}
+.tagtree li::after {
+    border-top:1px dashed #795548;
+    height:20px;
+    top:25px;
+    width:25px
+}
+.tagtree li span {
+    position: relative;
+    z-index: 1;
+    background-color: white;
+/*     height: 28px; */
+    display: inline-block;
+    padding: 0 8 0 5;
+    font-size: 14px;
+    line-height: 28px;
+    color: black;
+}
+.tagtree li span:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    border-top: 14px solid transparent;
+    border-right: 10px solid #80b3ff;
+    border-bottom: 14px solid transparent;
+    left: -10px;
+}
+.tagtree li span {
+    cursor:pointer
+}
+.tagtree>ul>li::before, .tagtree>ul>li::after {
+    border:0
+}
+.tagtree li:last-child::before {
+    height:30px
+}
+.tagtree li span:hover
+{
+    background:#80b3ff;
+    color:white;
+}
+.tagtree li span:hover::before
+{
+    border-right: 10px solid #80b3ff;
+}
+.node-count {
+    display: inline-block;
+    font-size: 10px;
+    margin-left: 3px;
+/*     height: 16px; */
+    padding: 2px 5px;
+    background-color: #80b3ff;
+    text-align: center;
+    line-height: 16px;
+    color: white;
+    border-radius: 8px;
+}
+
+.node-count_li {
+    display: inline-block;
+    font-size: 10px;
+    margin-left: 3px;
+/*     height: 16px; */
+    padding: 2px 5px;
+    background-color: #e2a505;
+    text-align: center;
+    line-height: 16px;
+    color: white;
+    border-radius: 8px;
+}
+
+.tagtree li span i
+{
+    margin: 0 1 0 6;
+    color: #ECF0F1;
+    font-size: 18px;
+}
+.tagtree li span i:hover
+{
+    color: #FFEB3B;
+}
+span .i-check
+{
+    display: inline-block;
+    color: #FFEB3B !important;
+}
