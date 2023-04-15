@@ -1,0 +1,46 @@
+
+
+.lk {
+    width: 100%;
+    overflow: hidden;
+    /*note: "..姝ゅ閲岄潰鐨勬牱寮忔湁闂,璇疯仈绯婚瞾搴枫��"*/
+}
+
+.git {
+    position: fixed;
+    right: 0;
+    z-index: 99;
+    top: 0;
+}
+
+.lk .main {
+    width: 1100px;
+    /*note:"..姝ゅ璋冩暣鏁翠綋瀹藉害.."*/
+
+    padding: 15px 0;
+    overflow: hidden;
+
+}
+
+.lk .main .div {
+    margin: 10px 0;
+}
+
+.lk .main .h1 {
+    font-size: 25px;
+    padding-bottom: 20px;
+}
+
+.lk .main .l {
+    width: 100%;
+    float: left;
+    padding: 5px;
+}
+
+.lk .main .r {
+    width: 800px;
+    float: left;
+    padding: 5px;
+}
+
+
