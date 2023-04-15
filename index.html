@@ -1,0 +1,535 @@
+<!doctype html>
+<html lang="zxx">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="assets/css/animate.min.css">
+<link rel="stylesheet" href="assets/fonts/flaticon.css">
+<link rel="stylesheet" href="assets/icons/css/icons.css">
+<link rel="stylesheet" href="assets/css/boxicons.min.css">
+<link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+<link rel="stylesheet" href="assets/css/owl.theme.default.min.css">
+<link rel="stylesheet" href="assets/css/magnific-popup.css">
+<link rel="stylesheet" href="assets/css/nice-select.min.css">
+<link rel="stylesheet" href="assets/css/meanmenu.css">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/responsive.css">
+<link rel="icon" type="image/png" href="assets/images/favicon.png">
+<link rel='stylesheet' id='camera-css'  href='banner_camera/css/camera.css' type='text/css' media='all'> 
+
+<link rel="stylesheet" href="HamburgerIconAnimations/css/style.css">
+
+<link href="Intro/demo.css" rel="stylesheet">
+
+<!-- Add IntroJs styles -->
+<link href="Intro/introjs.css" rel="stylesheet">
+
+<title>ExMdb : Home</title>
+
+
+<style>
+
+body{
+	overflow-x: hidden;
+}
+
+.overlay{
+    -webkit-transition: all 0.8s;
+    transition: all 0.8s;
+    opacity: 0;
+    visibility: hidden;
+/*     -webkit-transform: translateY(-50%) translateX(-50%); */
+/*     transform: translateY(-50%) translateX(-50%); */
+    z-index: 2;
+}
+
+
+.hotkey{
+    -webkit-transition: all 0.8s;
+    transition: all 0.8s;
+    opacity: 0;
+    visibility: hidden;
+/*     -webkit-transform: translateY(-50%) translateX(-50%); */
+/*     transform: translateY(-50%) translateX(-50%); */
+    z-index: 2;
+}
+
+.search-overlay.search-overlay-active.search-overlay .overlay {
+    opacity: 1;
+    visibility: visible;
+}
+
+.search-overlay.search-overlay-active.search-overlay .hotkey {
+    opacity: 1;
+    visibility: visible;
+}
+
+.quick_link{
+	text-decoration: none; 
+	cursor: pointer;
+}
+
+.quick_link:hover{
+	color:#e0a301;
+}
+
+
+.owl-stage-outer{
+	padding-top:10px
+}
+
+.sub_text_b{
+	font-weight: 600;
+    color: #0034c5;
+    text-shadow: 0px 0px 5px #ffffff;
+}
+
+.sub_text_y{
+	font-weight: 600;
+    color: #e67b00;
+    text-shadow: 0px 0px 5px #ffffff;
+}
+
+.preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 99999;
+    background: #00000073;
+}
+</style>
+
+</head>
+<body>
+<div class="preloader">
+  <div class="d-table">
+    <div class="d-table-cell">
+      <div class="spinner"></div>
+    </div>
+  </div>
+</div>
+
+<div class="navbar-area" data-step="1" data-intro="ExMdb navigation bar, access the corresponding interface / function by clicking the link / button.">
+  <div class="mobile-nav"><a href="index.html" class="logo"><img src="assets/images/logos/logo-1.png" alt="Logo"></a></div>
+  <div class="main-nav">
+    <div class="container">
+      <nav class="navbar navbar-expand-md navbar-light "><a class="navbar-brand" href="index.html"><img src="assets/images/logos/logo-1.png" alt="Logo"></a>
+        <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
+          <ul class="navbar-nav m-auto" style="z-index:100">
+            <li class="nav-item"><a href="index.html" class="nav-link active">Home</a></li>
+            <li class="nav-item"><a href="exmdb_browse.jsp" target="_blank" class="nav-link">Browse</a></li>
+            <li class="nav-item"><a href="#" class="nav-link">Search <i class='bx bx-caret-down'></i></a>
+              <ul class="dropdown-menu">
+                <li class="nav-item"><a href="exmdb_search_highput.jsp" class="nav-link" target="_blank">Search [ High throughput ]</a></li>
+                <li class="nav-item"><a href="exmdb_search_exp.jsp" class="nav-link" target="_blank">Search [ Experimental validation ]</a></li>
+                <li class="nav-item"><a href="exmdb_search_biomarker.jsp" class="nav-link" target="_blank">Search [ Cancer Biomarkers ]</a></li>
+                <li class="nav-item"><a href="exmdb_search_scdataset.jsp" class="nav-link" target="_blank">Search [ Single-cell ]</a></li>
+              </ul>
+            </li>
+            <li class="nav-item"><a href="#" class="nav-link">Tools <i class='bx bx-caret-down'></i></a>
+              <ul class="dropdown-menu">
+                <li class="nav-item"><a href="exmdb_cell_out.jsp" target="_blank" class="nav-link">ExMdb-Cellloaction </a></li>
+                <li class="nav-item"><a href="exmdb_imm_out.jsp" target="_blank" class="nav-link">ExMdb-Immunity </a></li>
+				<li class="nav-item"><a href="#" class="nav-link">ExMdb-Survival Tools<i class='bx bx-caret-down'></i></a><ul class="dropdown-menu"><li class="nav-item"><a href="exmdb_survival_out.jsp" target="_blank" class="nav-link" style="text-transform: none;">mRNA-Survival Analyze</a></li><li class="nav-item"><a href="exmdb_survival_miRNA_out.jsp" target="_blank" class="nav-link" style="text-transform: none;">miRNA-Survival Analyze</a></li> <li class="nav-item"><a href="exmdb_survival_out.jsp" target="_blank" class="nav-link" style="text-transform: none;">lncRNA-Survival Analyze</a></li></ul></li>
+                
+                <li class="nav-item"><a href="exmdb_net_out.jsp" target="_blank" class="nav-link">ExMdb-Network </a></li><li class="nav-item"><a href="exmdb_blast_out.jsp" target="_blank" class="nav-link">ExMdb-BLAST </a></li>
+                <li class="nav-item"><a href="exmdb_function_time.jsp" target="_blank" class="nav-link">ExMdb-Pseudotime pathway</a></li><li class="nav-item"><a href="exmdb_single_vis.jsp" target="_blank" class="nav-link">ExMdb-Single Cell Visualization</a></li>
+				<li class="nav-item"><a href="#" class="nav-link">ExMdb-FunctionEnrichment <i class='bx bx-caret-down'></i></a><ul class="dropdown-menu"><li class="nav-item"><a href="exmdb_function_mRNA_out.jsp" target="_blank" class="nav-link" style="text-transform: none;">mRNA-FunctionEnrichment</a></li><li class="nav-item"><a href="exmdb_function_out_miRNA.jsp" target="_blank" class="nav-link" style="text-transform: none;">miRNA-FunctionEnrichment</a></li> <li class="nav-item"><a href="exmdb_function_out.jsp" target="_blank" class="nav-link" style="text-transform: none;">lncRNA-FunctionEnrichment</a></li></ul></li>
+				
+              </ul>
+            </li>
+
+
+            <li class="nav-item"><a href="exmdb_statistic.jsp" target="_blank" class="nav-link">Statistic </a></li><li class="nav-item"><a href="exmdb_help.html" target="_blank" class="nav-link">Help </a></li>
+            
+            <li class="nav-item"><a href="exmdb_download.html" target="_blank" class="nav-link">Download </a></li><li class="nav-item"><a href="exmdb_contact.html" target="_blank" class="nav-link">Contact Us</a></li>
+          </ul>
+          <div class="nav-side d-display">
+            <div class="nav-side-item">
+              <div class="search-box"><i class='bx bx-search'></i></div>
+            </div>
+            <div class="nav-side-item">
+              <div class="get-btn">
+              <a class="t_button default-btn btn-bg-two border-radius-50" href="javascript:void(0)" onclick="javascript:introJs().start();"> Tutorials <i class='bx bx-chevron-right'></i></a></div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </div>
+
+</div>
+<div class="search-overlay">
+  <div class="d-table">
+    <div class="d-table-cell">
+      <div class="search-layer">
+      		<div class="hotkey" style="width:50%;margin:auto;background-color:white;border-radius:10px;top:25%;position: relative;padding:1%">
+      		
+      		<p><b><i class="fa fa-chevron-right"></i> SEARCH EXAMPLES</b></p>
+							<span> mRNA: <a class="quick_link" onclick="document.getElementById('searchname').value='BRCA1'"><font><strong>BRCA1</strong></font></a> 
+								   , <a class="quick_link" onclick="document.getElementById('searchname').value='TP53'"><font><strong>TP53</strong></font></a>
+						    </span>
+						    <span> / miRNA: <a class="quick_link" onclick="document.getElementById('searchname').value='hsa-let-7b-3p'"><font><strong>hsa-let-7b-3p</strong></font></a> 
+								   , <a class="quick_link" onclick="document.getElementById('searchname').value='hsa-let-7a-5p'"><font><strong>hsa-let-7a-5p</strong></font></a>
+						    </span>
+						    <span> / lncRNA: <a class="quick_link" onclick="document.getElementById('searchname').value='MALAT1'"><font><strong>MALAT1</strong></font></a> 
+								   , <a class="quick_link" onclick="document.getElementById('searchname').value='HOTAIR'"><font><strong>HOTAIR</strong></font></a>
+						    </span>
+						    <span> / Disease: <a class="quick_link" onclick="document.getElementById('searchname').value='Gastric cancer'"><font><strong>Gastric cancer</strong></font></a> 
+								   , <a class="quick_link" onclick="document.getElementById('searchname').value='Breast Cancer'"><font><strong>Breast Cancer</strong></font></a>
+						    </span>
+			</div>
+      		
+      		
+			<div class="blog-area overlay pb-70" style="top:25%;position: relative;">
+			  <div class="container">
+			    <div class="row pt-45">
+			      <div class="col-lg-4 col-md-6">
+			        <div class="blog-card">
+			          <div class="blog-img"> <a href="exmdb_net_out.jsp" target="_blank"> <img src="assets/images/quick_pic/network.png"> </a>
+
+			          </div>
+			          <div class="content">
+
+			            <h3> <a href="exmdb_net_out.jsp" target="_blank">ExMdb-ceRNA network construction tool</a> </h3>
+			            <p>Customize ceRNA network based on mirbase and other databases, and adjust multiple styles.</p>
+			            <a href="exmdb_net_out.jsp" class="read-btn">Read More <i class='bx bx-chevron-right'></i></a> </div>
+			        </div>
+			      </div>
+			      <div class="col-lg-4 col-md-6">
+			        <div class="blog-card">
+			          <div class="blog-img"> <a href="exmdb_cell_out.jsp" target="_blank"> <img src="assets/images/quick_pic/celllocation.png"> </a>
+
+			          </div>
+			          <div class="content">
+
+			            <h3> <a href="exmdb_cell_out.jsp" target="_blank">ExMdb-RNA cellular localization tool</a> </h3>
+			            <p>The Cellular Location tool provides all subcellular locations of the searched gene and tabulated.</p>
+			            <a href="exmdb_cell_out.jsp" class="read-btn">Read More <i class='bx bx-chevron-right'></i></a> </div>
+			        </div>
+			      </div>
+			      <div class="col-lg-4 col-md-6 offset-lg-0 offset-md-3">
+			        <div class="blog-card">
+			          <div class="blog-img"> <a href="exmdb_imm_out.jsp" target="_blank"> <img src="assets/images/quick_pic/imm_home.png"> </a>
+
+			          </div>
+			          <div class="content">
+
+			            <h3> <a href="exmdb_imm_out.jsp" target="_blank">ExMdb-Cellular immune infiltration visualization </a> </h3>
+			            <p>The cellular immune infiltration tool provides cellular infiltration of all samples based on expression profiles.</p>
+			            <a href="exmdb_imm_out.jsp" class="read-btn">Read More <i class='bx bx-chevron-right'></i></a> </div>
+			        </div>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+      </div>
+      
+      <div class="search-close"><span class="search-close-line"></span><span class="search-close-line"></span></div>
+      
+      <div class="search-form" style="max-width:1050px;width:1050px;top:12%;">
+      <p style="position: relative;color:white;font-size:50px;font-weight: 800;left: -100px;"><i class="fa fa-search"></i> Quick Search</p> 
+        <form action="exmdb_quick_panel.jsp" target="_blank">
+          <input type="text" class="input-search" name="searchname" id="searchname" placeholder="XIST">
+          <button type="submit"><i class='bx bx-search'></i></button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  	
+
+
+			     <div class="camera_wrap camera_emboss pattern_1" id="camera_wrap_4" style="z-index:99" data-step="2" data-intro="ExMdb Banner, click different buttons to search / get help">
+			            <div data-thumb="banner_camera/images/slides/Banner_2-01.png" data-src="banner_camera/images/slides/Banner_2-01.png">
+			            	<div class="banner-item-content" style="padding:3% 5%">
+				              <span>Last update : 2022 Jun</span>
+				              <h1>Welcome to ExMdb</h1>
+				              <p style="max-width: 100%;text-shadow: 0px 0px 3px #000000;">A comprehensive database of Exosome Molecules by manual curation from experimental and high-throughput data. <br>ExMdb provides a variety of visualization tools and powerful analysis tools.  </p>
+				              <div class="banner-btn">
+				              <a href="javascript:void(0)" class="default-btn btn-bg-two border-radius-50 qht-button">Quick Start <i class='bx bx-chevron-right'></i></a>
+				              <a href="#owl_list" class="default-btn btn-bg-one border-radius-50 ml-20" onclick="SWT_function()">Get Tools <i class='bx bx-chevron-right'></i></a>
+				              <a href="exmdb_help.html" target="_blank" class="default-btn btn-bg-three border-radius-50 ml-20">Get Help <i class='bx bx-chevron-right'></i></a>
+				              </div>
+				              	  <div class="hamburger" id="hamburger-1" onclick="dieorlive()"><span class="line"></span><span class="line"></span><span class="line"></span></div>
+				            </div>
+			            </div>
+			            <div data-thumb="banner_camera/images/slides/Banner_3_new.png" data-src="banner_camera/images/slides/Banner_3_new.png">
+			            	<div class="banner-item-content" style="padding:2% 5%">
+				              <h1>Overview of ExMdb</h1>
+				              <text style="font-size: 28px;display: block;"><img src="img/iconfont/paper.png" style="margin-top: -7px;margin-right: 7px;width: 25px;">More than <sub_text class="sub_text_b">4,000 experimentally</sub_text> supported <sub_text class="sub_text_y">Gene-Disease</sub_text> associations in <sub_text class="sub_text_b">exosomes</sub_text> and <sub_text class="sub_text_b">blood</sub_text>. </text>
+				              <text style="font-size: 28px;display: block;"><img src="img/iconfont/data.png" style="margin-top: -7px;margin-right: 7px;width: 25px;">More than <sub_text class="sub_text_y">13,000</sub_text> <sub_text class="sub_text_b">diagnostic</sub_text> and <sub_text class="sub_text_b">therapeutic biomarkers</sub_text> curated from published literature.</text>
+				              <text style="font-size: 28px;display: block;"><img src="img/iconfont/cell.png" style="margin-top: -7px;margin-right: 7px;width: 25px;">Detecting casative <sub_text class="sub_text_y">exosome molecules</sub_text> from <sub_text class="sub_text_b">high-throughput bulk</sub_text> and <sub_text class="sub_text_b">single-cell</sub_text> sequencing data.</text>
+				              <text style="font-size: 28px;display: block;margin-bottom: 1%;"><img src="img/iconfont/tool.png" style="margin-top: -7px;margin-right: 7px;width: 25px;">Performing comprehensive analysis including <sub_text class="sub_text_y">functional enrichment</sub_text>, <sub_text class="sub_text_b">network construction</sub_text>, <sub_text class="sub_text_y">immune infiltration</sub_text> and <sub_text class="sub_text_b">etc</sub_text>.</text>
+				              <div class="banner-btn">
+				              <a href="javascript:void(0)" class="default-btn btn-bg-two border-radius-50 qht-button">Quick Start <i class='bx bx-chevron-right'></i></a>
+				              <a href="#owl_list" class="default-btn btn-bg-one border-radius-50 ml-20" onclick="SWT_function()">Get Tools <i class='bx bx-chevron-right'></i></a>
+				              <a href="exmdb_help.html" target="_blank" class="default-btn btn-bg-three border-radius-50 ml-20">Get Help <i class='bx bx-chevron-right'></i></a>
+				              </div>
+				              	  <div class="hamburger" id="hamburger-1" onclick="dieorlive()"><span class="line"></span><span class="line"></span><span class="line"></span></div>
+				            </div>
+			            </div>
+			    </div>
+
+<span style="font-size: 1px;color: #f0f8ff00;user-select: none;">QHT</span>
+
+	<div style="width:100%;margin:auto;margin-bottom:2px;height:5px;background:white;" ></div>
+
+	
+	<div class="container" id="qht_2" name="qht_2" style="max-width: 1800px;display:none;margin-top: -20px;">
+							<iframe frameborder=0 width="100%" height="875px" 
+							src="index_10pic.html"
+							scrolling="no"></iframe>
+							
+	</div>
+	
+	<div class="brand-slider owl-carousel owl-theme" id="qht_1" name="qht_1" data-step="3" data-intro="ExMdb feature carousel, which shows the main features in the ExMdb database" style="max-width:1740px;margin:-30px auto 0 auto">
+      <div class="blog-card">
+		  <div class="index-blog-card case-study-item"> <a class="owl_img"  target="_blank" href="exmdb_net_out.jsp"> <img src="assets/images/quick_pic/network.png"> </a>
+	        <div class="content"><a href="exmdb_net_out.jsp" target="_blank" class="more-btn">I</a> </div>
+	      </div>
+		  <div class="content">
+		  <h3> <a href="exmdb_net_out.jsp" target="_blank">ExMdb-ceRNA network construction tool</a> </h3>
+		  <p>Customize ceRNA network based on mirbase and other databases, and adjust multiple styles.</p>
+		  <a href="exmdb_net_out.jsp" class="read-btn">Read More <i class='bx bx-chevron-right'></i></a> </div>
+	  </div>
+	  
+      <div class="blog-card">
+      <div class="index-blog-card case-study-item"> <a class="owl_img"  target="_blank" href="exmdb_cell_out.jsp"> <img src="assets/images/quick_pic/celllocation.png"> </a>
+      	<div class="content"><a href="exmdb_cell_out.jsp" target="_blank" class="more-btn">II</a> </div>
+      </div>
+		  <div class="content">
+			 <h3> <a href="exmdb_cell_out.jsp" target="_blank">ExMdb-RNA cellular localization tool</a> </h3>
+			 <p>The Cellular Location tool provides all subcellular locations of the searched gene and tabulated.</p>
+			<a href="exmdb_cell_out.jsp" target="_blank" class="read-btn">Read More <i class='bx bx-chevron-right'></i></a> </div>
+	  </div>
+
+      <div class="blog-card">
+      <div class="index-blog-card case-study-item"> <a class="owl_img"  target="_blank" href="exmdb_imm_out.jsp"> <img src="assets/images/quick_pic/imm_home.png"> </a>
+      	<div class="content"><a href="exmdb_imm_out.jsp" target="_blank" class="more-btn">III</a> </div>
+      </div>
+		  <div class="content">
+			            <h3> <a href="exmdb_imm_out.jsp" target="_blank">ExMdb-Cellular immune infiltration visualization </a> </h3>
+			            <p>The cellular immune infiltration tool provides cellular infiltration of all samples based on expression profiles.</p>
+			<a href="exmdb_imm_out.jsp" target="_blank" class="read-btn">Read More <i class='bx bx-chevron-right'></i></a> </div>
+	  </div>
+	  
+      <div class="blog-card">
+      <div class="index-blog-card case-study-item"> <a class="owl_img"  target="_blank" href="exmdb_search_highput.jsp"> <img src="assets/images/quick_pic/Highput_4.png" ></a>
+      	<div class="content"><a href="exmdb_search_highput.jsp" target="_blank" class="more-btn">IV</a> </div>
+      </div>
+		  <div class="content">
+			<h3> <a href="exmdb_search_highput.jsp" target="_blank">ExMdb-High throughput data</a> </h3>
+			<p>ExMdb analyzes high-throughput data from GEO and provides multiple visualizations.</p>
+			<a href="exmdb_search_highput.jsp" class="read-btn" target="_blank">Read More <i class='bx bx-chevron-right'></i></a> </div>
+	  </div>
+	  
+      <div class="blog-card">
+	  <div class="index-blog-card case-study-item"> <a class="owl_img"  target="_blank" href="exmdb_search_exp.jsp"> <img src="assets/images/quick_pic/exp_2.png"> </a>
+	  	<div class="content"><a href="exmdb_search_exp.jsp" target="_blank" class="more-btn">V</a> </div>
+	  </div>
+		  <div class="content">
+			<h3> <a href="exmdb_cell_out.jsp" target="_blank">ExMdb-Manual collection of experimental validation</a> </h3>
+			<p>ExMdb manually collected exosome-related literature and obtained 4586 experimentally validated items.</p>
+			<a href="exmdb_search_exp.jsp" target="_blank" class="read-btn">Read More <i class='bx bx-chevron-right'></i></a> </div>
+	  </div>
+	  
+      <div class="blog-card">
+      <div class="index-blog-card case-study-item"> <a class="owl_img"  target="_blank" href="exmdb_search_biomarker.jsp"> <img src="assets/images/quick_pic/biomarker_2.png"> </a>
+      	<div class="content"><a href="exmdb_search_biomarker.jsp" target="_blank" class="more-btn">VI</a> </div>
+      </div>
+		  <div class="content">
+			<h3> <a href="exmdb_cell_out.jsp" target="_blank">ExMdb-Biomarker entries [ 10 items ]</a> </h3>
+			<p>The Biomarker search interface provides query results for biomarkers for diagnosis and treatment.</p>
+			<a href="exmdb_search_biomarker.jsp" class="read-btn" target="_blank">Read More <i class='bx bx-chevron-right'></i></a> </div>
+	  </div>
+	  
+      <div class="blog-card">
+      <div class="index-blog-card case-study-item"> <a class="owl_img"  target="_blank" href="exmdb_search_scdataset.jsp"> <img src="assets/images/quick_pic/sc_res_4.png"> </a>
+      	<div class="content"><a href="exmdb_search_scdataset.jsp" target="_blank" class="more-btn">VII</a> </div>
+      </div>
+		  <div class="content">
+			<h3> <a href="exmdb_search_scdataset.jsp" target="_blank">ExMdb-Single Cell Data & Visualization Tools</a> </h3>
+			<p>The single-cell search interface obtains corresponding detailed information by searching for keywords and dataset ID.</p>
+			<a href="exmdb_search_scdataset.jsp" target="_blank" class="read-btn">Read More <i class='bx bx-chevron-right'></i></a> </div>
+	  </div>
+	  
+	  <div class="blog-card">
+      <div class="index-blog-card case-study-item"> <a class="owl_img"  href="javascript:void(0)"> <img src="assets/images/quick_pic/function.png"> </a>
+      	<div class="content"><a href="javascript:void(0)" class="more-btn">VIII</a> </div>
+      </div>
+		  <div class="content">
+			<h3> <a href="javascript:void(0)">ExMdb-Function Enrichment</a> </h3>
+			<p>Explore RNA biological functions based on gene ontology and pathways, including KEGG, Reactome, BioCarta, etc.</p>
+			<a href="exmdb_function_mRNA_out.jsp" target="_blank" class="read-btn"><i class='bx bx-chevron-right'></i>mRNA </a><a href="exmdb_function_out_miRNA.jsp" target="_blank" class="read-btn"><i class='bx bx-chevron-right'></i>miRNA </a><a href="exmdb_function_out.jsp" target="_blank" class="read-btn"><i class='bx bx-chevron-right'></i>LncRNA </a> </div>
+	  </div>
+	  
+	  <div class="blog-card">
+      <div class="index-blog-card case-study-item"> <a class="owl_img"  href="exmdb_function_time.jsp" target="_blank"> <img src="assets/images/quick_pic/pseuotime_function.png"> </a>
+      	<div class="content"><a href="exmdb_function_time.jsp" target="_blank" class="more-btn">IX</a> </div>
+      </div>
+		  <div class="content">
+			<h3> <a href="exmdb_function_time.jsp" target="_blank">ExMdb-Pseudotime Pathway</a> </h3>
+			<p>Using Pseudotime analysis to delineate cellular functional pathway changes at different time points.</p>
+			<a href="exmdb_function_time.jsp" target="_blank" class="read-btn">Read More <i class='bx bx-chevron-right'></i></a> </div>
+	  </div>
+	  
+	  <div class="blog-card">
+      <div class="index-blog-card case-study-item"> <a class="owl_img" target="_blank" href="exmdb_single_vis.jsp"> <img src="assets/images/quick_pic/single_vis.png"> </a>
+      	<div class="content"><a href="exmdb_single_vis.jsp" target="_blank" class="more-btn">X</a> </div>
+      </div>
+		  <div class="content">
+			<h3> <a href="exmdb_single_vis.jsp" target="_blank">ExMdb-Single Cell Visualizer</a> </h3>
+			<p>Use a visualization tool to draw a scatterplot of the cell distribution of the corresponding single-cell dataset.</p>
+			<a href="exmdb_single_vis.jsp" class="read-btn" target="_blank">Read More <i class='bx bx-chevron-right'></i></a> </div>
+	  </div>
+	  
+    </div>
+
+
+
+<footer class="footer-area footer-bg">
+  <div class="container" style="max-width: 1200px;">
+    <div class="footer-top pt-50 pb-20">
+      <div class="row" data-step="4" data-intro="Quick Links in ExMdb.">
+        <div class="col-lg-4 col-sm-6">
+          <div class="footer-widget">
+            <h3>· Visitor Information</h3>
+            <div style="width:60%;margin-top: 3%;margin-bottom: 6%;height:2px;background:linear-gradient(to left,#ff000000,#518cffa8,#ff000000);"></div>
+	        <div style="height:100%;width:80%" class="footer-logo wow bounceInLeft animated">
+	        	<script type="text/javascript" src="//rf.revolvermaps.com/0/0/7.js?i=58ucyu6wfw6&amp;c=f5e0a2&amp;cr1=ff8a00&amp;sx=0&amp;cw=ffffff&amp;cb=000000" async="async"></script>
+	        </div>
+	        <div style="height:100%;width:100%">
+				<script type="text/javascript" src="//rf.revolvermaps.com/0/0/0.js?i=58ucyu6wfw6&amp;d=3&amp;p=1&amp;b=0&amp;w=293&amp;g=2&amp;f=arial&amp;fs=12&amp;r=0&amp;c0=ffa300&amp;c1=10124f&amp;c2=000000&amp;ic0=0&amp;ic1=0" async="async"></script>
+	        </div>
+          </div>
+        </div>
+
+
+        <div class="col-lg-6 col-sm-6">
+<!--           <div class="footer-widget" id="owl_list"> -->
+<!--             <h3>· Please cite</h3> -->
+<!--             <div style="width:60%;margin-top: 3%;margin-bottom: 1%;height:2px;background:linear-gradient(to left,#ff000000,#518cffa8,#ff000000);"></div> -->
+<!--             <p>ExMdb : A comprehensive database of Exsome Molecules from manual curations and high-throughput data. <br>[Nucleic Acids Res 2022]</p> -->
+<!--           </div> -->
+          
+          <div class="footer-widget">
+            <h3>· Contact us</h3>
+            <div style="width:60%;margin-top: 3%;margin-bottom: 1%;height:2px;background:linear-gradient(to left,#ff000000,#518cffa8,#ff000000);"></div>
+            <p>Address :<br>194 Xuefu Road, Harbin 150081, CHINA</p>
+            <p>E-Mail :<br>wpgqy@163.com</p>
+          </div>
+          
+        </div>
+        
+        <div class="col-lg-2 col-sm-6">
+          <div class="footer-widget pl-2">
+            <h3>· Our Works</h3>
+            <div style="width:60%;margin-top: 6%;margin-bottom: 6%;height:2px;background:linear-gradient(to left,#ff000000,#518cffa8,#ff000000);"></div>
+            <ul class="footer-list">
+              <li><a target="_blank" href="http://www.bio-bigdata.net/LncACTdb/"><i class="fa fa-angle-double-right"></i> LncACTdb 3.0</a></li>
+              <li><a target="_blank" href="http://bio-bigdata.hrbmu.edu.cn/LnCeCell/"><i class="fa fa-angle-double-right"></i> LnCecell</a></li>
+              <li><a target="_blank" href="http://www.bio-bigdata.net/LnCeVar/"><i class="fa fa-angle-double-right"></i> LnCeVar</a></li>
+              <li><a target="_blank" href="http://www.bio-bigdata.net/lnc2cancer/"><i class="fa fa-angle-double-right"></i> Lnc2Cancer 3.0</a></li>
+              <li><a target="_blank" href="http://bio-bigdata.hrbmu.edu.cn/lincsnp/"><i class="fa fa-angle-double-right"></i> lincSNP 3.0</a></li>
+              <li><a target="_blank" href="http://bio-bigdata.hrbmu.edu.cn/Lnc2Meth"><i class="fa fa-angle-double-right"></i> Lnc2Meth</a></li>
+              <li><a target="_blank" href="http://bio-bigdata.hrbmu.edu.cn/msdd/"><i class="fa fa-angle-double-right"></i> MSDD</a></li>
+            </ul>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+    <div class="copy-right-area">
+      <div class="copy-right-text">
+        <p>2022,CopyRight © HMU. College of Bioinformatics Science and Technology, Harbin, China.</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/owl.carousel.min.js"></script>
+<script src="assets/js/jquery.magnific-popup.min.js"></script>
+<script src="assets/js/jquery.nice-select.min.js"></script>
+<script src="assets/js/wow.min.js"></script>
+<script src="assets/js/meanmenu.js"></script>
+<script src="assets/js/jquery.ajaxchimp.min.js"></script>
+<script src="assets/js/form-validator.min.js"></script>
+<script src="assets/js/contact-form-script.js"></script>
+<script src="assets/js/custom.js"></script>
+
+<script type='text/javascript' src='js/1.10.2/jquery.min.js'></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+		  $(".hamburger").click(function(){
+		    $(this).toggleClass("is-active");
+		  });
+		});
+	</script>
+	
+<script type='text/javascript' src='banner_camera/scripts/jquery.min.js'></script>
+<script type='text/javascript' src='banner_camera/scripts/jquery.mobile.customized.min.js'></script>
+<script type='text/javascript' src='banner_camera/scripts/jquery.easing.1.3.js'></script> 
+<script type='text/javascript' src='banner_camera/scripts/camera.min.js'></script> 
+<script>
+		jQuery(function(){
+			jQuery('#camera_wrap_4').camera({
+				height: '450',
+				time: 3500,
+				loader: 'false',
+				pagination: false,
+				playPause: false,
+				thumbnails: false,
+				hover: false,
+				opacityOnGrid: false,
+				imagePath: '../images/'
+			});
+
+		});
+</script>
+
+<script>
+    wow = new WOW(
+      {
+        animateClass: 'animated',
+        offset:100
+      }
+    );
+    wow.init();
+</script>
+
+
+<script>
+function SWT_function()
+{
+	document.getElementById("hamburger-1").click();
+}
+</script>
+
+<script>
+
+function dieorlive()
+{
+
+		$("#qht_2").slideToggle();
+		$("#qht_1").slideToggle();
+		
+// 			document.getElementById("qht_1").style.display="none";
+// 			document.getElementById("qht_2").style.display="block";
+
+}
+
+</script>
+
+
+<script type="text/javascript" src="Intro/intro.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<!-- saved from url=(0120)http://192.168.192.248:8080/CellTrace/CellTracker_Survival_server.jsp?dis=ACC&genename=TP53&highc=black&lowc=red&linel=3 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<title>CellTrack: Survival</title>
+<!-- Main style sheet -->
+
+<!-- echarts -->
+<script type="text/javascript" src="./CellTrack_ Survival_files/jquery-1.8.3.min.js"></script>
+ <script type="text/javascript" language="javascript" src="./CellTrack_ Survival_files/echarts4.min.js" charset="UTF-8"></script>
+
+ 
+</head>
+
+<body>
+
+
+<div style="width:100%;display: flex;">
+<div id="surv" style="width: 50%; height: 600px; -webkit-tap-highlight-color: transparent; user-select: none; position: relative;" _echarts_instance_="ec_1655449102943"><div style="position: relative; width: 1016px; height: 800px; padding: 0px; margin: 0px; border-width: 0px; cursor: default;"><canvas data-zr-dom-id="zr_0" width="1270" height="1000" style="position: absolute; left: 0px; top: 0px; width: 1016px; height: 800px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); padding: 0px; margin: 0px; border-width: 0px;"></canvas></div><div style="position: absolute; display: none; border-style: solid; white-space: nowrap; z-index: 9999999; transition: left 0.4s cubic-bezier(0.23, 1, 0.32, 1) 0s, top 0.4s cubic-bezier(0.23, 1, 0.32, 1) 0s; background-color: rgba(50, 50, 50, 0.7); border-width: 0px; border-color: rgb(51, 51, 51); border-radius: 4px; color: rgb(255, 255, 255); font: 14px / 21px &quot;Microsoft YaHei&quot;; padding: 5px; left: 495px; top: 265px; pointer-events: none;">2,222.00<br><span style="display:inline-block;margin-right:5px;border-radius:10px;width:10px;height:10px;background-color:red;"></span>Low Expression (n=36): 0.4649<br><span style="display:inline-block;margin-right:5px;border-radius:10px;width:10px;height:10px;background-color:red;"></span>Censors: 0.4649</div></div>
+<div id="surv1" style="width: 50%; height: 600px; -webkit-tap-highlight-color: transparent; user-select: none; position: relative;" _echarts_instance_="ec_1655449102944"><div style="position: relative; width: 1016px; height: 800px; padding: 0px; margin: 0px; border-width: 0px; cursor: default;"><canvas data-zr-dom-id="zr_0" width="1270" height="1000" style="position: absolute; left: 0px; top: 0px; width: 1016px; height: 800px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); padding: 0px; margin: 0px; border-width: 0px;"></canvas></div><div style="position: absolute; display: none; border-style: solid; white-space: nowrap; z-index: 9999999; transition: left 0.4s cubic-bezier(0.23, 1, 0.32, 1) 0s, top 0.4s cubic-bezier(0.23, 1, 0.32, 1) 0s; background-color: rgba(50, 50, 50, 0.7); border-width: 0px; border-color: rgb(51, 51, 51); border-radius: 4px; color: rgb(255, 255, 255); font: 14px / 21px &quot;Microsoft YaHei&quot;; padding: 5px; left: 505px; top: 635px; pointer-events: none;">2,385.00<br><span style="display:inline-block;margin-right:5px;border-radius:10px;width:10px;height:10px;background-color:black;"></span>High Expression (n=39): 0.4696</div></div>
+
+</div>
+<script>
+var group1data=[[149,1],[211,1],[253,1],[470,1],[488,1],[490,0.9677],[528,0.9677],[541,0.9344],[552,0.901],[562,0.8676],[579,0.8343],[628,0.8343],[639,0.8343],[662,0.798],[670,0.798],[724,0.798],[830,0.798],[840,0.798],[1091,0.798],[1105,0.751],[1255,0.751],[1293,0.751],[1355,0.6974],[1414,0.6974],[1424,0.6974],[1541,0.6974],[1613,0.6277],[1677,0.5579],[1858,0.5579],[1916,0.5579],[2105,0.4649],[2222,0.4649],[2428,0.4649],[2842,0.4649],[3240,0.4649],[3688,0.4649],]
+var group2data=[[125,0.9767],[159,0.9535],[207,0.9302],[307,0.9302],[309,0.9302],[344,0.9058],[365,0.8813],[383,0.8561],[391,0.8302],[487,0.8302],[504,0.8302],[551,0.8025],[555,0.8025],[645,0.8025],[674,0.8025],[709,0.8025],[882,0.8025],[889,0.8025],[922,0.7676],[950,0.7676],[994,0.731],[1029,0.731],[1130,0.731],[1183,0.731],[1197,0.688],[1204,0.645],[1259,0.645],[1525,0.645],[1583,0.645],[1589,0.645],[1750,0.5864],[1924,0.5864],[1942,0.5864],[1949,0.5864],[2385,0.5026],[2673,0.5026],[2723,0.5026],[2782,0.5026],[3659,0.5026],[3897,0.5026],[4673,0.5026],]
+var group1censor=[[149,1],[211,1],[253,1],[470,1],[488,1],[528,0.9677],[628,0.8343],[639,0.8343],[670,0.798],[724,0.798],[830,0.798],[840,0.798],[1091,0.798],[1255,0.751],[1293,0.751],[1414,0.6974],[1424,0.6974],[1541,0.6974],[1858,0.5579],[1916,0.5579],[2222,0.4649],[2428,0.4649],[2842,0.4649],[3240,0.4649],[3688,0.4649],]
+var group2censor=[[307,0.9302],[309,0.9302],[365,0.8813],[383,0.8561],[487,0.8302],[504,0.8302],[555,0.8025],[645,0.8025],[674,0.8025],[709,0.8025],[882,0.8025],[889,0.8025],[950,0.7676],[1029,0.731],[1130,0.731],[1183,0.731],[1259,0.645],[1525,0.645],[1583,0.645],[1589,0.645],[1924,0.5864],[1942,0.5864],[1949,0.5864],[2673,0.5026],[2723,0.5026],[2782,0.5026],[3659,0.5026],[3897,0.5026],[4673,0.5026],]
+
+var group1data1=[[149,1],[211,1],[253,1],[365,1],[383,0.9722],[470,0.9722],[488,0.9722],[490,0.9428],[528,0.9428],[541,0.9123],[552,0.8819],[562,0.8515],[579,0.8211],[628,0.8211],[639,0.8211],[662,0.7883],[670,0.7883],[724,0.7883],[830,0.7883],[840,0.7883],[1091,0.7883],[1105,0.7468],[1255,0.7468],[1293,0.7468],[1355,0.7001],[1414,0.7001],[1424,0.7001],[1541,0.7001],[1613,0.6418],[1677,0.5834],[1858,0.5834],[1916,0.5834],[1924,0.5834],[2105,0.5001],[2222,0.5001],[2428,0.5001],[2673,0.5001],[2842,0.5001],[3240,0.5001],[3688,0.5001],]
+var group2data1=[[125,0.9744],[159,0.9487],[207,0.9231],[307,0.9231],[309,0.9231],[344,0.8959],[365,0.8688],[383,0.8688],[391,0.8408],[487,0.8408],[504,0.8408],[551,0.8107],[555,0.8107],[645,0.8107],[674,0.8107],[709,0.8107],[882,0.8107],[889,0.8107],[922,0.7721],[950,0.7721],[994,0.7315],[1029,0.7315],[1130,0.7315],[1183,0.7315],[1197,0.6827],[1204,0.634],[1259,0.634],[1525,0.634],[1583,0.634],[1589,0.634],[1750,0.5635],[1942,0.5635],[1949,0.5635],[2385,0.4696],[2723,0.4696],[2782,0.4696],[3659,0.4696],[3897,0.4696],[4673,0.4696],]
+var group1censor1=[[149,1],[211,1],[253,1],[365,1],[470,0.9722],[488,0.9722],[528,0.9428],[628,0.8211],[639,0.8211],[670,0.7883],[724,0.7883],[830,0.7883],[840,0.7883],[1091,0.7883],[1255,0.7468],[1293,0.7468],[1414,0.7001],[1424,0.7001],[1541,0.7001],[1858,0.5834],[1916,0.5834],[1924,0.5834],[2222,0.5001],[2428,0.5001],[2673,0.5001],[2842,0.5001],[3240,0.5001],[3688,0.5001],]
+var group2censor1=[[307,0.9231],[309,0.9231],[383,0.8688],[487,0.8408],[504,0.8408],[555,0.8107],[645,0.8107],[674,0.8107],[709,0.8107],[882,0.8107],[889,0.8107],[950,0.7721],[1029,0.7315],[1130,0.7315],[1183,0.7315],[1259,0.634],[1525,0.634],[1583,0.634],[1589,0.634],[1942,0.5635],[1949,0.5635],[2723,0.4696],[2782,0.4696],[3659,0.4696],[3897,0.4696],[4673,0.4696],]
+</script>
+<script>
+
+var myChart = echarts.init(document.getElementById('surv'));
+option = {
+	    backgroundColor: "white",
+	animationDuration:3000,
+	
+
+	  title: {
+          top: 0,
+          text: 'TP53 Survival',
+          subtext: 'Disease: ACC; Method: mean',
+          textAlign:'right',
+	          left:'90%',
+          textStyle: {
+              align: 'center',
+              color: '#888888',
+              fontSize: 25,
+              fontWeight: '500',
+          },
+      },
+	    tooltip: {
+	        trigger: "axis",
+	        axisPointer: {
+	            type: "shadow",
+	            textStyle: {
+	                color: "#fff"
+	            }
+
+	        },
+	    },
+	    
+	    
+	    grid: {
+	      //  show:true,
+	        borderWidth: 1,
+	       
+	        bottom:'20%',
+	        textStyle: {
+	            color: "#fff"
+	        }
+	    },
+	    
+	    
+	    legend: {
+	        x: '40%',
+	        top: '10%',
+	        textStyle: {
+	            color: '#90979c',
+	        },
+	        data: ['Low Expression (n=36)', 'High Expression (n=43)','Censors']
+	    },
+	    graphic: [
+	        
+	        {
+	            type: 'group',
+	            left: '15%', top: '55%', 
+	            children: [
+	                {
+	                    type: 'rect',
+	                    z: 100,
+	                    left: 'center',
+	                    top: 'middle',
+	                    draggable:true,
+	                    shape: {
+	         			  height: 150,             
+	                        width: 320,
+	                    },
+	                    style: {
+	                        fill: '#fff',
+	                        stroke: '#555',
+	                        lineWidth: 1,
+	                        shadowBlur: 8,
+	                        shadowOffsetX: 3,
+	                        shadowOffsetY: 3,
+	                        shadowColor: 'rgba(0,0,0,0.2)'
+	                    }
+	                },
+	                {
+	                    type: 'text',
+	                    z: 100,
+	                    draggable:true,
+	                    left: 'center',
+	                    top: 'middle',
+	                    style: {
+	                      fill: '#333',   
+	                     
+	                        text: [
+	                        	//#'COX Coefficient','HR (95%CI)','COX P-value','low_95_CI','up_95_CI', Number of samples
+
+	                        	   '   Log-Rank P=0.7725'+'\n'+'\n'+'   HR (95%CI)=1.178(0.6207,2.2359) '     +'\n'+      '\n'+'   COX Coefficient=0.1639' +'\n'+'\n'+'   COX P-value=0.6162' +'\n'   
+	                        	
+	                          
+	                        ].join('\n'),
+	                        font: 'bolder 18px Microsoft YaHei'
+	                    }
+	                }
+	            ]
+	        }
+	    ],
+
+	    calculable: true,
+	    xAxis: [{
+	        name:"Days",
+	        nameLocation:"middle",//middle start end
+	        nameGap:50,
+	        nameTextStyle:{
+	            fontSize:18
+	        },
+	        type: "value",
+	        
+	        splitLine: {
+	            show: true,
+	           lineStyle: {
+	                color: "rgba(90,177,239,0.2)",
+	            }
+	        },
+	        axisTick: {
+	            show: true
+	        },
+	       // data: xData,当type为value时,data不起作用，此时使用的时series中的第一维数据
+	    }],
+
+	    yAxis: [{
+	        type: "value",
+	       
+	        name:"Survival rate",
+	        nameLocation:"middle",//middle start end
+	        nameGap:50,
+	        nameTextStyle:{
+	            fontSize:18
+	        },
+	        splitLine: {
+	            show: true,
+	           lineStyle: {
+	                color: "rgba(90,177,239,0.2)",
+	            }
+	        },
+	     
+
+	    }],
+	    
+	    toolbox:{
+            show:true,
+            showTitle:true,
+            top:10,
+            left:'10%',
+            feature:{
+            
+            		 dataView:{
+            			 show:true,
+            	         title:'Data View',
+            	         lang:['Data View','Close','Refresh'],
+            	         buttonColor : '#F28705',
+            	     },
+                
+                restore:{
+                    show:true,
+                    title:'Restore'
+                },
+                saveAsImage:{
+                    show:true,
+                    title:'Save As Image'
+                },
+            },
+            iconStyle:{
+            	bordercolor:'#F28705'
+            }
+        },
+   
+	    dataZoom: [{
+	        show: true,
+	        height: 20,
+	        xAxisIndex: [0],
+	        bottom: 50,
+	        
+	       
+	        handleSize: '200%',
+	        handleStyle: {
+	            color: "#ffb980",
+	        },
+	        
+	        fillerColor:"rgba(90,177,239,0.4)",
+	        borderColor: "rgba(204,187,225,0.5)",
+
+	    }],
+	    series: [
+	        //goup1x
+	        {
+	        name: "Low Expression (n=36)",
+	        type: "line",
+	        step: "end",
+	        symbolSize: 1,
+	        symbol: 'none',
+	        itemStyle: {
+	            color: "red",
+	        },
+	        lineStyle: {width:3},
+	        data:group1data,
+	    },
+	    //group2x
+	    {
+	        name: "High Expression (n=43)",
+	        type: "line",
+	        step:"end",
+	        symbolSize: 1,
+	        symbol: 'none',
+	        itemStyle: {
+	            color: "black",
+	        },
+	        lineStyle: {width:3},
+	        data:group2data,
+	    },
+	    //group1censor
+	    
+	   // 
+	    {
+	        name: "Censors",
+	        type: "scatter",
+	      //  step:"start",
+	        symbolSize: 10,
+	        symbol:'path://M789 341H683V235c0-94.4-76.6-171-171-171s-171 76.6-171 171v106H235c-94.4 0-171 76.6-171 171s76.6 171 171 171h106v106c0 94.4 76.6 171 171 171s171-76.6 171-171V683h106c94.4 0 171-76.6 171-171s-76.6-171-171-171z',
+	        itemStyle: {
+	            color: "red",
+	        },
+	       
+	        data:group1censor,
+	    },
+	    //group2censor
+	    {
+	        name: "Censors",
+	        type: "scatter",
+	      //  step:"start",
+	        symbolSize: 10,
+	       symbol:'path://M789 341H683V235c0-94.4-76.6-171-171-171s-171 76.6-171 171v106H235c-94.4 0-171 76.6-171 171s76.6 171 171 171h106v106c0 94.4 76.6 171 171 171s171-76.6 171-171V683h106c94.4 0 171-76.6 171-171s-76.6-171-171-171z',
+
+	        itemStyle: {
+	            color: "black",
+	        },
+	        
+	        data:group2censor,
+	    }]
+	}
+myChart.setOption(option);
+</script>
+
+<script>
+
+var myChart = echarts.init(document.getElementById('surv1'));
+option = {
+	    backgroundColor: "white",
+	animationDuration:3000,
+	
+
+	  title: {
+          top: 0,
+          text: 'TP53 Survival',
+          subtext: 'Disease: ACC; Method: median',
+          textAlign:'right',
+	          left:'90%',
+          textStyle: {
+              align: 'center',
+              color: '#888888',
+              fontSize: 25,
+              fontWeight: '500',
+          },
+      },
+	    tooltip: {
+	        trigger: "axis",
+	        axisPointer: {
+	            type: "shadow",
+	            textStyle: {
+	                color: "#fff"
+	            }
+
+	        },
+	    },
+	    
+	    
+	    grid: {
+	      //  show:true,
+	        borderWidth: 1,
+	       
+	        bottom:'20%',
+	        textStyle: {
+	            color: "#fff"
+	        }
+	    },
+	    
+	    
+	    legend: {
+	        x: '40%',
+	        top: '10%',
+	        textStyle: {
+	            color: '#90979c',
+	        },
+	        data: ['Low Expression (n=40)', 'High Expression (n=39)','Censors']
+	    },
+	    graphic: [
+	        
+	        {
+	            type: 'group',
+	            left: '15%', top: '55%', 
+	            children: [
+	                {
+	                    type: 'rect',
+	                    z: 100,
+	                    left: 'center',
+	                    top: 'middle',
+	                    draggable:true,
+	                    shape: {
+	         			  height: 150,             
+	                        width: 320,
+	                    },
+	                    style: {
+	                        fill: '#fff',
+	                        stroke: '#555',
+	                        lineWidth: 1,
+	                        shadowBlur: 8,
+	                        shadowOffsetX: 3,
+	                        shadowOffsetY: 3,
+	                        shadowColor: 'rgba(0,0,0,0.2)'
+	                    }
+	                },
+	                {
+	                    type: 'text',
+	                    z: 100,
+	                    draggable:true,
+	                    left: 'center',
+	                    top: 'middle',
+	                    style: {
+	                      fill: '#333',   
+	                     
+	                        text: [
+	                        	//#'COX Coefficient','HR (95%CI)','COX P-value','low_95_CI','up_95_CI', Number of samples
+
+	                        	   '   Log-Rank P=0.6502'+'\n'+'\n'+'   HR (95%CI)=1.178(0.6207,2.2359) '     +'\n'+      '\n'+'   COX Coefficient=0.1639' +'\n'+'\n'+'   COX P-value=0.6162' +'\n'   
+	                        	
+	                          
+	                        ].join('\n'),
+	                        font: 'bolder 18px Microsoft YaHei'
+	                    }
+	                }
+	            ]
+	        }
+	    ],
+
+	    calculable: true,
+	    xAxis: [{
+	        name:"Days",
+	        nameLocation:"middle",//middle start end
+	        nameGap:50,
+	        nameTextStyle:{
+	            fontSize:18
+	        },
+	        type: "value",
+	        
+	        splitLine: {
+	            show: true,
+	           lineStyle: {
+	                color: "rgba(90,177,239,0.2)",
+	            }
+	        },
+	        axisTick: {
+	            show: true
+	        },
+	       // data: xData,当type为value时,data不起作用，此时使用的时series中的第一维数据
+	    }],
+
+	    yAxis: [{
+	        type: "value",
+	       
+	        name:"Survival rate",
+	        nameLocation:"middle",//middle start end
+	        nameGap:50,
+	        nameTextStyle:{
+	            fontSize:18
+	        },
+	        splitLine: {
+	            show: true,
+	           lineStyle: {
+	                color: "rgba(90,177,239,0.2)",
+	            }
+	        },
+	     
+
+	    }],
+	    
+	    toolbox:{
+            show:true,
+            showTitle:true,
+            top:10,
+            left:'10%',
+            feature:{
+            
+            		 dataView:{
+            			 show:true,
+            	         title:'Data View',
+            	         lang:['Data View','Close','Refresh'],
+            	         buttonColor : '#F28705',
+            	     },
+                
+                restore:{
+                    show:true,
+                    title:'Restore'
+                },
+                saveAsImage:{
+                    show:true,
+                    title:'Save As Image'
+                },
+            },
+            iconStyle:{
+            	bordercolor:'#F28705'
+            }
+        },
+   
+	    dataZoom: [{
+	        show: true,
+	        height: 20,
+	        xAxisIndex: [0],
+	        bottom: 50,
+	        
+	       
+	        handleSize: '200%',
+	        handleStyle: {
+	            color: "#ffb980",
+	        },
+	        
+	        fillerColor:"rgba(90,177,239,0.4)",
+	        borderColor: "rgba(204,187,225,0.5)",
+
+	    }],
+	    series: [
+	        //goup1x
+	        {
+	        name: "Low Expression (n=40)",
+	        type: "line",
+	        step: "end",
+	        symbolSize: 1,
+	        symbol: 'none',
+	        itemStyle: {
+	            color: "red",
+	        },
+	        lineStyle: {width:3},
+	        data:group1data1,
+	    },
+	    //group2x
+	    {
+	        name: "High Expression (n=39)",
+	        type: "line",
+	        step:"end",
+	        symbolSize: 1,
+	        symbol: 'none',
+	        itemStyle: {
+	            color: "black",
+	        },
+	        lineStyle: {width:3},
+	        data:group2data1,
+	    },
+	    //group1censor
+	    
+	   // 
+	    {
+	        name: "Censors",
+	        type: "scatter",
+	      //  step:"start",
+	        symbolSize: 10,
+	        symbol:'path://M789 341H683V235c0-94.4-76.6-171-171-171s-171 76.6-171 171v106H235c-94.4 0-171 76.6-171 171s76.6 171 171 171h106v106c0 94.4 76.6 171 171 171s171-76.6 171-171V683h106c94.4 0 171-76.6 171-171s-76.6-171-171-171z',
+	        itemStyle: {
+	            color: "red",
+	        },
+	        
+	        data:group1censor1,
+	    },
+	    //group2censor
+	    {
+	        name: "Censors",
+	        type: "scatter",
+	      //  step:"start",
+	        symbolSize: 10,
+	       symbol:'path://M789 341H683V235c0-94.4-76.6-171-171-171s-171 76.6-171 171v106H235c-94.4 0-171 76.6-171 171s76.6 171 171 171h106v106c0 94.4 76.6 171 171 171s171-76.6 171-171V683h106c94.4 0 171-76.6 171-171s-76.6-171-171-171z',
+
+	        itemStyle: {
+	            color: "black",
+	        },
+	        
+	        data:group2censor1,
+	    }]
+	}
+myChart.setOption(option);
+</script>
+
+
+</body></html>

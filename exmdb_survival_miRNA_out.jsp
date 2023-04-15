@@ -1,0 +1,2024 @@
+<%@ page language="java" import="java.io.*,java.sql.*,java.util.*,java.text.DecimalFormat,wp.base.*" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!doctype html>
+<html lang="zxx">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="assets/css/animate.min.css">
+<link rel="stylesheet" href="assets/fonts/flaticon.css">
+<link rel="stylesheet" href="assets/css/boxicons.min.css">
+<link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+<link rel="stylesheet" href="assets/css/owl.theme.default.min.css">
+<link rel="stylesheet" href="assets/css/magnific-popup.css">
+<link rel="stylesheet" href="assets/css/nice-select.min.css">
+<link rel="stylesheet" href="assets/css/meanmenu.css">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/responsive.css">
+<link rel="icon" type="image/png" href="assets/images/favicon.png">
+
+<link rel="stylesheet" type="text/css" href="select/demo.css"/>
+<link rel="stylesheet" type="text/css" href="select/style-adsila.css" />
+<link rel="stylesheet" href="select/selectpage.css" type="text/css">
+
+
+
+<link rel="stylesheet" type="text/css" href="bootstrap_select/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="bootstrap_select/bootstrap-select.css">
+
+
+
+<title>ExMdb : Survival Analyze Tool</title>
+
+
+
+<style>
+.imm_select{
+	width:100%;
+}
+
+.graph_qi {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 99999;
+    background: #00000073;
+    display:none;
+}
+</style>
+
+</head>
+
+<% 
+String searchname = "HOTAIR";  
+if(request.getParameter("searchname")!=null&&!request.getParameter("searchname").equals("")){
+	searchname = request.getParameter("searchname");
+}
+
+String organ = "lung";  
+if(request.getParameter("organ")!=null&&!request.getParameter("organ").equals("")){
+	organ = request.getParameter("organ");
+}
+
+
+// String sql = "select * from exmdb_net where node1 in (\"A1BG-AS1\",\"MALAT1\",\"XIST\",\"miR-3605-5p\") or node2 in (\"A1BG-AS1\",\"MALAT1\",\"XIST\",\"miR-3605-5p\")";
+// String data = dbhello.exmdb_netmaker(sql);
+// System.out.println(data);
+%>
+
+
+<body>
+<div class="preloader">
+  <div class="d-table">
+    <div class="d-table-cell">
+      <div class="spinner"></div>
+    </div>
+  </div>
+</div>
+
+<div class="graph_qi" name="graph_qi" id="graph_qi">
+  <div class="d-table">
+    <div class="d-table-cell">
+      <div class="spinner"></div>
+    </div>
+  </div>
+</div>
+
+
+<div class="navbar-area" data-step="1" data-intro="This is a tooltip!">
+  <div class="mobile-nav"><a href="index.html" class="logo"><img src="assets/images/logos/logo-1.png" alt="Logo"></a></div>
+  <div class="main-nav">
+    <div class="container">
+      <nav class="navbar navbar-expand-md navbar-light "><a class="navbar-brand" href="index.html"><img src="assets/images/logos/logo-1.png" alt="Logo"></a>
+        <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
+          <ul class="navbar-nav m-auto" style="z-index:100">
+            <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+            <li class="nav-item"><a href="exmdb_browse.jsp" target="_blank" class="nav-link">Browse</a></li>
+            <li class="nav-item"><a href="#" class="nav-link">Search <i class='bx bx-caret-down'></i></a>
+              <ul class="dropdown-menu">
+                <li class="nav-item"><a href="exmdb_search_highput.jsp" class="nav-link" target="_blank">Search [ High throughput ]</a></li>
+                <li class="nav-item"><a href="exmdb_search_exp.jsp" class="nav-link" target="_blank">Search [ Experimental validation ]</a></li>
+                <li class="nav-item"><a href="exmdb_search_biomarker.jsp" class="nav-link" target="_blank">Search [ Cancer Biomarkers ]</a></li>
+                <li class="nav-item"><a href="exmdb_search_scdataset.jsp" class="nav-link" target="_blank">Search [ Single-cell ]</a></li>
+              </ul>
+            </li>
+            <li class="nav-item"><a href="#" class="nav-link">Tools <i class='bx bx-caret-down'></i></a>
+              <ul class="dropdown-menu">
+                <li class="nav-item"><a href="exmdb_cell_out.jsp" target="_blank" class="nav-link">ExMdb-Cellloaction </a></li>
+                <li class="nav-item"><a href="exmdb_imm_out.jsp" target="_blank" class="nav-link">ExMdb-Immunity </a></li><li class="nav-item"><a href="#" class="nav-link">ExMdb-Survival Tools<i class='bx bx-caret-down'></i></a><ul class="dropdown-menu"><li class="nav-item"><a href="exmdb_survival_out.jsp" target="_blank" class="nav-link" style="text-transform: none;">mRNA-Survival Analyze</a></li><li class="nav-item"><a href="exmdb_survival_miRNA_out.jsp" target="_blank" class="nav-link" style="text-transform: none;">miRNA-Survival Analyze</a></li> <li class="nav-item"><a href="exmdb_survival_out.jsp" target="_blank" class="nav-link" style="text-transform: none;">lncRNA-Survival Analyze</a></li></ul></li>
+                <li class="nav-item"><a href="exmdb_net_out.jsp" target="_blank" class="nav-link">ExMdb-Network </a></li><li class="nav-item"><a href="exmdb_blast_out.jsp" target="_blank" class="nav-link">ExMdb-BLAST </a></li><li class="nav-item"><a href="exmdb_function_time.jsp" target="_blank" class="nav-link">ExMdb-Pseudotime pathway</a></li><li class="nav-item"><a href="exmdb_single_vis.jsp" target="_blank" class="nav-link">ExMdb-Single Cell Visualization</a></li>
+				<li class="nav-item"><a href="#" class="nav-link">ExMdb-FunctionEnrichment <i class='bx bx-caret-down'></i></a><ul class="dropdown-menu"><li class="nav-item"><a href="exmdb_function_mRNA_out.jsp" target="_blank" class="nav-link" style="text-transform: none;">mRNA-FunctionEnrichment</a></li><li class="nav-item"><a href="exmdb_function_out_miRNA.jsp" target="_blank" class="nav-link" style="text-transform: none;">miRNA-FunctionEnrichment</a></li> <li class="nav-item"><a href="exmdb_function_out.jsp" target="_blank" class="nav-link" style="text-transform: none;">lncRNA-FunctionEnrichment</a></li></ul></li>
+              </ul>
+            </li>
+
+
+            <li class="nav-item"><a href="exmdb_statistic.jsp" target="_blank" class="nav-link">Statistic </a></li><li class="nav-item"><a href="exmdb_help.html" target="_blank" class="nav-link">Help </a></li>
+            
+            <li class="nav-item"><a href="exmdb_download.html" target="_blank" class="nav-link">Download </a></li><li class="nav-item"><a href="exmdb_contact.html" target="_blank" class="nav-link">Contact Us</a></li>
+          </ul>
+          
+        </div>
+      </nav>
+    </div>
+  </div>
+</div>
+
+<div class="inner-banner">
+  <div class="container">
+    <div class="inner-title text-center">
+      <h3>Survival Analyze Tool</h3>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><i class='bx bx-chevrons-right'></i></li>
+        <li>Survival Analyze Tool</li>
+      </ul>
+    </div>
+  </div>
+  <div class="inner-shape"><img src="assets/images/shape/inner-shape.png" alt="Images"></div>
+</div>
+<div class="terms-conditions-area">
+<div class="container wow fadeInUp animated" style="max-width: 1440px;padding:30px 0px">
+		<div class="contact-header">
+			<h1>Survival Analyze Tool</h1>
+		</div>	
+		<div class="contact-wrapper" style="padding:30px">
+		<form id="gene" name="gene" method="post" action="http://www.bio-server.cn/Server_survival/CellTracker_Survival_server_mir.jsp" target="exmdb_net">
+				<p class="sub_title_function"><img src="img/iconfont/survival.png" style="margin-top: -7px;margin-right: 7px;width: 27px;">ExMdb-Survival</p>
+		    	<p class="sub_text_function">A tool to perform COX regression analysis and survival curves for RNA across more than 30 types of malignant cancers.</p>
+				 <nav class="menu menu--adsila">
+
+					
+
+					<a class="menu__item" href="#">
+						<span class="menu__item-name">Survival Analyze Tool</span>
+						<span class="menu__item-label">(Gene/Data Set/Group color)</span>
+					</a>
+					
+					<div class="row">
+						<div class="col-lg-3 col-md-3">
+						<label>miRNA-Id (Name) : </label>
+							 <input type="text" name="genename" id="genename" class="form-control" value="hsa-let-7a-3p" placeholder=" hsa-let-7a-3p ..." >
+						</div>
+
+						<div class="col-lg-3 col-md-3">
+						<label>Data Set : </label>
+						<select class="selectpicker show-menu-arrow" style="width:100%" data-live-search="true" name="dis" id="dis" data-size="5">
+						<optgroup label="Adrenocortical Carcinoma">
+						<option value="ACC">ACC-TCGA (N=79)</option> </optgroup>
+						<optgroup label="Bladder Urothelial Carcinoma">
+						<option value="BLCA">BLCA-TCGA (N=404)</option> 
+						<option value="GSE13507BLCA">BLCA-GSE13507 (N=165)</option>
+						<option value="GSE31684BLCA">BLCA-GSE31684 (N=77)</option>
+						</optgroup>
+							<optgroup label="Breast Invasive Carcinoma">
+									<option value="BRCA">BRCA-TCGA (N=1089)</option> 
+									<option value="GSE2603BRCA">BRCA-GSE2603 (N=82)</option> 
+									<option value="GSE5327BRCA">BRCA-GSE5327 (N=58)</option> 
+									<option value="GSE6130BRCA">BRCA-GSE6130 (N=107)</option> 
+									<option value="GSE10886BRCA">BRCA-GSE10886 (N=101)</option> 
+									<option value="GSE10893BRCA">BRCA-GSE10893 (N=237)</option> 
+									<option value="GSE18229BRCA">BRCA-GSE18229 (N=253)</option> 
+									<option value="GSE20685BRCA">BRCA-GSE20685 (N=327)</option> 
+									<option value="GSE20713BRCA">BRCA-GSE20713 (N=88)</option>
+									<option value="GSE21653BRCA">BRCA-GSE21653 (N=252)</option>
+									<option value="GSE31448BRCA">BRCA-GSE31448 (N=246)</option>
+									<option value="GSE37181BRCA">BRCA-GSE37181 (N=123)</option>
+									<option value="GSE42568BRCA">BRCA-GSE42568 (N=104)</option>
+									<option value="GSE48390BRCA">BRCA-GSE48390 (N=81)</option>
+									<option value="GSE58812BRCA">BRCA-GSE58812 (N=107)</option>
+									<option value="GSE88770BRCA">BRCA-GSE88770 (N=117)</option>
+							</optgroup>
+							<optgroup label="Cervical Squamous Cell Carcinoma">
+									<option value="CESC">CESC-TCGA (N=304)</option> </optgroup>
+									<optgroup label="Cholangiocarcinoma">
+									<option value="CHOL">CHOL-TCGA (N=36)</option> </optgroup>
+									<optgroup label="Colon Adenocarcinoma">
+									<option value="COAD">COAD-TCGA (N=454)</option> 
+									<option value="GSE38882COAD">COAD-GSE38882 (N=122)</option> 
+									
+									</optgroup>
+									<optgroup label="Bladder Urothelial Carcinoma">
+									<option value="DLBC">DLBC-TCGA (N=47)</option></optgroup>
+							<optgroup label="Esophageal Carcinoma">
+									<option value="ESCA">ESCA-TCGA (N=163)</option>
+									<option value="GSE53622ESCA">ESCA-GSE53622 (N=60)</option> 
+									<option value="GSE53624ESCA">ESCA-GSE53624 (N=119)</option> 
+							</optgroup>
+							<optgroup label="Glioblastoma Multiforme">
+									<option value="GBM">GBM-TCGA (N=159)</option> </optgroup>
+									<optgroup label="Head and Neck Squamous Cell Carcinoma">
+									<option value="HNSC">HNSC-TCGA (N=500)</option> </optgroup>
+									<optgroup label="Kidney Chromophobe">
+									<option value="KICH">KICH-TCGA (N=65)</option> </optgroup>
+									<optgroup label="Kidney Renal Clear Cell Carcinoma">
+									<option value="KIRC">KIRC-TCGA (N=529)</option> </optgroup>
+									<optgroup label="Kidney Renal Papillary Cell Carcinoma">
+									<option value="KIRP">KIRP-TCGA (N=289)</option></optgroup>
+									<optgroup label="Acute Myeloid Leukemia">
+									<option value="LAML">LAML-TCGA (N=151)</option> </optgroup>
+									<optgroup label="Brain Lower Grade Glioma">
+									<option value="LGG">LGG-TCGA (N=506)</option> </optgroup>
+									<optgroup label="Liver Hepatocellular Carcinoma">
+									<option value="LIHC">LIHC-TCGA (N=370)</option> </optgroup>
+							<optgroup label="Lung Adenocarcinoma">
+									<option value="LUAD">LUAD-TCGA (N=515)</option> 
+									<option value="GSE3141Lung">LUAD-GSE3141 (N=111)</option>
+									<option value="GSE11969Lung">LUAD-GSE11969 (N=149)</option> 
+									<option value="GSE31210Lung">LUAD-GSE31210 (N=226)</option> 
+									<option value="GSE26939Lung">LUAD-GSE26939 (N=115)</option> 
+									<option value="GSE30219Lung">LUAD-GSE30219 (N=293)</option> 
+							</optgroup>
+									
+							<optgroup label="Lung Squamous Cell Carcinoma">		
+									<option value="LUSC">LUSC-TCGA(N=497)</option> 
+									<option value="GSE8894Lung">LUSC-GSE8894 (N=138)</option> 
+									<option value="GSE19188Lung">LUSC-GSE19188 (N=82)</option> 
+									<option value="GSE37745Lung">LUSC-GSE37745 (N=196)</option> 
+									<option value="GSE50081Lung">LUSC-GSE50081 (N=181)</option> 
+									<option value="GSE42127Lung">LUSC-GSE42127 (N=176)</option> 							
+									
+							</optgroup>
+							<optgroup label="Mesothelioma">
+									<option value="MESO">MESO-TCGA (N=85)</option> </optgroup>
+									<optgroup label="Ovarian Serous Cystadenocarcinoma">
+									<option value="OV">OV-TCGA (N=375)</option> 
+									<option value="GSE14764OV">OV-GSE14764 (N=80)</option> 
+									<option value="GSE17260OV">OV-GSE17260 (N=110)</option> 
+									<option value="GSE26712OV">OV-GSE26712 (N=56)</option> 
+									<option value="GSE30161OV">OV-GSE30161 (N=58)</option> 
+									<option value="GSE31245OV">OV-GSE31245 (N=57)</option> 
+									<option value="GSE32602OV">OV-GSE32602 (N=260)</option> 
+									<option value="GSE49997OV">OV-GSE49997 (N=194)</option> 
+									<option value="GSE63885OV">OV-GSE63885 (N=70)</option> 
+							</optgroup>
+									<optgroup label="Pancreatic Adenocarcinoma">
+									<option value="PAAD">PAAD-TCGA (N=177)</option> </optgroup>
+									<optgroup label="Pheochromocytoma and Paraganglioma">
+									<option value="PCPG">PCPG-TCGA (N=179)</option> </optgroup>
+									<optgroup label="Prostate Adenocarcinoma">
+									<option value="PRAD">PRAD-TCGA (N=475)</option> 
+									<option value="GSE16560PRAD">PRAD-GSE16560 (N=281)</option> 
+									</optgroup>
+									<optgroup label="Rectum Adenocarcinoma">
+									<option value="READ">READ-TCGA (N=166)</option> </optgroup>
+									<optgroup label="Sarcoma">
+									<option value="SARC">SARC-TCGA (N=257)</option> </optgroup>
+									<optgroup label="Stomach Adenocarcinoma">
+									<option value="SKCM">SKCM-TCGA (N=456)</option> </optgroup>
+							<optgroup label="Stomach Adenocarcinoma">
+									<option value="STAD">STAD-TCGA (N=380)</option> 
+									<option value="GSE15459STAD">STAD-GSE15459 (N=192)</option> 
+									<option value="GSE62254STAD">STAD-GSE62254 (N=300)</option> 
+							</optgroup>
+							<optgroup label="Testicular Germ Cell Tumors">
+									<option value="TGCT">TGCT-TCGA (N=133)</option> 
+							</optgroup>
+							<optgroup label="Thyroid Carcinoma">
+									<option value="THCA">THCA-TCGA (N=502)</option> 
+							</optgroup>
+							<optgroup label="Thymoma">
+									<option value="THYM">THYM-TCGA (N=119)</option> </optgroup>
+							<optgroup label="Uterine Carcinosarcoma">
+									<option value="UCEC">UCEC-TCGA (N=542)</option> </optgroup>
+									<optgroup label="Uterine Corpus Endometrial Carcinoma">
+									<option value="UCS">UCS-TCGA (N=56)</option> </optgroup>
+									<optgroup label="Uveal Melanoma">
+									<option value="UVM">UVM-TCGA (N=80)</option> </optgroup>					 
+									</select>
+						</div>
+
+						<div class="col-lg-2 col-md-6">
+						<label>Egde width : </label>
+							<select class="selectpicker show-menu-arrow" id="linel" name="linel">
+							<optgroup label="WIDE">
+							<option value="6">[Wide] 6</option> 
+							<option value="5">[Wide] 5</option> 
+							</optgroup>
+							<optgroup label="MEDIUM">
+							<option value="4">[Medium] 4</option> 
+							<option value="3" selected="selected">[Medium] 3</option>
+							</optgroup>
+							<optgroup label="NARROW">
+							<option value="2">[Narrow] 2</option> 
+							<option value="1">[Narrow] 1</option>
+							</optgroup>
+							</select>	
+						</div>
+						
+						<div class="col-md-1 col-sm-1 col-xs-1">
+						<label style="font-size: 12px;">High Risk: </label>
+							<div class="imm_select">
+								<input id="highc" name="highc" type="color" value="#e60000" style="height:35px;width:100%">  
+							</div>
+						</div>
+						
+						<div class="col-md-1 col-sm-1 col-xs-1">
+						<label style="font-size: 12px;">Low Risk: </label>
+							<div class="imm_select">
+								<input name="lowc" id="lowc" type="color" value="#002db3" style="height:35px;width:100%">
+							</div>
+						</div>
+						
+						<div class="col-lg-2 col-md-2">
+							<div class="progress-button elastic">
+									<button class="default-btn btn-bg-two border-radius-50" type="submit" style="width: 100%;margin-top: 7.5%;" onclick="show_qi()"><span>Submit</span></button>
+							</div>
+						</div>
+					</div>
+				</nav>
+		</form>
+		<hr>
+							<iframe frameborder=0 width="100%" height="600px" 
+							name="exmdb_net" id="exmdb_net"
+							src="http://www.bio-server.cn/Server_survival/CellTracker_Survival_server_mir.jsp?genename=hsa-let-7a-3p&highc=red&lowc=blue&method=mean"
+							scrolling="no" onload="load()"></iframe></div>
+</div>
+
+
+
+</div>
+<footer class="footer-area footer-bg">
+  <div class="container">
+    <div class="copy-right-area">
+      <div class="copy-right-text">
+        <p>2022,CopyRight © HMU. College of Bioinformatics Science and Technology, Harbin, China.</p>
+      </div>
+    </div>
+  </div>
+</footer>
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/owl.carousel.min.js"></script>
+<script src="assets/js/jquery.magnific-popup.min.js"></script>
+<script src="assets/js/noc_jquery.nice-select.min.js"></script>
+<script src="assets/js/wow.min.js"></script>
+<script src="assets/js/meanmenu.js"></script>
+<script src="assets/js/jquery.ajaxchimp.min.js"></script>
+<script src="assets/js/form-validator.min.js"></script>
+<script src="assets/js/contact-form-script.js"></script>
+<script src="assets/js/custom.js"></script>
+
+
+
+
+<script src="http://cdn.bootcss.com/jquery/1.11.0/jquery.min.js" type="text/javascript"></script>
+<script>window.jQuery || document.write('<script src="js/jquery-1.11.0.min.js"><\/script>')</script>
+<script src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="bootstrap_select/bootstrap-select.js"></script>
+
+
+<script type="text/javascript" src="select/demo2.js" ></script>
+<script type="text/javascript" src="select/jquery.min.js" ></script>
+<script type="text/javascript" src="select/selectpage.min.js" ></script>
+
+
+<script type="text/javascript">
+	$(function(){
+		
+		var tag_data = [
+			{id:'hsa-let-7a-3p',name:'hsa-let-7a-3p'},
+			{id:'hsa-let-7a-5p',name:'hsa-let-7a-5p'},
+			{id:'hsa-let-7b-3p',name:'hsa-let-7b-3p'},
+			{id:'hsa-let-7b-5p',name:'hsa-let-7b-5p'},
+			{id:'hsa-let-7c-3p',name:'hsa-let-7c-3p'},
+			{id:'hsa-let-7c-5p',name:'hsa-let-7c-5p'},
+			{id:'hsa-let-7d-5p',name:'hsa-let-7d-5p'},
+			{id:'hsa-let-7e-5p',name:'hsa-let-7e-5p'},
+			{id:'hsa-let-7f-5p',name:'hsa-let-7f-5p'},
+			{id:'hsa-let-7g-5p',name:'hsa-let-7g-5p'},
+			{id:'hsa-let-7i-5p',name:'hsa-let-7i-5p'},
+			{id:'hsa-miR-1-3p',name:'hsa-miR-1-3p'},
+			{id:'hsa-miR-100-5p',name:'hsa-miR-100-5p'},
+			{id:'hsa-miR-101-3p',name:'hsa-miR-101-3p'},
+			{id:'hsa-miR-101-5p',name:'hsa-miR-101-5p'},
+			{id:'hsa-miR-103a-2-5p',name:'hsa-miR-103a-2-5p'},
+			{id:'hsa-miR-103a-3p',name:'hsa-miR-103a-3p'},
+			{id:'hsa-miR-105-5p',name:'hsa-miR-105-5p'},
+			{id:'hsa-miR-106a-3p',name:'hsa-miR-106a-3p'},
+			{id:'hsa-miR-106a-5p',name:'hsa-miR-106a-5p'},
+			{id:'hsa-miR-106b-3p',name:'hsa-miR-106b-3p'},
+			{id:'hsa-miR-106b-5p',name:'hsa-miR-106b-5p'},
+			{id:'hsa-miR-107',name:'hsa-miR-107'},
+			{id:'hsa-miR-10a-5p',name:'hsa-miR-10a-5p'},
+			{id:'hsa-miR-10b-3p',name:'hsa-miR-10b-3p'},
+			{id:'hsa-miR-10b-5p',name:'hsa-miR-10b-5p'},
+			{id:'hsa-miR-1179',name:'hsa-miR-1179'},
+			{id:'hsa-miR-1180-3p',name:'hsa-miR-1180-3p'},
+			{id:'hsa-miR-1185-5p',name:'hsa-miR-1185-5p'},
+			{id:'hsa-miR-1193',name:'hsa-miR-1193'},
+			{id:'hsa-miR-1197',name:'hsa-miR-1197'},
+			{id:'hsa-miR-122-5p',name:'hsa-miR-122-5p'},
+			{id:'hsa-miR-1224-5p',name:'hsa-miR-1224-5p'},
+			{id:'hsa-miR-1226-3p',name:'hsa-miR-1226-3p'},
+			{id:'hsa-miR-1228-3p',name:'hsa-miR-1228-3p'},
+			{id:'hsa-miR-1229-3p',name:'hsa-miR-1229-3p'},
+			{id:'hsa-miR-1236-3p',name:'hsa-miR-1236-3p'},
+			{id:'hsa-miR-124-3p',name:'hsa-miR-124-3p'},
+			{id:'hsa-miR-1245b-5p',name:'hsa-miR-1245b-5p'},
+			{id:'hsa-miR-1247-5p',name:'hsa-miR-1247-5p'},
+			{id:'hsa-miR-1249-3p',name:'hsa-miR-1249-3p'},
+			{id:'hsa-miR-1251-5p',name:'hsa-miR-1251-5p'},
+			{id:'hsa-miR-1252-5p',name:'hsa-miR-1252-5p'},
+			{id:'hsa-miR-1254',name:'hsa-miR-1254'},
+			{id:'hsa-miR-125a-3p',name:'hsa-miR-125a-3p'},
+			{id:'hsa-miR-125a-5p',name:'hsa-miR-125a-5p'},
+			{id:'hsa-miR-125b-1-3p',name:'hsa-miR-125b-1-3p'},
+			{id:'hsa-miR-125b-2-3p',name:'hsa-miR-125b-2-3p'},
+			{id:'hsa-miR-125b-5p',name:'hsa-miR-125b-5p'},
+			{id:'hsa-miR-126-3p',name:'hsa-miR-126-3p'},
+			{id:'hsa-miR-126-5p',name:'hsa-miR-126-5p'},
+			{id:'hsa-miR-1266-5p',name:'hsa-miR-1266-5p'},
+			{id:'hsa-miR-1269a',name:'hsa-miR-1269a'},
+			{id:'hsa-miR-1269b',name:'hsa-miR-1269b'},
+			{id:'hsa-miR-127-3p',name:'hsa-miR-127-3p'},
+			{id:'hsa-miR-127-5p',name:'hsa-miR-127-5p'},
+			{id:'hsa-miR-1270',name:'hsa-miR-1270'},
+			{id:'hsa-miR-1271-5p',name:'hsa-miR-1271-5p'},
+			{id:'hsa-miR-1276',name:'hsa-miR-1276'},
+			{id:'hsa-miR-1277-3p',name:'hsa-miR-1277-3p'},
+			{id:'hsa-miR-1277-5p',name:'hsa-miR-1277-5p'},
+			{id:'hsa-miR-1278',name:'hsa-miR-1278'},
+			{id:'hsa-miR-128-1-5p',name:'hsa-miR-128-1-5p'},
+			{id:'hsa-miR-128-3p',name:'hsa-miR-128-3p'},
+			{id:'hsa-miR-1284',name:'hsa-miR-1284'},
+			{id:'hsa-miR-1285-3p',name:'hsa-miR-1285-3p'},
+			{id:'hsa-miR-1286',name:'hsa-miR-1286'},
+			{id:'hsa-miR-1287-5p',name:'hsa-miR-1287-5p'},
+			{id:'hsa-miR-129-1-3p',name:'hsa-miR-129-1-3p'},
+			{id:'hsa-miR-129-2-3p',name:'hsa-miR-129-2-3p'},
+			{id:'hsa-miR-129-5p',name:'hsa-miR-129-5p'},
+			{id:'hsa-miR-1291',name:'hsa-miR-1291'},
+			{id:'hsa-miR-1292-5p',name:'hsa-miR-1292-5p'},
+			{id:'hsa-miR-1294',name:'hsa-miR-1294'},
+			{id:'hsa-miR-1295a',name:'hsa-miR-1295a'},
+			{id:'hsa-miR-1296-5p',name:'hsa-miR-1296-5p'},
+			{id:'hsa-miR-1297',name:'hsa-miR-1297'},
+			{id:'hsa-miR-1298-5p',name:'hsa-miR-1298-5p'},
+			{id:'hsa-miR-1301-3p',name:'hsa-miR-1301-3p'},
+			{id:'hsa-miR-1303',name:'hsa-miR-1303'},
+			{id:'hsa-miR-1306-5p',name:'hsa-miR-1306-5p'},
+			{id:'hsa-miR-1307-3p',name:'hsa-miR-1307-3p'},
+			{id:'hsa-miR-1307-5p',name:'hsa-miR-1307-5p'},
+			{id:'hsa-miR-130a-3p',name:'hsa-miR-130a-3p'},
+			{id:'hsa-miR-130a-5p',name:'hsa-miR-130a-5p'},
+			{id:'hsa-miR-130b-3p',name:'hsa-miR-130b-3p'},
+			{id:'hsa-miR-132-3p',name:'hsa-miR-132-3p'},
+			{id:'hsa-miR-132-5p',name:'hsa-miR-132-5p'},
+			{id:'hsa-miR-1321',name:'hsa-miR-1321'},
+			{id:'hsa-miR-1323',name:'hsa-miR-1323'},
+			{id:'hsa-miR-133a-3p',name:'hsa-miR-133a-3p'},
+			{id:'hsa-miR-133b',name:'hsa-miR-133b'},
+			{id:'hsa-miR-134-5p',name:'hsa-miR-134-5p'},
+			{id:'hsa-miR-1343-3p',name:'hsa-miR-1343-3p'},
+			{id:'hsa-miR-135a-3p',name:'hsa-miR-135a-3p'},
+			{id:'hsa-miR-135a-5p',name:'hsa-miR-135a-5p'},
+			{id:'hsa-miR-135b-3p',name:'hsa-miR-135b-3p'},
+			{id:'hsa-miR-135b-5p',name:'hsa-miR-135b-5p'},
+			{id:'hsa-miR-136-5p',name:'hsa-miR-136-5p'},
+			{id:'hsa-miR-137',name:'hsa-miR-137'},
+			{id:'hsa-miR-138-1-3p',name:'hsa-miR-138-1-3p'},
+			{id:'hsa-miR-138-5p',name:'hsa-miR-138-5p'},
+			{id:'hsa-miR-139-3p',name:'hsa-miR-139-3p'},
+			{id:'hsa-miR-139-5p',name:'hsa-miR-139-5p'},
+			{id:'hsa-miR-140-3p',name:'hsa-miR-140-3p'},
+			{id:'hsa-miR-140-5p',name:'hsa-miR-140-5p'},
+			{id:'hsa-miR-141-3p',name:'hsa-miR-141-3p'},
+			{id:'hsa-miR-141-5p',name:'hsa-miR-141-5p'},
+			{id:'hsa-miR-142-3p',name:'hsa-miR-142-3p'},
+			{id:'hsa-miR-142-5p',name:'hsa-miR-142-5p'},
+			{id:'hsa-miR-143-3p',name:'hsa-miR-143-3p'},
+			{id:'hsa-miR-143-5p',name:'hsa-miR-143-5p'},
+			{id:'hsa-miR-144-3p',name:'hsa-miR-144-3p'},
+			{id:'hsa-miR-144-5p',name:'hsa-miR-144-5p'},
+			{id:'hsa-miR-145-3p',name:'hsa-miR-145-3p'},
+			{id:'hsa-miR-145-5p',name:'hsa-miR-145-5p'},
+			{id:'hsa-miR-146a-5p',name:'hsa-miR-146a-5p'},
+			{id:'hsa-miR-146b-3p',name:'hsa-miR-146b-3p'},
+			{id:'hsa-miR-146b-5p',name:'hsa-miR-146b-5p'},
+			{id:'hsa-miR-147a',name:'hsa-miR-147a'},
+			{id:'hsa-miR-147b',name:'hsa-miR-147b'},
+			{id:'hsa-miR-148a-3p',name:'hsa-miR-148a-3p'},
+			{id:'hsa-miR-148a-5p',name:'hsa-miR-148a-5p'},
+			{id:'hsa-miR-148b-3p',name:'hsa-miR-148b-3p'},
+			{id:'hsa-miR-148b-5p',name:'hsa-miR-148b-5p'},
+			{id:'hsa-miR-149-3p',name:'hsa-miR-149-3p'},
+			{id:'hsa-miR-149-5p',name:'hsa-miR-149-5p'},
+			{id:'hsa-miR-150-3p',name:'hsa-miR-150-3p'},
+			{id:'hsa-miR-150-5p',name:'hsa-miR-150-5p'},
+			{id:'hsa-miR-151a-3p',name:'hsa-miR-151a-3p'},
+			{id:'hsa-miR-151a-5p',name:'hsa-miR-151a-5p'},
+			{id:'hsa-miR-151b',name:'hsa-miR-151b'},
+			{id:'hsa-miR-152-3p',name:'hsa-miR-152-3p'},
+			{id:'hsa-miR-152-5p',name:'hsa-miR-152-5p'},
+			{id:'hsa-miR-153-3p',name:'hsa-miR-153-3p'},
+			{id:'hsa-miR-153-5p',name:'hsa-miR-153-5p'},
+			{id:'hsa-miR-154-3p',name:'hsa-miR-154-3p'},
+			{id:'hsa-miR-154-5p',name:'hsa-miR-154-5p'},
+			{id:'hsa-miR-155-3p',name:'hsa-miR-155-3p'},
+			{id:'hsa-miR-155-5p',name:'hsa-miR-155-5p'},
+			{id:'hsa-miR-15a-3p',name:'hsa-miR-15a-3p'},
+			{id:'hsa-miR-15a-5p',name:'hsa-miR-15a-5p'},
+			{id:'hsa-miR-15b-3p',name:'hsa-miR-15b-3p'},
+			{id:'hsa-miR-15b-5p',name:'hsa-miR-15b-5p'},
+			{id:'hsa-miR-16-1-3p',name:'hsa-miR-16-1-3p'},
+			{id:'hsa-miR-16-2-3p',name:'hsa-miR-16-2-3p'},
+			{id:'hsa-miR-16-5p',name:'hsa-miR-16-5p'},
+			{id:'hsa-miR-17-3p',name:'hsa-miR-17-3p'},
+			{id:'hsa-miR-17-5p',name:'hsa-miR-17-5p'},
+			{id:'hsa-miR-181a-3p',name:'hsa-miR-181a-3p'},
+			{id:'hsa-miR-181a-5p',name:'hsa-miR-181a-5p'},
+			{id:'hsa-miR-181b-2-3p',name:'hsa-miR-181b-2-3p'},
+			{id:'hsa-miR-181b-3p',name:'hsa-miR-181b-3p'},
+			{id:'hsa-miR-181b-5p',name:'hsa-miR-181b-5p'},
+			{id:'hsa-miR-181c-5p',name:'hsa-miR-181c-5p'},
+			{id:'hsa-miR-181d-5p',name:'hsa-miR-181d-5p'},
+			{id:'hsa-miR-182-5p',name:'hsa-miR-182-5p'},
+			{id:'hsa-miR-183-5p',name:'hsa-miR-183-5p'},
+			{id:'hsa-miR-184',name:'hsa-miR-184'},
+			{id:'hsa-miR-185-3p',name:'hsa-miR-185-3p'},
+			{id:'hsa-miR-185-5p',name:'hsa-miR-185-5p'},
+			{id:'hsa-miR-186-5p',name:'hsa-miR-186-5p'},
+			{id:'hsa-miR-187-3p',name:'hsa-miR-187-3p'},
+			{id:'hsa-miR-188-3p',name:'hsa-miR-188-3p'},
+			{id:'hsa-miR-188-5p',name:'hsa-miR-188-5p'},
+			{id:'hsa-miR-18a-3p',name:'hsa-miR-18a-3p'},
+			{id:'hsa-miR-18a-5p',name:'hsa-miR-18a-5p'},
+			{id:'hsa-miR-18b-5p',name:'hsa-miR-18b-5p'},
+			{id:'hsa-miR-1908-5p',name:'hsa-miR-1908-5p'},
+			{id:'hsa-miR-190a-5p',name:'hsa-miR-190a-5p'},
+			{id:'hsa-miR-190b',name:'hsa-miR-190b'},
+			{id:'hsa-miR-191-5p',name:'hsa-miR-191-5p'},
+			{id:'hsa-miR-1911-5p',name:'hsa-miR-1911-5p'},
+			{id:'hsa-miR-1913',name:'hsa-miR-1913'},
+			{id:'hsa-miR-1914-3p',name:'hsa-miR-1914-3p'},
+			{id:'hsa-miR-192-5p',name:'hsa-miR-192-5p'},
+			{id:'hsa-miR-193a-3p',name:'hsa-miR-193a-3p'},
+			{id:'hsa-miR-193a-5p',name:'hsa-miR-193a-5p'},
+			{id:'hsa-miR-193b-3p',name:'hsa-miR-193b-3p'},
+			{id:'hsa-miR-193b-5p',name:'hsa-miR-193b-5p'},
+			{id:'hsa-miR-194-3p',name:'hsa-miR-194-3p'},
+			{id:'hsa-miR-194-5p',name:'hsa-miR-194-5p'},
+			{id:'hsa-miR-195-3p',name:'hsa-miR-195-3p'},
+			{id:'hsa-miR-195-5p',name:'hsa-miR-195-5p'},
+			{id:'hsa-miR-196a-5p',name:'hsa-miR-196a-5p'},
+			{id:'hsa-miR-196b-5p',name:'hsa-miR-196b-5p'},
+			{id:'hsa-miR-197-3p',name:'hsa-miR-197-3p'},
+			{id:'hsa-miR-199a-3p',name:'hsa-miR-199a-3p'},
+			{id:'hsa-miR-199a-5p',name:'hsa-miR-199a-5p'},
+			{id:'hsa-miR-199b-3p',name:'hsa-miR-199b-3p'},
+			{id:'hsa-miR-199b-5p',name:'hsa-miR-199b-5p'},
+			{id:'hsa-miR-19a-3p',name:'hsa-miR-19a-3p'},
+			{id:'hsa-miR-19a-5p',name:'hsa-miR-19a-5p'},
+			{id:'hsa-miR-19b-1-5p',name:'hsa-miR-19b-1-5p'},
+			{id:'hsa-miR-19b-3p',name:'hsa-miR-19b-3p'},
+			{id:'hsa-miR-200a-3p',name:'hsa-miR-200a-3p'},
+			{id:'hsa-miR-200a-5p',name:'hsa-miR-200a-5p'},
+			{id:'hsa-miR-200b-3p',name:'hsa-miR-200b-3p'},
+			{id:'hsa-miR-200c-3p',name:'hsa-miR-200c-3p'},
+			{id:'hsa-miR-200c-5p',name:'hsa-miR-200c-5p'},
+			{id:'hsa-miR-202-5p',name:'hsa-miR-202-5p'},
+			{id:'hsa-miR-203a-3p',name:'hsa-miR-203a-3p'},
+			{id:'hsa-miR-203a-5p',name:'hsa-miR-203a-5p'},
+			{id:'hsa-miR-204-3p',name:'hsa-miR-204-3p'},
+			{id:'hsa-miR-204-5p',name:'hsa-miR-204-5p'},
+			{id:'hsa-miR-205-3p',name:'hsa-miR-205-3p'},
+			{id:'hsa-miR-205-5p',name:'hsa-miR-205-5p'},
+			{id:'hsa-miR-206',name:'hsa-miR-206'},
+			{id:'hsa-miR-208a-3p',name:'hsa-miR-208a-3p'},
+			{id:'hsa-miR-208b-3p',name:'hsa-miR-208b-3p'},
+			{id:'hsa-miR-20a-3p',name:'hsa-miR-20a-3p'},
+			{id:'hsa-miR-20a-5p',name:'hsa-miR-20a-5p'},
+			{id:'hsa-miR-20b-3p',name:'hsa-miR-20b-3p'},
+			{id:'hsa-miR-20b-5p',name:'hsa-miR-20b-5p'},
+			{id:'hsa-miR-21-3p',name:'hsa-miR-21-3p'},
+			{id:'hsa-miR-21-5p',name:'hsa-miR-21-5p'},
+			{id:'hsa-miR-210-3p',name:'hsa-miR-210-3p'},
+			{id:'hsa-miR-211-3p',name:'hsa-miR-211-3p'},
+			{id:'hsa-miR-211-5p',name:'hsa-miR-211-5p'},
+			{id:'hsa-miR-2114-3p',name:'hsa-miR-2114-3p'},
+			{id:'hsa-miR-2114-5p',name:'hsa-miR-2114-5p'},
+			{id:'hsa-miR-2115-3p',name:'hsa-miR-2115-3p'},
+			{id:'hsa-miR-2116-3p',name:'hsa-miR-2116-3p'},
+			{id:'hsa-miR-212-3p',name:'hsa-miR-212-3p'},
+			{id:'hsa-miR-212-5p',name:'hsa-miR-212-5p'},
+			{id:'hsa-miR-214-3p',name:'hsa-miR-214-3p'},
+			{id:'hsa-miR-214-5p',name:'hsa-miR-214-5p'},
+			{id:'hsa-miR-215-3p',name:'hsa-miR-215-3p'},
+			{id:'hsa-miR-215-5p',name:'hsa-miR-215-5p'},
+			{id:'hsa-miR-216a-3p',name:'hsa-miR-216a-3p'},
+			{id:'hsa-miR-216a-5p',name:'hsa-miR-216a-5p'},
+			{id:'hsa-miR-216b-5p',name:'hsa-miR-216b-5p'},
+			{id:'hsa-miR-217',name:'hsa-miR-217'},
+			{id:'hsa-miR-218-1-3p',name:'hsa-miR-218-1-3p'},
+			{id:'hsa-miR-218-5p',name:'hsa-miR-218-5p'},
+			{id:'hsa-miR-219a-2-3p',name:'hsa-miR-219a-2-3p'},
+			{id:'hsa-miR-219a-5p',name:'hsa-miR-219a-5p'},
+			{id:'hsa-miR-22-3p',name:'hsa-miR-22-3p'},
+			{id:'hsa-miR-22-5p',name:'hsa-miR-22-5p'},
+			{id:'hsa-miR-221-3p',name:'hsa-miR-221-3p'},
+			{id:'hsa-miR-221-5p',name:'hsa-miR-221-5p'},
+			{id:'hsa-miR-222-3p',name:'hsa-miR-222-3p'},
+			{id:'hsa-miR-222-5p',name:'hsa-miR-222-5p'},
+			{id:'hsa-miR-223-3p',name:'hsa-miR-223-3p'},
+			{id:'hsa-miR-223-5p',name:'hsa-miR-223-5p'},
+			{id:'hsa-miR-224-3p',name:'hsa-miR-224-3p'},
+			{id:'hsa-miR-224-5p',name:'hsa-miR-224-5p'},
+			{id:'hsa-miR-2277-5p',name:'hsa-miR-2277-5p'},
+			{id:'hsa-miR-2278',name:'hsa-miR-2278'},
+			{id:'hsa-miR-2355-3p',name:'hsa-miR-2355-3p'},
+			{id:'hsa-miR-2355-5p',name:'hsa-miR-2355-5p'},
+			{id:'hsa-miR-23a-3p',name:'hsa-miR-23a-3p'},
+			{id:'hsa-miR-23a-5p',name:'hsa-miR-23a-5p'},
+			{id:'hsa-miR-23b-3p',name:'hsa-miR-23b-3p'},
+			{id:'hsa-miR-23b-5p',name:'hsa-miR-23b-5p'},
+			{id:'hsa-miR-23c',name:'hsa-miR-23c'},
+			{id:'hsa-miR-24-1-5p',name:'hsa-miR-24-1-5p'},
+			{id:'hsa-miR-24-2-5p',name:'hsa-miR-24-2-5p'},
+			{id:'hsa-miR-24-3p',name:'hsa-miR-24-3p'},
+			{id:'hsa-miR-2467-3p',name:'hsa-miR-2467-3p'},
+			{id:'hsa-miR-25-3p',name:'hsa-miR-25-3p'},
+			{id:'hsa-miR-25-5p',name:'hsa-miR-25-5p'},
+			{id:'hsa-miR-2681-3p',name:'hsa-miR-2681-3p'},
+			{id:'hsa-miR-2681-5p',name:'hsa-miR-2681-5p'},
+			{id:'hsa-miR-2682-5p',name:'hsa-miR-2682-5p'},
+			{id:'hsa-miR-26a-1-3p',name:'hsa-miR-26a-1-3p'},
+			{id:'hsa-miR-26a-5p',name:'hsa-miR-26a-5p'},
+			{id:'hsa-miR-26b-3p',name:'hsa-miR-26b-3p'},
+			{id:'hsa-miR-26b-5p',name:'hsa-miR-26b-5p'},
+			{id:'hsa-miR-27a-3p',name:'hsa-miR-27a-3p'},
+			{id:'hsa-miR-27a-5p',name:'hsa-miR-27a-5p'},
+			{id:'hsa-miR-27b-3p',name:'hsa-miR-27b-3p'},
+			{id:'hsa-miR-27b-5p',name:'hsa-miR-27b-5p'},
+			{id:'hsa-miR-28-3p',name:'hsa-miR-28-3p'},
+			{id:'hsa-miR-28-5p',name:'hsa-miR-28-5p'},
+			{id:'hsa-miR-296-3p',name:'hsa-miR-296-3p'},
+			{id:'hsa-miR-296-5p',name:'hsa-miR-296-5p'},
+			{id:'hsa-miR-299-3p',name:'hsa-miR-299-3p'},
+			{id:'hsa-miR-299-5p',name:'hsa-miR-299-5p'},
+			{id:'hsa-miR-29a-3p',name:'hsa-miR-29a-3p'},
+			{id:'hsa-miR-29a-5p',name:'hsa-miR-29a-5p'},
+			{id:'hsa-miR-29b-1-5p',name:'hsa-miR-29b-1-5p'},
+			{id:'hsa-miR-29b-3p',name:'hsa-miR-29b-3p'},
+			{id:'hsa-miR-29c-3p',name:'hsa-miR-29c-3p'},
+			{id:'hsa-miR-29c-5p',name:'hsa-miR-29c-5p'},
+			{id:'hsa-miR-300',name:'hsa-miR-300'},
+			{id:'hsa-miR-301a-3p',name:'hsa-miR-301a-3p'},
+			{id:'hsa-miR-301a-5p',name:'hsa-miR-301a-5p'},
+			{id:'hsa-miR-301b-3p',name:'hsa-miR-301b-3p'},
+			{id:'hsa-miR-301b-5p',name:'hsa-miR-301b-5p'},
+			{id:'hsa-miR-302a-3p',name:'hsa-miR-302a-3p'},
+			{id:'hsa-miR-302a-5p',name:'hsa-miR-302a-5p'},
+			{id:'hsa-miR-302b-3p',name:'hsa-miR-302b-3p'},
+			{id:'hsa-miR-302c-3p',name:'hsa-miR-302c-3p'},
+			{id:'hsa-miR-302d-3p',name:'hsa-miR-302d-3p'},
+			{id:'hsa-miR-302e',name:'hsa-miR-302e'},
+			{id:'hsa-miR-3064-5p',name:'hsa-miR-3064-5p'},
+			{id:'hsa-miR-30a-3p',name:'hsa-miR-30a-3p'},
+			{id:'hsa-miR-30a-5p',name:'hsa-miR-30a-5p'},
+			{id:'hsa-miR-30b-3p',name:'hsa-miR-30b-3p'},
+			{id:'hsa-miR-30b-5p',name:'hsa-miR-30b-5p'},
+			{id:'hsa-miR-30c-1-3p',name:'hsa-miR-30c-1-3p'},
+			{id:'hsa-miR-30c-2-3p',name:'hsa-miR-30c-2-3p'},
+			{id:'hsa-miR-30c-5p',name:'hsa-miR-30c-5p'},
+			{id:'hsa-miR-30d-3p',name:'hsa-miR-30d-3p'},
+			{id:'hsa-miR-30d-5p',name:'hsa-miR-30d-5p'},
+			{id:'hsa-miR-30e-3p',name:'hsa-miR-30e-3p'},
+			{id:'hsa-miR-30e-5p',name:'hsa-miR-30e-5p'},
+			{id:'hsa-miR-31-3p',name:'hsa-miR-31-3p'},
+			{id:'hsa-miR-31-5p',name:'hsa-miR-31-5p'},
+			{id:'hsa-miR-3118',name:'hsa-miR-3118'},
+			{id:'hsa-miR-3121-3p',name:'hsa-miR-3121-3p'},
+			{id:'hsa-miR-3126-5p',name:'hsa-miR-3126-5p'},
+			{id:'hsa-miR-3127-5p',name:'hsa-miR-3127-5p'},
+			{id:'hsa-miR-3129-5p',name:'hsa-miR-3129-5p'},
+			{id:'hsa-miR-3139',name:'hsa-miR-3139'},
+			{id:'hsa-miR-3140-3p',name:'hsa-miR-3140-3p'},
+			{id:'hsa-miR-3142',name:'hsa-miR-3142'},
+			{id:'hsa-miR-3144-3p',name:'hsa-miR-3144-3p'},
+			{id:'hsa-miR-3145-3p',name:'hsa-miR-3145-3p'},
+			{id:'hsa-miR-3146',name:'hsa-miR-3146'},
+			{id:'hsa-miR-3150a-3p',name:'hsa-miR-3150a-3p'},
+			{id:'hsa-miR-3150b-3p',name:'hsa-miR-3150b-3p'},
+			{id:'hsa-miR-3163',name:'hsa-miR-3163'},
+			{id:'hsa-miR-3164',name:'hsa-miR-3164'},
+			{id:'hsa-miR-3167',name:'hsa-miR-3167'},
+			{id:'hsa-miR-3171',name:'hsa-miR-3171'},
+			{id:'hsa-miR-3173-5p',name:'hsa-miR-3173-5p'},
+			{id:'hsa-miR-3174',name:'hsa-miR-3174'},
+			{id:'hsa-miR-3179',name:'hsa-miR-3179'},
+			{id:'hsa-miR-3180',name:'hsa-miR-3180'},
+			{id:'hsa-miR-3180-3p',name:'hsa-miR-3180-3p'},
+			{id:'hsa-miR-3184-5p',name:'hsa-miR-3184-5p'},
+			{id:'hsa-miR-3186-3p',name:'hsa-miR-3186-3p'},
+			{id:'hsa-miR-3187-3p',name:'hsa-miR-3187-3p'},
+			{id:'hsa-miR-3189-3p',name:'hsa-miR-3189-3p'},
+			{id:'hsa-miR-3194-3p',name:'hsa-miR-3194-3p'},
+			{id:'hsa-miR-3194-5p',name:'hsa-miR-3194-5p'},
+			{id:'hsa-miR-3196',name:'hsa-miR-3196'},
+			{id:'hsa-miR-32-5p',name:'hsa-miR-32-5p'},
+			{id:'hsa-miR-3200-3p',name:'hsa-miR-3200-3p'},
+			{id:'hsa-miR-3200-5p',name:'hsa-miR-3200-5p'},
+			{id:'hsa-miR-320a',name:'hsa-miR-320a'},
+			{id:'hsa-miR-320b',name:'hsa-miR-320b'},
+			{id:'hsa-miR-320c',name:'hsa-miR-320c'},
+			{id:'hsa-miR-320d',name:'hsa-miR-320d'},
+			{id:'hsa-miR-323a-3p',name:'hsa-miR-323a-3p'},
+			{id:'hsa-miR-323b-3p',name:'hsa-miR-323b-3p'},
+			{id:'hsa-miR-324-3p',name:'hsa-miR-324-3p'},
+			{id:'hsa-miR-324-5p',name:'hsa-miR-324-5p'},
+			{id:'hsa-miR-325',name:'hsa-miR-325'},
+			{id:'hsa-miR-326',name:'hsa-miR-326'},
+			{id:'hsa-miR-328-3p',name:'hsa-miR-328-3p'},
+			{id:'hsa-miR-329-3p',name:'hsa-miR-329-3p'},
+			{id:'hsa-miR-329-5p',name:'hsa-miR-329-5p'},
+			{id:'hsa-miR-330-3p',name:'hsa-miR-330-3p'},
+			{id:'hsa-miR-330-5p',name:'hsa-miR-330-5p'},
+			{id:'hsa-miR-331-3p',name:'hsa-miR-331-3p'},
+			{id:'hsa-miR-335-3p',name:'hsa-miR-335-3p'},
+			{id:'hsa-miR-335-5p',name:'hsa-miR-335-5p'},
+			{id:'hsa-miR-337-3p',name:'hsa-miR-337-3p'},
+			{id:'hsa-miR-338-3p',name:'hsa-miR-338-3p'},
+			{id:'hsa-miR-338-5p',name:'hsa-miR-338-5p'},
+			{id:'hsa-miR-339-3p',name:'hsa-miR-339-3p'},
+			{id:'hsa-miR-339-5p',name:'hsa-miR-339-5p'},
+			{id:'hsa-miR-33a-3p',name:'hsa-miR-33a-3p'},
+			{id:'hsa-miR-33a-5p',name:'hsa-miR-33a-5p'},
+			{id:'hsa-miR-33b-3p',name:'hsa-miR-33b-3p'},
+			{id:'hsa-miR-33b-5p',name:'hsa-miR-33b-5p'},
+			{id:'hsa-miR-340-3p',name:'hsa-miR-340-3p'},
+			{id:'hsa-miR-340-5p',name:'hsa-miR-340-5p'},
+			{id:'hsa-miR-342-3p',name:'hsa-miR-342-3p'},
+			{id:'hsa-miR-342-5p',name:'hsa-miR-342-5p'},
+			{id:'hsa-miR-345-3p',name:'hsa-miR-345-3p'},
+			{id:'hsa-miR-345-5p',name:'hsa-miR-345-5p'},
+			{id:'hsa-miR-346',name:'hsa-miR-346'},
+			{id:'hsa-miR-34a-3p',name:'hsa-miR-34a-3p'},
+			{id:'hsa-miR-34a-5p',name:'hsa-miR-34a-5p'},
+			{id:'hsa-miR-34b-3p',name:'hsa-miR-34b-3p'},
+			{id:'hsa-miR-34b-5p',name:'hsa-miR-34b-5p'},
+			{id:'hsa-miR-34c-5p',name:'hsa-miR-34c-5p'},
+			{id:'hsa-miR-3529-5p',name:'hsa-miR-3529-5p'},
+			{id:'hsa-miR-3605-3p',name:'hsa-miR-3605-3p'},
+			{id:'hsa-miR-3605-5p',name:'hsa-miR-3605-5p'},
+			{id:'hsa-miR-361-3p',name:'hsa-miR-361-3p'},
+			{id:'hsa-miR-361-5p',name:'hsa-miR-361-5p'},
+			{id:'hsa-miR-3611',name:'hsa-miR-3611'},
+			{id:'hsa-miR-3612',name:'hsa-miR-3612'},
+			{id:'hsa-miR-3613-5p',name:'hsa-miR-3613-5p'},
+			{id:'hsa-miR-3614-5p',name:'hsa-miR-3614-5p'},
+			{id:'hsa-miR-3617-5p',name:'hsa-miR-3617-5p'},
+			{id:'hsa-miR-3619-5p',name:'hsa-miR-3619-5p'},
+			{id:'hsa-miR-362-3p',name:'hsa-miR-362-3p'},
+			{id:'hsa-miR-362-5p',name:'hsa-miR-362-5p'},
+			{id:'hsa-miR-3622a-5p',name:'hsa-miR-3622a-5p'},
+			{id:'hsa-miR-3622b-5p',name:'hsa-miR-3622b-5p'},
+			{id:'hsa-miR-363-3p',name:'hsa-miR-363-3p'},
+			{id:'hsa-miR-363-5p',name:'hsa-miR-363-5p'},
+			{id:'hsa-miR-365a-3p',name:'hsa-miR-365a-3p'},
+			{id:'hsa-miR-365b-3p',name:'hsa-miR-365b-3p'},
+			{id:'hsa-miR-3666',name:'hsa-miR-3666'},
+			{id:'hsa-miR-367-3p',name:'hsa-miR-367-3p'},
+			{id:'hsa-miR-3679-5p',name:'hsa-miR-3679-5p'},
+			{id:'hsa-miR-3681-3p',name:'hsa-miR-3681-3p'},
+			{id:'hsa-miR-3681-5p',name:'hsa-miR-3681-5p'},
+			{id:'hsa-miR-369-3p',name:'hsa-miR-369-3p'},
+			{id:'hsa-miR-3690',name:'hsa-miR-3690'},
+			{id:'hsa-miR-370-3p',name:'hsa-miR-370-3p'},
+			{id:'hsa-miR-370-5p',name:'hsa-miR-370-5p'},
+			{id:'hsa-miR-371a-3p',name:'hsa-miR-371a-3p'},
+			{id:'hsa-miR-371a-5p',name:'hsa-miR-371a-5p'},
+			{id:'hsa-miR-372-3p',name:'hsa-miR-372-3p'},
+			{id:'hsa-miR-373-3p',name:'hsa-miR-373-3p'},
+			{id:'hsa-miR-374a-3p',name:'hsa-miR-374a-3p'},
+			{id:'hsa-miR-374a-5p',name:'hsa-miR-374a-5p'},
+			{id:'hsa-miR-374b-3p',name:'hsa-miR-374b-3p'},
+			{id:'hsa-miR-374b-5p',name:'hsa-miR-374b-5p'},
+			{id:'hsa-miR-374c-3p',name:'hsa-miR-374c-3p'},
+			{id:'hsa-miR-374c-5p',name:'hsa-miR-374c-5p'},
+			{id:'hsa-miR-375',name:'hsa-miR-375'},
+			{id:'hsa-miR-376a-3p',name:'hsa-miR-376a-3p'},
+			{id:'hsa-miR-376a-5p',name:'hsa-miR-376a-5p'},
+			{id:'hsa-miR-376b-3p',name:'hsa-miR-376b-3p'},
+			{id:'hsa-miR-376c-3p',name:'hsa-miR-376c-3p'},
+			{id:'hsa-miR-377-3p',name:'hsa-miR-377-3p'},
+			{id:'hsa-miR-378a-3p',name:'hsa-miR-378a-3p'},
+			{id:'hsa-miR-378a-5p',name:'hsa-miR-378a-5p'},
+			{id:'hsa-miR-378b',name:'hsa-miR-378b'},
+			{id:'hsa-miR-378c',name:'hsa-miR-378c'},
+			{id:'hsa-miR-378d',name:'hsa-miR-378d'},
+			{id:'hsa-miR-378e',name:'hsa-miR-378e'},
+			{id:'hsa-miR-378f',name:'hsa-miR-378f'},
+			{id:'hsa-miR-378g',name:'hsa-miR-378g'},
+			{id:'hsa-miR-378h',name:'hsa-miR-378h'},
+			{id:'hsa-miR-378i',name:'hsa-miR-378i'},
+			{id:'hsa-miR-379-3p',name:'hsa-miR-379-3p'},
+			{id:'hsa-miR-379-5p',name:'hsa-miR-379-5p'},
+			{id:'hsa-miR-380-3p',name:'hsa-miR-380-3p'},
+			{id:'hsa-miR-380-5p',name:'hsa-miR-380-5p'},
+			{id:'hsa-miR-381-3p',name:'hsa-miR-381-3p'},
+			{id:'hsa-miR-381-5p',name:'hsa-miR-381-5p'},
+			{id:'hsa-miR-382-3p',name:'hsa-miR-382-3p'},
+			{id:'hsa-miR-382-5p',name:'hsa-miR-382-5p'},
+			{id:'hsa-miR-383-5p',name:'hsa-miR-383-5p'},
+			{id:'hsa-miR-384',name:'hsa-miR-384'},
+			{id:'hsa-miR-3909',name:'hsa-miR-3909'},
+			{id:'hsa-miR-3918',name:'hsa-miR-3918'},
+			{id:'hsa-miR-3924',name:'hsa-miR-3924'},
+			{id:'hsa-miR-3928-3p',name:'hsa-miR-3928-3p'},
+			{id:'hsa-miR-3940-3p',name:'hsa-miR-3940-3p'},
+			{id:'hsa-miR-3940-5p',name:'hsa-miR-3940-5p'},
+			{id:'hsa-miR-3942-5p',name:'hsa-miR-3942-5p'},
+			{id:'hsa-miR-3944-3p',name:'hsa-miR-3944-3p'},
+			{id:'hsa-miR-409-3p',name:'hsa-miR-409-3p'},
+			{id:'hsa-miR-409-5p',name:'hsa-miR-409-5p'},
+			{id:'hsa-miR-410-3p',name:'hsa-miR-410-3p'},
+			{id:'hsa-miR-410-5p',name:'hsa-miR-410-5p'},
+			{id:'hsa-miR-411-3p',name:'hsa-miR-411-3p'},
+			{id:'hsa-miR-411-5p',name:'hsa-miR-411-5p'},
+			{id:'hsa-miR-421',name:'hsa-miR-421'},
+			{id:'hsa-miR-422a',name:'hsa-miR-422a'},
+			{id:'hsa-miR-423-3p',name:'hsa-miR-423-3p'},
+			{id:'hsa-miR-423-5p',name:'hsa-miR-423-5p'},
+			{id:'hsa-miR-424-3p',name:'hsa-miR-424-3p'},
+			{id:'hsa-miR-424-5p',name:'hsa-miR-424-5p'},
+			{id:'hsa-miR-425-5p',name:'hsa-miR-425-5p'},
+			{id:'hsa-miR-4262',name:'hsa-miR-4262'},
+			{id:'hsa-miR-429',name:'hsa-miR-429'},
+			{id:'hsa-miR-4295',name:'hsa-miR-4295'},
+			{id:'hsa-miR-4306',name:'hsa-miR-4306'},
+			{id:'hsa-miR-431-5p',name:'hsa-miR-431-5p'},
+			{id:'hsa-miR-4319',name:'hsa-miR-4319'},
+			{id:'hsa-miR-432-5p',name:'hsa-miR-432-5p'},
+			{id:'hsa-miR-433-3p',name:'hsa-miR-433-3p'},
+			{id:'hsa-miR-433-5p',name:'hsa-miR-433-5p'},
+			{id:'hsa-miR-4424',name:'hsa-miR-4424'},
+			{id:'hsa-miR-4428',name:'hsa-miR-4428'},
+			{id:'hsa-miR-4429',name:'hsa-miR-4429'},
+			{id:'hsa-miR-4436a',name:'hsa-miR-4436a'},
+			{id:'hsa-miR-4458',name:'hsa-miR-4458'},
+			{id:'hsa-miR-4465',name:'hsa-miR-4465'},
+			{id:'hsa-miR-448',name:'hsa-miR-448'},
+			{id:'hsa-miR-449a',name:'hsa-miR-449a'},
+			{id:'hsa-miR-449b-5p',name:'hsa-miR-449b-5p'},
+			{id:'hsa-miR-449c-5p',name:'hsa-miR-449c-5p'},
+			{id:'hsa-miR-4500',name:'hsa-miR-4500'},
+			{id:'hsa-miR-450a-1-3p',name:'hsa-miR-450a-1-3p'},
+			{id:'hsa-miR-450a-5p',name:'hsa-miR-450a-5p'},
+			{id:'hsa-miR-450b-5p',name:'hsa-miR-450b-5p'},
+			{id:'hsa-miR-451a',name:'hsa-miR-451a'},
+			{id:'hsa-miR-452-5p',name:'hsa-miR-452-5p'},
+			{id:'hsa-miR-4524a-5p',name:'hsa-miR-4524a-5p'},
+			{id:'hsa-miR-4524b-5p',name:'hsa-miR-4524b-5p'},
+			{id:'hsa-miR-4525',name:'hsa-miR-4525'},
+			{id:'hsa-miR-454-3p',name:'hsa-miR-454-3p'},
+			{id:'hsa-miR-455-3p',name:'hsa-miR-455-3p'},
+			{id:'hsa-miR-455-5p',name:'hsa-miR-455-5p'},
+			{id:'hsa-miR-4637',name:'hsa-miR-4637'},
+			{id:'hsa-miR-4640-3p',name:'hsa-miR-4640-3p'},
+			{id:'hsa-miR-4640-5p',name:'hsa-miR-4640-5p'},
+			{id:'hsa-miR-4644',name:'hsa-miR-4644'},
+			{id:'hsa-miR-466',name:'hsa-miR-466'},
+			{id:'hsa-miR-4661-5p',name:'hsa-miR-4661-5p'},
+			{id:'hsa-miR-4662a-5p',name:'hsa-miR-4662a-5p'},
+			{id:'hsa-miR-4664-3p',name:'hsa-miR-4664-3p'},
+			{id:'hsa-miR-4676-3p',name:'hsa-miR-4676-3p'},
+			{id:'hsa-miR-4677-3p',name:'hsa-miR-4677-3p'},
+			{id:'hsa-miR-4701-5p',name:'hsa-miR-4701-5p'},
+			{id:'hsa-miR-4703-5p',name:'hsa-miR-4703-5p'},
+			{id:'hsa-miR-4712-5p',name:'hsa-miR-4712-5p'},
+			{id:'hsa-miR-4726-5p',name:'hsa-miR-4726-5p'},
+			{id:'hsa-miR-4731-5p',name:'hsa-miR-4731-5p'},
+			{id:'hsa-miR-4735-3p',name:'hsa-miR-4735-3p'},
+			{id:'hsa-miR-4739',name:'hsa-miR-4739'},
+			{id:'hsa-miR-4756-5p',name:'hsa-miR-4756-5p'},
+			{id:'hsa-miR-4761-3p',name:'hsa-miR-4761-3p'},
+			{id:'hsa-miR-4761-5p',name:'hsa-miR-4761-5p'},
+			{id:'hsa-miR-4766-3p',name:'hsa-miR-4766-3p'},
+			{id:'hsa-miR-4766-5p',name:'hsa-miR-4766-5p'},
+			{id:'hsa-miR-4770',name:'hsa-miR-4770'},
+			{id:'hsa-miR-4775',name:'hsa-miR-4775'},
+			{id:'hsa-miR-4782-3p',name:'hsa-miR-4782-3p'},
+			{id:'hsa-miR-4784',name:'hsa-miR-4784'},
+			{id:'hsa-miR-483-3p',name:'hsa-miR-483-3p'},
+			{id:'hsa-miR-483-5p',name:'hsa-miR-483-5p'},
+			{id:'hsa-miR-484',name:'hsa-miR-484'},
+			{id:'hsa-miR-485-3p',name:'hsa-miR-485-3p'},
+			{id:'hsa-miR-485-5p',name:'hsa-miR-485-5p'},
+			{id:'hsa-miR-486-3p',name:'hsa-miR-486-3p'},
+			{id:'hsa-miR-486-5p',name:'hsa-miR-486-5p'},
+			{id:'hsa-miR-487a-3p',name:'hsa-miR-487a-3p'},
+			{id:'hsa-miR-487b-3p',name:'hsa-miR-487b-3p'},
+			{id:'hsa-miR-488-3p',name:'hsa-miR-488-3p'},
+			{id:'hsa-miR-489-3p',name:'hsa-miR-489-3p'},
+			{id:'hsa-miR-490-3p',name:'hsa-miR-490-3p'},
+			{id:'hsa-miR-490-5p',name:'hsa-miR-490-5p'},
+			{id:'hsa-miR-491-3p',name:'hsa-miR-491-3p'},
+			{id:'hsa-miR-491-5p',name:'hsa-miR-491-5p'},
+			{id:'hsa-miR-493-3p',name:'hsa-miR-493-3p'},
+			{id:'hsa-miR-493-5p',name:'hsa-miR-493-5p'},
+			{id:'hsa-miR-494-3p',name:'hsa-miR-494-3p'},
+			{id:'hsa-miR-494-5p',name:'hsa-miR-494-5p'},
+			{id:'hsa-miR-495-3p',name:'hsa-miR-495-3p'},
+			{id:'hsa-miR-496',name:'hsa-miR-496'},
+			{id:'hsa-miR-497-3p',name:'hsa-miR-497-3p'},
+			{id:'hsa-miR-497-5p',name:'hsa-miR-497-5p'},
+			{id:'hsa-miR-498',name:'hsa-miR-498'},
+			{id:'hsa-miR-499a-3p',name:'hsa-miR-499a-3p'},
+			{id:'hsa-miR-499a-5p',name:'hsa-miR-499a-5p'},
+			{id:'hsa-miR-499b-5p',name:'hsa-miR-499b-5p'},
+			{id:'hsa-miR-5000-3p',name:'hsa-miR-5000-3p'},
+			{id:'hsa-miR-5009-3p',name:'hsa-miR-5009-3p'},
+			{id:'hsa-miR-500a-3p',name:'hsa-miR-500a-3p'},
+			{id:'hsa-miR-500a-5p',name:'hsa-miR-500a-5p'},
+			{id:'hsa-miR-500b-5p',name:'hsa-miR-500b-5p'},
+			{id:'hsa-miR-501-3p',name:'hsa-miR-501-3p'},
+			{id:'hsa-miR-501-5p',name:'hsa-miR-501-5p'},
+			{id:'hsa-miR-5010-5p',name:'hsa-miR-5010-5p'},
+			{id:'hsa-miR-502-3p',name:'hsa-miR-502-3p'},
+			{id:'hsa-miR-502-5p',name:'hsa-miR-502-5p'},
+			{id:'hsa-miR-503-3p',name:'hsa-miR-503-3p'},
+			{id:'hsa-miR-503-5p',name:'hsa-miR-503-5p'},
+			{id:'hsa-miR-504-5p',name:'hsa-miR-504-5p'},
+			{id:'hsa-miR-5047',name:'hsa-miR-5047'},
+			{id:'hsa-miR-505-3p',name:'hsa-miR-505-3p'},
+			{id:'hsa-miR-506-3p',name:'hsa-miR-506-3p'},
+			{id:'hsa-miR-506-5p',name:'hsa-miR-506-5p'},
+			{id:'hsa-miR-508-3p',name:'hsa-miR-508-3p'},
+			{id:'hsa-miR-508-5p',name:'hsa-miR-508-5p'},
+			{id:'hsa-miR-509-3-5p',name:'hsa-miR-509-3-5p'},
+			{id:'hsa-miR-509-3p',name:'hsa-miR-509-3p'},
+			{id:'hsa-miR-5094',name:'hsa-miR-5094'},
+			{id:'hsa-miR-510-5p',name:'hsa-miR-510-5p'},
+			{id:'hsa-miR-511-5p',name:'hsa-miR-511-5p'},
+			{id:'hsa-miR-512-3p',name:'hsa-miR-512-3p'},
+			{id:'hsa-miR-512-5p',name:'hsa-miR-512-5p'},
+			{id:'hsa-miR-513a-5p',name:'hsa-miR-513a-5p'},
+			{id:'hsa-miR-513b-5p',name:'hsa-miR-513b-5p'},
+			{id:'hsa-miR-513c-5p',name:'hsa-miR-513c-5p'},
+			{id:'hsa-miR-514a-3p',name:'hsa-miR-514a-3p'},
+			{id:'hsa-miR-514a-5p',name:'hsa-miR-514a-5p'},
+			{id:'hsa-miR-514b-3p',name:'hsa-miR-514b-3p'},
+			{id:'hsa-miR-514b-5p',name:'hsa-miR-514b-5p'},
+			{id:'hsa-miR-515-3p',name:'hsa-miR-515-3p'},
+			{id:'hsa-miR-515-5p',name:'hsa-miR-515-5p'},
+			{id:'hsa-miR-516a-5p',name:'hsa-miR-516a-5p'},
+			{id:'hsa-miR-516b-5p',name:'hsa-miR-516b-5p'},
+			{id:'hsa-miR-517a-3p',name:'hsa-miR-517a-3p'},
+			{id:'hsa-miR-517b-3p',name:'hsa-miR-517b-3p'},
+			{id:'hsa-miR-517c-3p',name:'hsa-miR-517c-3p'},
+			{id:'hsa-miR-518a-3p',name:'hsa-miR-518a-3p'},
+			{id:'hsa-miR-518b',name:'hsa-miR-518b'},
+			{id:'hsa-miR-518c-3p',name:'hsa-miR-518c-3p'},
+			{id:'hsa-miR-518d-3p',name:'hsa-miR-518d-3p'},
+			{id:'hsa-miR-518d-5p',name:'hsa-miR-518d-5p'},
+			{id:'hsa-miR-518e-5p',name:'hsa-miR-518e-5p'},
+			{id:'hsa-miR-518f-3p',name:'hsa-miR-518f-3p'},
+			{id:'hsa-miR-518f-5p',name:'hsa-miR-518f-5p'},
+			{id:'hsa-miR-5194',name:'hsa-miR-5194'},
+			{id:'hsa-miR-5195-3p',name:'hsa-miR-5195-3p'},
+			{id:'hsa-miR-519a-3p',name:'hsa-miR-519a-3p'},
+			{id:'hsa-miR-519a-5p',name:'hsa-miR-519a-5p'},
+			{id:'hsa-miR-519b-3p',name:'hsa-miR-519b-3p'},
+			{id:'hsa-miR-519b-5p',name:'hsa-miR-519b-5p'},
+			{id:'hsa-miR-519c-3p',name:'hsa-miR-519c-3p'},
+			{id:'hsa-miR-519c-5p',name:'hsa-miR-519c-5p'},
+			{id:'hsa-miR-519d-3p',name:'hsa-miR-519d-3p'},
+			{id:'hsa-miR-519e-5p',name:'hsa-miR-519e-5p'},
+			{id:'hsa-miR-520a-3p',name:'hsa-miR-520a-3p'},
+			{id:'hsa-miR-520a-5p',name:'hsa-miR-520a-5p'},
+			{id:'hsa-miR-520b',name:'hsa-miR-520b'},
+			{id:'hsa-miR-520c-3p',name:'hsa-miR-520c-3p'},
+			{id:'hsa-miR-520c-5p',name:'hsa-miR-520c-5p'},
+			{id:'hsa-miR-520d-3p',name:'hsa-miR-520d-3p'},
+			{id:'hsa-miR-520d-5p',name:'hsa-miR-520d-5p'},
+			{id:'hsa-miR-520e',name:'hsa-miR-520e'},
+			{id:'hsa-miR-520f-3p',name:'hsa-miR-520f-3p'},
+			{id:'hsa-miR-520g-3p',name:'hsa-miR-520g-3p'},
+			{id:'hsa-miR-520h',name:'hsa-miR-520h'},
+			{id:'hsa-miR-522-3p',name:'hsa-miR-522-3p'},
+			{id:'hsa-miR-522-5p',name:'hsa-miR-522-5p'},
+			{id:'hsa-miR-523-3p',name:'hsa-miR-523-3p'},
+			{id:'hsa-miR-523-5p',name:'hsa-miR-523-5p'},
+			{id:'hsa-miR-524-3p',name:'hsa-miR-524-3p'},
+			{id:'hsa-miR-524-5p',name:'hsa-miR-524-5p'},
+			{id:'hsa-miR-525-3p',name:'hsa-miR-525-3p'},
+			{id:'hsa-miR-525-5p',name:'hsa-miR-525-5p'},
+			{id:'hsa-miR-526a',name:'hsa-miR-526a'},
+			{id:'hsa-miR-526b-3p',name:'hsa-miR-526b-3p'},
+			{id:'hsa-miR-526b-5p',name:'hsa-miR-526b-5p'},
+			{id:'hsa-miR-532-3p',name:'hsa-miR-532-3p'},
+			{id:'hsa-miR-532-5p',name:'hsa-miR-532-5p'},
+			{id:'hsa-miR-539-3p',name:'hsa-miR-539-3p'},
+			{id:'hsa-miR-539-5p',name:'hsa-miR-539-5p'},
+			{id:'hsa-miR-541-3p',name:'hsa-miR-541-3p'},
+			{id:'hsa-miR-541-5p',name:'hsa-miR-541-5p'},
+			{id:'hsa-miR-542-3p',name:'hsa-miR-542-3p'},
+			{id:'hsa-miR-543',name:'hsa-miR-543'},
+			{id:'hsa-miR-545-3p',name:'hsa-miR-545-3p'},
+			{id:'hsa-miR-545-5p',name:'hsa-miR-545-5p'},
+			{id:'hsa-miR-548d-3p',name:'hsa-miR-548d-3p'},
+			{id:'hsa-miR-548j-5p',name:'hsa-miR-548j-5p'},
+			{id:'hsa-miR-548o-3p',name:'hsa-miR-548o-3p'},
+			{id:'hsa-miR-550a-3p',name:'hsa-miR-550a-3p'},
+			{id:'hsa-miR-550a-5p',name:'hsa-miR-550a-5p'},
+			{id:'hsa-miR-551a',name:'hsa-miR-551a'},
+			{id:'hsa-miR-551b-3p',name:'hsa-miR-551b-3p'},
+			{id:'hsa-miR-552-3p',name:'hsa-miR-552-3p'},
+			{id:'hsa-miR-556-3p',name:'hsa-miR-556-3p'},
+			{id:'hsa-miR-556-5p',name:'hsa-miR-556-5p'},
+			{id:'hsa-miR-5579-3p',name:'hsa-miR-5579-3p'},
+			{id:'hsa-miR-5581-3p',name:'hsa-miR-5581-3p'},
+			{id:'hsa-miR-5586-5p',name:'hsa-miR-5586-5p'},
+			{id:'hsa-miR-5590-3p',name:'hsa-miR-5590-3p'},
+			{id:'hsa-miR-561-5p',name:'hsa-miR-561-5p'},
+			{id:'hsa-miR-5687',name:'hsa-miR-5687'},
+			{id:'hsa-miR-5688',name:'hsa-miR-5688'},
+			{id:'hsa-miR-5691',name:'hsa-miR-5691'},
+			{id:'hsa-miR-573',name:'hsa-miR-573'},
+			{id:'hsa-miR-574-3p',name:'hsa-miR-574-3p'},
+			{id:'hsa-miR-574-5p',name:'hsa-miR-574-5p'},
+			{id:'hsa-miR-576-5p',name:'hsa-miR-576-5p'},
+			{id:'hsa-miR-577',name:'hsa-miR-577'},
+			{id:'hsa-miR-579-3p',name:'hsa-miR-579-3p'},
+			{id:'hsa-miR-580-3p',name:'hsa-miR-580-3p'},
+			{id:'hsa-miR-581',name:'hsa-miR-581'},
+			{id:'hsa-miR-582-3p',name:'hsa-miR-582-3p'},
+			{id:'hsa-miR-582-5p',name:'hsa-miR-582-5p'},
+			{id:'hsa-miR-584-3p',name:'hsa-miR-584-3p'},
+			{id:'hsa-miR-584-5p',name:'hsa-miR-584-5p'},
+			{id:'hsa-miR-585-3p',name:'hsa-miR-585-3p'},
+			{id:'hsa-miR-588',name:'hsa-miR-588'},
+			{id:'hsa-miR-589-5p',name:'hsa-miR-589-5p'},
+			{id:'hsa-miR-590-3p',name:'hsa-miR-590-3p'},
+			{id:'hsa-miR-590-5p',name:'hsa-miR-590-5p'},
+			{id:'hsa-miR-592',name:'hsa-miR-592'},
+			{id:'hsa-miR-593-5p',name:'hsa-miR-593-5p'},
+			{id:'hsa-miR-599',name:'hsa-miR-599'},
+			{id:'hsa-miR-603',name:'hsa-miR-603'},
+			{id:'hsa-miR-605-5p',name:'hsa-miR-605-5p'},
+			{id:'hsa-miR-6088',name:'hsa-miR-6088'},
+			{id:'hsa-miR-612',name:'hsa-miR-612'},
+			{id:'hsa-miR-613',name:'hsa-miR-613'},
+			{id:'hsa-miR-615-3p',name:'hsa-miR-615-3p'},
+			{id:'hsa-miR-616-3p',name:'hsa-miR-616-3p'},
+			{id:'hsa-miR-616-5p',name:'hsa-miR-616-5p'},
+			{id:'hsa-miR-620',name:'hsa-miR-620'},
+			{id:'hsa-miR-624-3p',name:'hsa-miR-624-3p'},
+			{id:'hsa-miR-624-5p',name:'hsa-miR-624-5p'},
+			{id:'hsa-miR-625-3p',name:'hsa-miR-625-3p'},
+			{id:'hsa-miR-625-5p',name:'hsa-miR-625-5p'},
+			{id:'hsa-miR-627-5p',name:'hsa-miR-627-5p'},
+			{id:'hsa-miR-628-5p',name:'hsa-miR-628-5p'},
+			{id:'hsa-miR-629-5p',name:'hsa-miR-629-5p'},
+			{id:'hsa-miR-638',name:'hsa-miR-638'},
+			{id:'hsa-miR-639',name:'hsa-miR-639'},
+			{id:'hsa-miR-641',name:'hsa-miR-641'},
+			{id:'hsa-miR-642a-3p',name:'hsa-miR-642a-3p'},
+			{id:'hsa-miR-642a-5p',name:'hsa-miR-642a-5p'},
+			{id:'hsa-miR-642b-3p',name:'hsa-miR-642b-3p'},
+			{id:'hsa-miR-642b-5p',name:'hsa-miR-642b-5p'},
+			{id:'hsa-miR-650',name:'hsa-miR-650'},
+			{id:'hsa-miR-6504-5p',name:'hsa-miR-6504-5p'},
+			{id:'hsa-miR-6509-3p',name:'hsa-miR-6509-3p'},
+			{id:'hsa-miR-6509-5p',name:'hsa-miR-6509-5p'},
+			{id:'hsa-miR-651-5p',name:'hsa-miR-651-5p'},
+			{id:'hsa-miR-6512-3p',name:'hsa-miR-6512-3p'},
+			{id:'hsa-miR-652-3p',name:'hsa-miR-652-3p'},
+			{id:'hsa-miR-653-5p',name:'hsa-miR-653-5p'},
+			{id:'hsa-miR-654-3p',name:'hsa-miR-654-3p'},
+			{id:'hsa-miR-654-5p',name:'hsa-miR-654-5p'},
+			{id:'hsa-miR-655-3p',name:'hsa-miR-655-3p'},
+			{id:'hsa-miR-656-3p',name:'hsa-miR-656-3p'},
+			{id:'hsa-miR-660-5p',name:'hsa-miR-660-5p'},
+			{id:'hsa-miR-661',name:'hsa-miR-661'},
+			{id:'hsa-miR-663a',name:'hsa-miR-663a'},
+			{id:'hsa-miR-664b-3p',name:'hsa-miR-664b-3p'},
+			{id:'hsa-miR-664b-5p',name:'hsa-miR-664b-5p'},
+			{id:'hsa-miR-665',name:'hsa-miR-665'},
+			{id:'hsa-miR-668-3p',name:'hsa-miR-668-3p'},
+			{id:'hsa-miR-670-3p',name:'hsa-miR-670-3p'},
+			{id:'hsa-miR-670-5p',name:'hsa-miR-670-5p'},
+			{id:'hsa-miR-671-3p',name:'hsa-miR-671-3p'},
+			{id:'hsa-miR-671-5p',name:'hsa-miR-671-5p'},
+			{id:'hsa-miR-6720-5p',name:'hsa-miR-6720-5p'},
+			{id:'hsa-miR-6738-5p',name:'hsa-miR-6738-5p'},
+			{id:'hsa-miR-675-3p',name:'hsa-miR-675-3p'},
+			{id:'hsa-miR-675-5p',name:'hsa-miR-675-5p'},
+			{id:'hsa-miR-676-3p',name:'hsa-miR-676-3p'},
+			{id:'hsa-miR-6763-5p',name:'hsa-miR-6763-5p'},
+			{id:'hsa-miR-6766-3p',name:'hsa-miR-6766-3p'},
+			{id:'hsa-miR-6783-3p',name:'hsa-miR-6783-3p'},
+			{id:'hsa-miR-6787-5p',name:'hsa-miR-6787-5p'},
+			{id:'hsa-miR-6799-3p',name:'hsa-miR-6799-3p'},
+			{id:'hsa-miR-6805-3p',name:'hsa-miR-6805-3p'},
+			{id:'hsa-miR-6807-3p',name:'hsa-miR-6807-3p'},
+			{id:'hsa-miR-6816-5p',name:'hsa-miR-6816-5p'},
+			{id:'hsa-miR-6820-3p',name:'hsa-miR-6820-3p'},
+			{id:'hsa-miR-6823-3p',name:'hsa-miR-6823-3p'},
+			{id:'hsa-miR-6835-3p',name:'hsa-miR-6835-3p'},
+			{id:'hsa-miR-6838-5p',name:'hsa-miR-6838-5p'},
+			{id:'hsa-miR-6849-5p',name:'hsa-miR-6849-5p'},
+			{id:'hsa-miR-6852-3p',name:'hsa-miR-6852-3p'},
+			{id:'hsa-miR-6866-3p',name:'hsa-miR-6866-3p'},
+			{id:'hsa-miR-6875-5p',name:'hsa-miR-6875-5p'},
+			{id:'hsa-miR-6884-5p',name:'hsa-miR-6884-5p'},
+			{id:'hsa-miR-6893-3p',name:'hsa-miR-6893-3p'},
+			{id:'hsa-miR-7-1-3p',name:'hsa-miR-7-1-3p'},
+			{id:'hsa-miR-7-5p',name:'hsa-miR-7-5p'},
+			{id:'hsa-miR-708-3p',name:'hsa-miR-708-3p'},
+			{id:'hsa-miR-708-5p',name:'hsa-miR-708-5p'},
+			{id:'hsa-miR-7153-5p',name:'hsa-miR-7153-5p'},
+			{id:'hsa-miR-744-3p',name:'hsa-miR-744-3p'},
+			{id:'hsa-miR-744-5p',name:'hsa-miR-744-5p'},
+			{id:'hsa-miR-758-3p',name:'hsa-miR-758-3p'},
+			{id:'hsa-miR-760',name:'hsa-miR-760'},
+			{id:'hsa-miR-761',name:'hsa-miR-761'},
+			{id:'hsa-miR-765',name:'hsa-miR-765'},
+			{id:'hsa-miR-766-3p',name:'hsa-miR-766-3p'},
+			{id:'hsa-miR-766-5p',name:'hsa-miR-766-5p'},
+			{id:'hsa-miR-767-3p',name:'hsa-miR-767-3p'},
+			{id:'hsa-miR-767-5p',name:'hsa-miR-767-5p'},
+			{id:'hsa-miR-769-5p',name:'hsa-miR-769-5p'},
+			{id:'hsa-miR-770-5p',name:'hsa-miR-770-5p'},
+			{id:'hsa-miR-7853-5p',name:'hsa-miR-7853-5p'},
+			{id:'hsa-miR-802',name:'hsa-miR-802'},
+			{id:'hsa-miR-873-3p',name:'hsa-miR-873-3p'},
+			{id:'hsa-miR-873-5p',name:'hsa-miR-873-5p'},
+			{id:'hsa-miR-874-3p',name:'hsa-miR-874-3p'},
+			{id:'hsa-miR-875-5p',name:'hsa-miR-875-5p'},
+			{id:'hsa-miR-876-5p',name:'hsa-miR-876-5p'},
+			{id:'hsa-miR-877-5p',name:'hsa-miR-877-5p'},
+			{id:'hsa-miR-885-3p',name:'hsa-miR-885-3p'},
+			{id:'hsa-miR-885-5p',name:'hsa-miR-885-5p'},
+			{id:'hsa-miR-887-3p',name:'hsa-miR-887-3p'},
+			{id:'hsa-miR-888-5p',name:'hsa-miR-888-5p'},
+			{id:'hsa-miR-889-3p',name:'hsa-miR-889-3p'},
+			{id:'hsa-miR-892b',name:'hsa-miR-892b'},
+			{id:'hsa-miR-892c-3p',name:'hsa-miR-892c-3p'},
+			{id:'hsa-miR-892c-5p',name:'hsa-miR-892c-5p'},
+			{id:'hsa-miR-9-3p',name:'hsa-miR-9-3p'},
+			{id:'hsa-miR-9-5p',name:'hsa-miR-9-5p'},
+			{id:'hsa-miR-92a-1-5p',name:'hsa-miR-92a-1-5p'},
+			{id:'hsa-miR-92a-3p',name:'hsa-miR-92a-3p'},
+			{id:'hsa-miR-92b-3p',name:'hsa-miR-92b-3p'},
+			{id:'hsa-miR-93-3p',name:'hsa-miR-93-3p'},
+			{id:'hsa-miR-93-5p',name:'hsa-miR-93-5p'},
+			{id:'hsa-miR-934',name:'hsa-miR-934'},
+			{id:'hsa-miR-935',name:'hsa-miR-935'},
+			{id:'hsa-miR-939-5p',name:'hsa-miR-939-5p'},
+			{id:'hsa-miR-940',name:'hsa-miR-940'},
+			{id:'hsa-miR-941',name:'hsa-miR-941'},
+			{id:'hsa-miR-942-3p',name:'hsa-miR-942-3p'},
+			{id:'hsa-miR-942-5p',name:'hsa-miR-942-5p'},
+			{id:'hsa-miR-944',name:'hsa-miR-944'},
+			{id:'hsa-miR-95-3p',name:'hsa-miR-95-3p'},
+			{id:'hsa-miR-96-5p',name:'hsa-miR-96-5p'},
+			{id:'hsa-miR-98-3p',name:'hsa-miR-98-3p'},
+			{id:'hsa-miR-98-5p',name:'hsa-miR-98-5p'},
+			{id:'hsa-miR-99a-5p',name:'hsa-miR-99a-5p'},
+			{id:'hsa-miR-99b-3p',name:'hsa-miR-99b-3p'},
+			{id:'hsa-miR-99b-5p',name:'hsa-miR-99b-5p'},
+			{id:'MIMAT0004481',name:'MIMAT0004481'},
+			{id:'MIMAT0000062',name:'MIMAT0000062'},
+			{id:'MIMAT0004482',name:'MIMAT0004482'},
+			{id:'MIMAT0000063',name:'MIMAT0000063'},
+			{id:'MIMAT0026472',name:'MIMAT0026472'},
+			{id:'MIMAT0000064',name:'MIMAT0000064'},
+			{id:'MIMAT0000065',name:'MIMAT0000065'},
+			{id:'MIMAT0000066',name:'MIMAT0000066'},
+			{id:'MIMAT0000067',name:'MIMAT0000067'},
+			{id:'MIMAT0000414',name:'MIMAT0000414'},
+			{id:'MIMAT0000415',name:'MIMAT0000415'},
+			{id:'MIMAT0000416',name:'MIMAT0000416'},
+			{id:'MIMAT0000098',name:'MIMAT0000098'},
+			{id:'MIMAT0000099',name:'MIMAT0000099'},
+			{id:'MIMAT0004513',name:'MIMAT0004513'},
+			{id:'MIMAT0009196',name:'MIMAT0009196'},
+			{id:'MIMAT0000101',name:'MIMAT0000101'},
+			{id:'MIMAT0000102',name:'MIMAT0000102'},
+			{id:'MIMAT0004517',name:'MIMAT0004517'},
+			{id:'MIMAT0000103',name:'MIMAT0000103'},
+			{id:'MIMAT0004672',name:'MIMAT0004672'},
+			{id:'MIMAT0000680',name:'MIMAT0000680'},
+			{id:'MIMAT0000104',name:'MIMAT0000104'},
+			{id:'MIMAT0000253',name:'MIMAT0000253'},
+			{id:'MIMAT0004556',name:'MIMAT0004556'},
+			{id:'MIMAT0000254',name:'MIMAT0000254'},
+			{id:'MIMAT0005824',name:'MIMAT0005824'},
+			{id:'MIMAT0005825',name:'MIMAT0005825'},
+			{id:'MIMAT0005798',name:'MIMAT0005798'},
+			{id:'MIMAT0015049',name:'MIMAT0015049'},
+			{id:'MIMAT0005955',name:'MIMAT0005955'},
+			{id:'MIMAT0000421',name:'MIMAT0000421'},
+			{id:'MIMAT0005458',name:'MIMAT0005458'},
+			{id:'MIMAT0005577',name:'MIMAT0005577'},
+			{id:'MIMAT0005583',name:'MIMAT0005583'},
+			{id:'MIMAT0005584',name:'MIMAT0005584'},
+			{id:'MIMAT0005591',name:'MIMAT0005591'},
+			{id:'MIMAT0000422',name:'MIMAT0000422'},
+			{id:'MIMAT0019950',name:'MIMAT0019950'},
+			{id:'MIMAT0005899',name:'MIMAT0005899'},
+			{id:'MIMAT0005901',name:'MIMAT0005901'},
+			{id:'MIMAT0005903',name:'MIMAT0005903'},
+			{id:'MIMAT0005944',name:'MIMAT0005944'},
+			{id:'MIMAT0005905',name:'MIMAT0005905'},
+			{id:'MIMAT0004602',name:'MIMAT0004602'},
+			{id:'MIMAT0000443',name:'MIMAT0000443'},
+			{id:'MIMAT0004592',name:'MIMAT0004592'},
+			{id:'MIMAT0004603',name:'MIMAT0004603'},
+			{id:'MIMAT0000423',name:'MIMAT0000423'},
+			{id:'MIMAT0000445',name:'MIMAT0000445'},
+			{id:'MIMAT0000444',name:'MIMAT0000444'},
+			{id:'MIMAT0005920',name:'MIMAT0005920'},
+			{id:'MIMAT0005923',name:'MIMAT0005923'},
+			{id:'MIMAT0019059',name:'MIMAT0019059'},
+			{id:'MIMAT0000446',name:'MIMAT0000446'},
+			{id:'MIMAT0004604',name:'MIMAT0004604'},
+			{id:'MIMAT0005924',name:'MIMAT0005924'},
+			{id:'MIMAT0005796',name:'MIMAT0005796'},
+			{id:'MIMAT0005930',name:'MIMAT0005930'},
+			{id:'MIMAT0005933',name:'MIMAT0005933'},
+			{id:'MIMAT0022724',name:'MIMAT0022724'},
+			{id:'MIMAT0005936',name:'MIMAT0005936'},
+			{id:'MIMAT0026477',name:'MIMAT0026477'},
+			{id:'MIMAT0000424',name:'MIMAT0000424'},
+			{id:'MIMAT0005941',name:'MIMAT0005941'},
+			{id:'MIMAT0005876',name:'MIMAT0005876'},
+			{id:'MIMAT0005877',name:'MIMAT0005877'},
+			{id:'MIMAT0005878',name:'MIMAT0005878'},
+			{id:'MIMAT0004548',name:'MIMAT0004548'},
+			{id:'MIMAT0004605',name:'MIMAT0004605'},
+			{id:'MIMAT0000242',name:'MIMAT0000242'},
+			{id:'MIMAT0005881',name:'MIMAT0005881'},
+			{id:'MIMAT0005943',name:'MIMAT0005943'},
+			{id:'MIMAT0005884',name:'MIMAT0005884'},
+			{id:'MIMAT0005885',name:'MIMAT0005885'},
+			{id:'MIMAT0005794',name:'MIMAT0005794'},
+			{id:'MIMAT0005886',name:'MIMAT0005886'},
+			{id:'MIMAT0005800',name:'MIMAT0005800'},
+			{id:'MIMAT0005797',name:'MIMAT0005797'},
+			{id:'MIMAT0005891',name:'MIMAT0005891'},
+			{id:'MIMAT0022726',name:'MIMAT0022726'},
+			{id:'MIMAT0005951',name:'MIMAT0005951'},
+			{id:'MIMAT0022727',name:'MIMAT0022727'},
+			{id:'MIMAT0000425',name:'MIMAT0000425'},
+			{id:'MIMAT0004593',name:'MIMAT0004593'},
+			{id:'MIMAT0000691',name:'MIMAT0000691'},
+			{id:'MIMAT0000426',name:'MIMAT0000426'},
+			{id:'MIMAT0004594',name:'MIMAT0004594'},
+			{id:'MIMAT0005952',name:'MIMAT0005952'},
+			{id:'MIMAT0005795',name:'MIMAT0005795'},
+			{id:'MIMAT0000427',name:'MIMAT0000427'},
+			{id:'MIMAT0000770',name:'MIMAT0000770'},
+			{id:'MIMAT0000447',name:'MIMAT0000447'},
+			{id:'MIMAT0019776',name:'MIMAT0019776'},
+			{id:'MIMAT0004595',name:'MIMAT0004595'},
+			{id:'MIMAT0000428',name:'MIMAT0000428'},
+			{id:'MIMAT0004698',name:'MIMAT0004698'},
+			{id:'MIMAT0000758',name:'MIMAT0000758'},
+			{id:'MIMAT0000448',name:'MIMAT0000448'},
+			{id:'MIMAT0000429',name:'MIMAT0000429'},
+			{id:'MIMAT0004607',name:'MIMAT0004607'},
+			{id:'MIMAT0000430',name:'MIMAT0000430'},
+			{id:'MIMAT0004552',name:'MIMAT0004552'},
+			{id:'MIMAT0000250',name:'MIMAT0000250'},
+			{id:'MIMAT0004597',name:'MIMAT0004597'},
+			{id:'MIMAT0000431',name:'MIMAT0000431'},
+			{id:'MIMAT0000432',name:'MIMAT0000432'},
+			{id:'MIMAT0004598',name:'MIMAT0004598'},
+			{id:'MIMAT0000434',name:'MIMAT0000434'},
+			{id:'MIMAT0000433',name:'MIMAT0000433'},
+			{id:'MIMAT0000435',name:'MIMAT0000435'},
+			{id:'MIMAT0004599',name:'MIMAT0004599'},
+			{id:'MIMAT0000436',name:'MIMAT0000436'},
+			{id:'MIMAT0004600',name:'MIMAT0004600'},
+			{id:'MIMAT0004601',name:'MIMAT0004601'},
+			{id:'MIMAT0000437',name:'MIMAT0000437'},
+			{id:'MIMAT0000449',name:'MIMAT0000449'},
+			{id:'MIMAT0004766',name:'MIMAT0004766'},
+			{id:'MIMAT0002809',name:'MIMAT0002809'},
+			{id:'MIMAT0000251',name:'MIMAT0000251'},
+			{id:'MIMAT0004928',name:'MIMAT0004928'},
+			{id:'MIMAT0000243',name:'MIMAT0000243'},
+			{id:'MIMAT0004549',name:'MIMAT0004549'},
+			{id:'MIMAT0000759',name:'MIMAT0000759'},
+			{id:'MIMAT0004699',name:'MIMAT0004699'},
+			{id:'MIMAT0004609',name:'MIMAT0004609'},
+			{id:'MIMAT0000450',name:'MIMAT0000450'},
+			{id:'MIMAT0004610',name:'MIMAT0004610'},
+			{id:'MIMAT0000451',name:'MIMAT0000451'},
+			{id:'MIMAT0000757',name:'MIMAT0000757'},
+			{id:'MIMAT0004697',name:'MIMAT0004697'},
+			{id:'MIMAT0010214',name:'MIMAT0010214'},
+			{id:'MIMAT0000438',name:'MIMAT0000438'},
+			{id:'MIMAT0026479',name:'MIMAT0026479'},
+			{id:'MIMAT0000439',name:'MIMAT0000439'},
+			{id:'MIMAT0026480',name:'MIMAT0026480'},
+			{id:'MIMAT0000453',name:'MIMAT0000453'},
+			{id:'MIMAT0000452',name:'MIMAT0000452'},
+			{id:'MIMAT0004658',name:'MIMAT0004658'},
+			{id:'MIMAT0000646',name:'MIMAT0000646'},
+			{id:'MIMAT0004488',name:'MIMAT0004488'},
+			{id:'MIMAT0000068',name:'MIMAT0000068'},
+			{id:'MIMAT0004586',name:'MIMAT0004586'},
+			{id:'MIMAT0000417',name:'MIMAT0000417'},
+			{id:'MIMAT0004489',name:'MIMAT0004489'},
+			{id:'MIMAT0004518',name:'MIMAT0004518'},
+			{id:'MIMAT0000069',name:'MIMAT0000069'},
+			{id:'MIMAT0000071',name:'MIMAT0000071'},
+			{id:'MIMAT0000070',name:'MIMAT0000070'},
+			{id:'MIMAT0000270',name:'MIMAT0000270'},
+			{id:'MIMAT0000256',name:'MIMAT0000256'},
+			{id:'MIMAT0031893',name:'MIMAT0031893'},
+			{id:'MIMAT0022692',name:'MIMAT0022692'},
+			{id:'MIMAT0000257',name:'MIMAT0000257'},
+			{id:'MIMAT0000258',name:'MIMAT0000258'},
+			{id:'MIMAT0002821',name:'MIMAT0002821'},
+			{id:'MIMAT0000259',name:'MIMAT0000259'},
+			{id:'MIMAT0000261',name:'MIMAT0000261'},
+			{id:'MIMAT0000454',name:'MIMAT0000454'},
+			{id:'MIMAT0004611',name:'MIMAT0004611'},
+			{id:'MIMAT0000455',name:'MIMAT0000455'},
+			{id:'MIMAT0000456',name:'MIMAT0000456'},
+			{id:'MIMAT0000262',name:'MIMAT0000262'},
+			{id:'MIMAT0004613',name:'MIMAT0004613'},
+			{id:'MIMAT0000457',name:'MIMAT0000457'},
+			{id:'MIMAT0002891',name:'MIMAT0002891'},
+			{id:'MIMAT0000072',name:'MIMAT0000072'},
+			{id:'MIMAT0001412',name:'MIMAT0001412'},
+			{id:'MIMAT0007881',name:'MIMAT0007881'},
+			{id:'MIMAT0000458',name:'MIMAT0000458'},
+			{id:'MIMAT0004929',name:'MIMAT0004929'},
+			{id:'MIMAT0000440',name:'MIMAT0000440'},
+			{id:'MIMAT0007885',name:'MIMAT0007885'},
+			{id:'MIMAT0007888',name:'MIMAT0007888'},
+			{id:'MIMAT0007890',name:'MIMAT0007890'},
+			{id:'MIMAT0000222',name:'MIMAT0000222'},
+			{id:'MIMAT0000459',name:'MIMAT0000459'},
+			{id:'MIMAT0004614',name:'MIMAT0004614'},
+			{id:'MIMAT0002819',name:'MIMAT0002819'},
+			{id:'MIMAT0004767',name:'MIMAT0004767'},
+			{id:'MIMAT0004671',name:'MIMAT0004671'},
+			{id:'MIMAT0000460',name:'MIMAT0000460'},
+			{id:'MIMAT0004615',name:'MIMAT0004615'},
+			{id:'MIMAT0000461',name:'MIMAT0000461'},
+			{id:'MIMAT0000226',name:'MIMAT0000226'},
+			{id:'MIMAT0001080',name:'MIMAT0001080'},
+			{id:'MIMAT0000227',name:'MIMAT0000227'},
+			{id:'MIMAT0000232',name:'MIMAT0000232'},
+			{id:'MIMAT0000231',name:'MIMAT0000231'},
+			{id:'MIMAT0004563',name:'MIMAT0004563'},
+			{id:'MIMAT0000263',name:'MIMAT0000263'},
+			{id:'MIMAT0000073',name:'MIMAT0000073'},
+			{id:'MIMAT0004490',name:'MIMAT0004490'},
+			{id:'MIMAT0004491',name:'MIMAT0004491'},
+			{id:'MIMAT0000074',name:'MIMAT0000074'},
+			{id:'MIMAT0000682',name:'MIMAT0000682'},
+			{id:'MIMAT0001620',name:'MIMAT0001620'},
+			{id:'MIMAT0000318',name:'MIMAT0000318'},
+			{id:'MIMAT0000617',name:'MIMAT0000617'},
+			{id:'MIMAT0004657',name:'MIMAT0004657'},
+			{id:'MIMAT0002810',name:'MIMAT0002810'},
+			{id:'MIMAT0000264',name:'MIMAT0000264'},
+			{id:'MIMAT0031890',name:'MIMAT0031890'},
+			{id:'MIMAT0022693',name:'MIMAT0022693'},
+			{id:'MIMAT0000265',name:'MIMAT0000265'},
+			{id:'MIMAT0009197',name:'MIMAT0009197'},
+			{id:'MIMAT0000266',name:'MIMAT0000266'},
+			{id:'MIMAT0000462',name:'MIMAT0000462'},
+			{id:'MIMAT0000241',name:'MIMAT0000241'},
+			{id:'MIMAT0004960',name:'MIMAT0004960'},
+			{id:'MIMAT0004493',name:'MIMAT0004493'},
+			{id:'MIMAT0000075',name:'MIMAT0000075'},
+			{id:'MIMAT0004752',name:'MIMAT0004752'},
+			{id:'MIMAT0001413',name:'MIMAT0001413'},
+			{id:'MIMAT0004494',name:'MIMAT0004494'},
+			{id:'MIMAT0000076',name:'MIMAT0000076'},
+			{id:'MIMAT0000267',name:'MIMAT0000267'},
+			{id:'MIMAT0022694',name:'MIMAT0022694'},
+			{id:'MIMAT0000268',name:'MIMAT0000268'},
+			{id:'MIMAT0011157',name:'MIMAT0011157'},
+			{id:'MIMAT0011156',name:'MIMAT0011156'},
+			{id:'MIMAT0011159',name:'MIMAT0011159'},
+			{id:'MIMAT0011161',name:'MIMAT0011161'},
+			{id:'MIMAT0000269',name:'MIMAT0000269'},
+			{id:'MIMAT0022695',name:'MIMAT0022695'},
+			{id:'MIMAT0000271',name:'MIMAT0000271'},
+			{id:'MIMAT0004564',name:'MIMAT0004564'},
+			{id:'MIMAT0026476',name:'MIMAT0026476'},
+			{id:'MIMAT0000272',name:'MIMAT0000272'},
+			{id:'MIMAT0022844',name:'MIMAT0022844'},
+			{id:'MIMAT0000273',name:'MIMAT0000273'},
+			{id:'MIMAT0004959',name:'MIMAT0004959'},
+			{id:'MIMAT0000274',name:'MIMAT0000274'},
+			{id:'MIMAT0004565',name:'MIMAT0004565'},
+			{id:'MIMAT0000275',name:'MIMAT0000275'},
+			{id:'MIMAT0004675',name:'MIMAT0004675'},
+			{id:'MIMAT0000276',name:'MIMAT0000276'},
+			{id:'MIMAT0000077',name:'MIMAT0000077'},
+			{id:'MIMAT0004495',name:'MIMAT0004495'},
+			{id:'MIMAT0000278',name:'MIMAT0000278'},
+			{id:'MIMAT0004568',name:'MIMAT0004568'},
+			{id:'MIMAT0000279',name:'MIMAT0000279'},
+			{id:'MIMAT0004569',name:'MIMAT0004569'},
+			{id:'MIMAT0000280',name:'MIMAT0000280'},
+			{id:'MIMAT0004570',name:'MIMAT0004570'},
+			{id:'MIMAT0009198',name:'MIMAT0009198'},
+			{id:'MIMAT0000281',name:'MIMAT0000281'},
+			{id:'MIMAT0017352',name:'MIMAT0017352'},
+			{id:'MIMAT0011778',name:'MIMAT0011778'},
+			{id:'MIMAT0017950',name:'MIMAT0017950'},
+			{id:'MIMAT0016895',name:'MIMAT0016895'},
+			{id:'MIMAT0000078',name:'MIMAT0000078'},
+			{id:'MIMAT0004496',name:'MIMAT0004496'},
+			{id:'MIMAT0000418',name:'MIMAT0000418'},
+			{id:'MIMAT0004587',name:'MIMAT0004587'},
+			{id:'MIMAT0018000',name:'MIMAT0018000'},
+			{id:'MIMAT0000079',name:'MIMAT0000079'},
+			{id:'MIMAT0004497',name:'MIMAT0004497'},
+			{id:'MIMAT0000080',name:'MIMAT0000080'},
+			{id:'MIMAT0019953',name:'MIMAT0019953'},
+			{id:'MIMAT0000081',name:'MIMAT0000081'},
+			{id:'MIMAT0004498',name:'MIMAT0004498'},
+			{id:'MIMAT0013516',name:'MIMAT0013516'},
+			{id:'MIMAT0013515',name:'MIMAT0013515'},
+			{id:'MIMAT0013517',name:'MIMAT0013517'},
+			{id:'MIMAT0004499',name:'MIMAT0004499'},
+			{id:'MIMAT0000082',name:'MIMAT0000082'},
+			{id:'MIMAT0004500',name:'MIMAT0004500'},
+			{id:'MIMAT0000083',name:'MIMAT0000083'},
+			{id:'MIMAT0000084',name:'MIMAT0000084'},
+			{id:'MIMAT0004501',name:'MIMAT0004501'},
+			{id:'MIMAT0000419',name:'MIMAT0000419'},
+			{id:'MIMAT0004588',name:'MIMAT0004588'},
+			{id:'MIMAT0004502',name:'MIMAT0004502'},
+			{id:'MIMAT0000085',name:'MIMAT0000085'},
+			{id:'MIMAT0004679',name:'MIMAT0004679'},
+			{id:'MIMAT0000690',name:'MIMAT0000690'},
+			{id:'MIMAT0000687',name:'MIMAT0000687'},
+			{id:'MIMAT0002890',name:'MIMAT0002890'},
+			{id:'MIMAT0000086',name:'MIMAT0000086'},
+			{id:'MIMAT0004503',name:'MIMAT0004503'},
+			{id:'MIMAT0004514',name:'MIMAT0004514'},
+			{id:'MIMAT0000100',name:'MIMAT0000100'},
+			{id:'MIMAT0000681',name:'MIMAT0000681'},
+			{id:'MIMAT0004673',name:'MIMAT0004673'},
+			{id:'MIMAT0004903',name:'MIMAT0004903'},
+			{id:'MIMAT0000688',name:'MIMAT0000688'},
+			{id:'MIMAT0022696',name:'MIMAT0022696'},
+			{id:'MIMAT0004958',name:'MIMAT0004958'},
+			{id:'MIMAT0032026',name:'MIMAT0032026'},
+			{id:'MIMAT0000684',name:'MIMAT0000684'},
+			{id:'MIMAT0000683',name:'MIMAT0000683'},
+			{id:'MIMAT0000715',name:'MIMAT0000715'},
+			{id:'MIMAT0000717',name:'MIMAT0000717'},
+			{id:'MIMAT0000718',name:'MIMAT0000718'},
+			{id:'MIMAT0005931',name:'MIMAT0005931'},
+			{id:'MIMAT0019864',name:'MIMAT0019864'},
+			{id:'MIMAT0000088',name:'MIMAT0000088'},
+			{id:'MIMAT0000087',name:'MIMAT0000087'},
+			{id:'MIMAT0004589',name:'MIMAT0004589'},
+			{id:'MIMAT0000420',name:'MIMAT0000420'},
+			{id:'MIMAT0004674',name:'MIMAT0004674'},
+			{id:'MIMAT0004550',name:'MIMAT0004550'},
+			{id:'MIMAT0000244',name:'MIMAT0000244'},
+			{id:'MIMAT0004551',name:'MIMAT0004551'},
+			{id:'MIMAT0000245',name:'MIMAT0000245'},
+			{id:'MIMAT0000693',name:'MIMAT0000693'},
+			{id:'MIMAT0000692',name:'MIMAT0000692'},
+			{id:'MIMAT0004504',name:'MIMAT0004504'},
+			{id:'MIMAT0000089',name:'MIMAT0000089'},
+			{id:'MIMAT0014980',name:'MIMAT0014980'},
+			{id:'MIMAT0014983',name:'MIMAT0014983'},
+			{id:'MIMAT0014989',name:'MIMAT0014989'},
+			{id:'MIMAT0014990',name:'MIMAT0014990'},
+			{id:'MIMAT0014992',name:'MIMAT0014992'},
+			{id:'MIMAT0015007',name:'MIMAT0015007'},
+			{id:'MIMAT0015008',name:'MIMAT0015008'},
+			{id:'MIMAT0015011',name:'MIMAT0015011'},
+			{id:'MIMAT0015015',name:'MIMAT0015015'},
+			{id:'MIMAT0015016',name:'MIMAT0015016'},
+			{id:'MIMAT0015018',name:'MIMAT0015018'},
+			{id:'MIMAT0015023',name:'MIMAT0015023'},
+			{id:'MIMAT0018194',name:'MIMAT0018194'},
+			{id:'MIMAT0015037',name:'MIMAT0015037'},
+			{id:'MIMAT0015038',name:'MIMAT0015038'},
+			{id:'MIMAT0015042',name:'MIMAT0015042'},
+			{id:'MIMAT0015046',name:'MIMAT0015046'},
+			{id:'MIMAT0019214',name:'MIMAT0019214'},
+			{id:'MIMAT0015051',name:'MIMAT0015051'},
+			{id:'MIMAT0015056',name:'MIMAT0015056'},
+			{id:'MIMAT0018178',name:'MIMAT0018178'},
+			{id:'MIMAT0015058',name:'MIMAT0015058'},
+			{id:'MIMAT0015064',name:'MIMAT0015064'},
+			{id:'MIMAT0015068',name:'MIMAT0015068'},
+			{id:'MIMAT0015069',name:'MIMAT0015069'},
+			{id:'MIMAT0015071',name:'MIMAT0015071'},
+			{id:'MIMAT0019218',name:'MIMAT0019218'},
+			{id:'MIMAT0015078',name:'MIMAT0015078'},
+			{id:'MIMAT0015080',name:'MIMAT0015080'},
+			{id:'MIMAT0000090',name:'MIMAT0000090'},
+			{id:'MIMAT0015085',name:'MIMAT0015085'},
+			{id:'MIMAT0017392',name:'MIMAT0017392'},
+			{id:'MIMAT0000510',name:'MIMAT0000510'},
+			{id:'MIMAT0005792',name:'MIMAT0005792'},
+			{id:'MIMAT0005793',name:'MIMAT0005793'},
+			{id:'MIMAT0006764',name:'MIMAT0006764'},
+			{id:'MIMAT0000755',name:'MIMAT0000755'},
+			{id:'MIMAT0015050',name:'MIMAT0015050'},
+			{id:'MIMAT0000762',name:'MIMAT0000762'},
+			{id:'MIMAT0000761',name:'MIMAT0000761'},
+			{id:'MIMAT0000771',name:'MIMAT0000771'},
+			{id:'MIMAT0000756',name:'MIMAT0000756'},
+			{id:'MIMAT0000752',name:'MIMAT0000752'},
+			{id:'MIMAT0001629',name:'MIMAT0001629'},
+			{id:'MIMAT0026555',name:'MIMAT0026555'},
+			{id:'MIMAT0000751',name:'MIMAT0000751'},
+			{id:'MIMAT0004693',name:'MIMAT0004693'},
+			{id:'MIMAT0000760',name:'MIMAT0000760'},
+			{id:'MIMAT0004703',name:'MIMAT0004703'},
+			{id:'MIMAT0000765',name:'MIMAT0000765'},
+			{id:'MIMAT0000754',name:'MIMAT0000754'},
+			{id:'MIMAT0000763',name:'MIMAT0000763'},
+			{id:'MIMAT0004701',name:'MIMAT0004701'},
+			{id:'MIMAT0004702',name:'MIMAT0004702'},
+			{id:'MIMAT0000764',name:'MIMAT0000764'},
+			{id:'MIMAT0004506',name:'MIMAT0004506'},
+			{id:'MIMAT0000091',name:'MIMAT0000091'},
+			{id:'MIMAT0004811',name:'MIMAT0004811'},
+			{id:'MIMAT0003301',name:'MIMAT0003301'},
+			{id:'MIMAT0000750',name:'MIMAT0000750'},
+			{id:'MIMAT0004692',name:'MIMAT0004692'},
+			{id:'MIMAT0000753',name:'MIMAT0000753'},
+			{id:'MIMAT0004694',name:'MIMAT0004694'},
+			{id:'MIMAT0022698',name:'MIMAT0022698'},
+			{id:'MIMAT0000772',name:'MIMAT0000772'},
+			{id:'MIMAT0000773',name:'MIMAT0000773'},
+			{id:'MIMAT0004557',name:'MIMAT0004557'},
+			{id:'MIMAT0000255',name:'MIMAT0000255'},
+			{id:'MIMAT0004676',name:'MIMAT0004676'},
+			{id:'MIMAT0000685',name:'MIMAT0000685'},
+			{id:'MIMAT0000686',name:'MIMAT0000686'},
+			{id:'MIMAT0019828',name:'MIMAT0019828'},
+			{id:'MIMAT0017982',name:'MIMAT0017982'},
+			{id:'MIMAT0017981',name:'MIMAT0017981'},
+			{id:'MIMAT0004682',name:'MIMAT0004682'},
+			{id:'MIMAT0000703',name:'MIMAT0000703'},
+			{id:'MIMAT0017988',name:'MIMAT0017988'},
+			{id:'MIMAT0017989',name:'MIMAT0017989'},
+			{id:'MIMAT0017990',name:'MIMAT0017990'},
+			{id:'MIMAT0017992',name:'MIMAT0017992'},
+			{id:'MIMAT0017997',name:'MIMAT0017997'},
+			{id:'MIMAT0017999',name:'MIMAT0017999'},
+			{id:'MIMAT0004683',name:'MIMAT0004683'},
+			{id:'MIMAT0000705',name:'MIMAT0000705'},
+			{id:'MIMAT0018003',name:'MIMAT0018003'},
+			{id:'MIMAT0018005',name:'MIMAT0018005'},
+			{id:'MIMAT0000707',name:'MIMAT0000707'},
+			{id:'MIMAT0003385',name:'MIMAT0003385'},
+			{id:'MIMAT0000710',name:'MIMAT0000710'},
+			{id:'MIMAT0022834',name:'MIMAT0022834'},
+			{id:'MIMAT0018088',name:'MIMAT0018088'},
+			{id:'MIMAT0000719',name:'MIMAT0000719'},
+			{id:'MIMAT0018104',name:'MIMAT0018104'},
+			{id:'MIMAT0018109',name:'MIMAT0018109'},
+			{id:'MIMAT0018108',name:'MIMAT0018108'},
+			{id:'MIMAT0000721',name:'MIMAT0000721'},
+			{id:'MIMAT0018119',name:'MIMAT0018119'},
+			{id:'MIMAT0000722',name:'MIMAT0000722'},
+			{id:'MIMAT0026483',name:'MIMAT0026483'},
+			{id:'MIMAT0000723',name:'MIMAT0000723'},
+			{id:'MIMAT0004687',name:'MIMAT0004687'},
+			{id:'MIMAT0000724',name:'MIMAT0000724'},
+			{id:'MIMAT0000726',name:'MIMAT0000726'},
+			{id:'MIMAT0004688',name:'MIMAT0004688'},
+			{id:'MIMAT0000727',name:'MIMAT0000727'},
+			{id:'MIMAT0004956',name:'MIMAT0004956'},
+			{id:'MIMAT0004955',name:'MIMAT0004955'},
+			{id:'MIMAT0022735',name:'MIMAT0022735'},
+			{id:'MIMAT0018443',name:'MIMAT0018443'},
+			{id:'MIMAT0000728',name:'MIMAT0000728'},
+			{id:'MIMAT0000729',name:'MIMAT0000729'},
+			{id:'MIMAT0003386',name:'MIMAT0003386'},
+			{id:'MIMAT0002172',name:'MIMAT0002172'},
+			{id:'MIMAT0000720',name:'MIMAT0000720'},
+			{id:'MIMAT0000730',name:'MIMAT0000730'},
+			{id:'MIMAT0000732',name:'MIMAT0000732'},
+			{id:'MIMAT0000731',name:'MIMAT0000731'},
+			{id:'MIMAT0014999',name:'MIMAT0014999'},
+			{id:'MIMAT0016847',name:'MIMAT0016847'},
+			{id:'MIMAT0018926',name:'MIMAT0018926'},
+			{id:'MIMAT0018927',name:'MIMAT0018927'},
+			{id:'MIMAT0018932',name:'MIMAT0018932'},
+			{id:'MIMAT0018937',name:'MIMAT0018937'},
+			{id:'MIMAT0018984',name:'MIMAT0018984'},
+			{id:'MIMAT0019074',name:'MIMAT0019074'},
+			{id:'MIMAT0004690',name:'MIMAT0004690'},
+			{id:'MIMAT0000733',name:'MIMAT0000733'},
+			{id:'MIMAT0000735',name:'MIMAT0000735'},
+			{id:'MIMAT0000734',name:'MIMAT0000734'},
+			{id:'MIMAT0000736',name:'MIMAT0000736'},
+			{id:'MIMAT0022862',name:'MIMAT0022862'},
+			{id:'MIMAT0022697',name:'MIMAT0022697'},
+			{id:'MIMAT0000737',name:'MIMAT0000737'},
+			{id:'MIMAT0000738',name:'MIMAT0000738'},
+			{id:'MIMAT0001075',name:'MIMAT0001075'},
+			{id:'MIMAT0018183',name:'MIMAT0018183'},
+			{id:'MIMAT0018192',name:'MIMAT0018192'},
+			{id:'MIMAT0018199',name:'MIMAT0018199'},
+			{id:'MIMAT0018205',name:'MIMAT0018205'},
+			{id:'MIMAT0018356',name:'MIMAT0018356'},
+			{id:'MIMAT0019229',name:'MIMAT0019229'},
+			{id:'MIMAT0018358',name:'MIMAT0018358'},
+			{id:'MIMAT0018360',name:'MIMAT0018360'},
+			{id:'MIMAT0001639',name:'MIMAT0001639'},
+			{id:'MIMAT0001638',name:'MIMAT0001638'},
+			{id:'MIMAT0002171',name:'MIMAT0002171'},
+			{id:'MIMAT0026558',name:'MIMAT0026558'},
+			{id:'MIMAT0004813',name:'MIMAT0004813'},
+			{id:'MIMAT0003329',name:'MIMAT0003329'},
+			{id:'MIMAT0003339',name:'MIMAT0003339'},
+			{id:'MIMAT0001339',name:'MIMAT0001339'},
+			{id:'MIMAT0001340',name:'MIMAT0001340'},
+			{id:'MIMAT0004748',name:'MIMAT0004748'},
+			{id:'MIMAT0004749',name:'MIMAT0004749'},
+			{id:'MIMAT0001341',name:'MIMAT0001341'},
+			{id:'MIMAT0003393',name:'MIMAT0003393'},
+			{id:'MIMAT0016894',name:'MIMAT0016894'},
+			{id:'MIMAT0001536',name:'MIMAT0001536'},
+			{id:'MIMAT0016844',name:'MIMAT0016844'},
+			{id:'MIMAT0016858',name:'MIMAT0016858'},
+			{id:'MIMAT0001625',name:'MIMAT0001625'},
+			{id:'MIMAT0016870',name:'MIMAT0016870'},
+			{id:'MIMAT0002814',name:'MIMAT0002814'},
+			{id:'MIMAT0001627',name:'MIMAT0001627'},
+			{id:'MIMAT0026554',name:'MIMAT0026554'},
+			{id:'MIMAT0018939',name:'MIMAT0018939'},
+			{id:'MIMAT0018943',name:'MIMAT0018943'},
+			{id:'MIMAT0018944',name:'MIMAT0018944'},
+			{id:'MIMAT0018952',name:'MIMAT0018952'},
+			{id:'MIMAT0018980',name:'MIMAT0018980'},
+			{id:'MIMAT0018992',name:'MIMAT0018992'},
+			{id:'MIMAT0001532',name:'MIMAT0001532'},
+			{id:'MIMAT0001541',name:'MIMAT0001541'},
+			{id:'MIMAT0003327',name:'MIMAT0003327'},
+			{id:'MIMAT0010251',name:'MIMAT0010251'},
+			{id:'MIMAT0019036',name:'MIMAT0019036'},
+			{id:'MIMAT0022700',name:'MIMAT0022700'},
+			{id:'MIMAT0001545',name:'MIMAT0001545'},
+			{id:'MIMAT0004909',name:'MIMAT0004909'},
+			{id:'MIMAT0001631',name:'MIMAT0001631'},
+			{id:'MIMAT0001635',name:'MIMAT0001635'},
+			{id:'MIMAT0019062',name:'MIMAT0019062'},
+			{id:'MIMAT0022255',name:'MIMAT0022255'},
+			{id:'MIMAT0019064',name:'MIMAT0019064'},
+			{id:'MIMAT0003885',name:'MIMAT0003885'},
+			{id:'MIMAT0004784',name:'MIMAT0004784'},
+			{id:'MIMAT0003150',name:'MIMAT0003150'},
+			{id:'MIMAT0019694',name:'MIMAT0019694'},
+			{id:'MIMAT0019700',name:'MIMAT0019700'},
+			{id:'MIMAT0019699',name:'MIMAT0019699'},
+			{id:'MIMAT0019704',name:'MIMAT0019704'},
+			{id:'MIMAT0015002',name:'MIMAT0015002'},
+			{id:'MIMAT0019729',name:'MIMAT0019729'},
+			{id:'MIMAT0019731',name:'MIMAT0019731'},
+			{id:'MIMAT0019738',name:'MIMAT0019738'},
+			{id:'MIMAT0019759',name:'MIMAT0019759'},
+			{id:'MIMAT0019761',name:'MIMAT0019761'},
+			{id:'MIMAT0019798',name:'MIMAT0019798'},
+			{id:'MIMAT0019801',name:'MIMAT0019801'},
+			{id:'MIMAT0019818',name:'MIMAT0019818'},
+			{id:'MIMAT0019845',name:'MIMAT0019845'},
+			{id:'MIMAT0019853',name:'MIMAT0019853'},
+			{id:'MIMAT0019861',name:'MIMAT0019861'},
+			{id:'MIMAT0019868',name:'MIMAT0019868'},
+			{id:'MIMAT0019899',name:'MIMAT0019899'},
+			{id:'MIMAT0019909',name:'MIMAT0019909'},
+			{id:'MIMAT0019908',name:'MIMAT0019908'},
+			{id:'MIMAT0019918',name:'MIMAT0019918'},
+			{id:'MIMAT0019917',name:'MIMAT0019917'},
+			{id:'MIMAT0019924',name:'MIMAT0019924'},
+			{id:'MIMAT0019931',name:'MIMAT0019931'},
+			{id:'MIMAT0019945',name:'MIMAT0019945'},
+			{id:'MIMAT0019948',name:'MIMAT0019948'},
+			{id:'MIMAT0002173',name:'MIMAT0002173'},
+			{id:'MIMAT0004761',name:'MIMAT0004761'},
+			{id:'MIMAT0002174',name:'MIMAT0002174'},
+			{id:'MIMAT0002176',name:'MIMAT0002176'},
+			{id:'MIMAT0002175',name:'MIMAT0002175'},
+			{id:'MIMAT0004762',name:'MIMAT0004762'},
+			{id:'MIMAT0002177',name:'MIMAT0002177'},
+			{id:'MIMAT0002178',name:'MIMAT0002178'},
+			{id:'MIMAT0003180',name:'MIMAT0003180'},
+			{id:'MIMAT0004763',name:'MIMAT0004763'},
+			{id:'MIMAT0002805',name:'MIMAT0002805'},
+			{id:'MIMAT0002806',name:'MIMAT0002806'},
+			{id:'MIMAT0004764',name:'MIMAT0004764'},
+			{id:'MIMAT0004765',name:'MIMAT0004765'},
+			{id:'MIMAT0002807',name:'MIMAT0002807'},
+			{id:'MIMAT0003161',name:'MIMAT0003161'},
+			{id:'MIMAT0002813',name:'MIMAT0002813'},
+			{id:'MIMAT0002816',name:'MIMAT0002816'},
+			{id:'MIMAT0026607',name:'MIMAT0026607'},
+			{id:'MIMAT0002817',name:'MIMAT0002817'},
+			{id:'MIMAT0002818',name:'MIMAT0002818'},
+			{id:'MIMAT0004768',name:'MIMAT0004768'},
+			{id:'MIMAT0002820',name:'MIMAT0002820'},
+			{id:'MIMAT0002824',name:'MIMAT0002824'},
+			{id:'MIMAT0004772',name:'MIMAT0004772'},
+			{id:'MIMAT0002870',name:'MIMAT0002870'},
+			{id:'MIMAT0019897',name:'MIMAT0019897'},
+			{id:'MIMAT0021020',name:'MIMAT0021020'},
+			{id:'MIMAT0021042',name:'MIMAT0021042'},
+			{id:'MIMAT0002871',name:'MIMAT0002871'},
+			{id:'MIMAT0004773',name:'MIMAT0004773'},
+			{id:'MIMAT0016925',name:'MIMAT0016925'},
+			{id:'MIMAT0004774',name:'MIMAT0004774'},
+			{id:'MIMAT0002872',name:'MIMAT0002872'},
+			{id:'MIMAT0021043',name:'MIMAT0021043'},
+			{id:'MIMAT0004775',name:'MIMAT0004775'},
+			{id:'MIMAT0002873',name:'MIMAT0002873'},
+			{id:'MIMAT0022925',name:'MIMAT0022925'},
+			{id:'MIMAT0002874',name:'MIMAT0002874'},
+			{id:'MIMAT0002875',name:'MIMAT0002875'},
+			{id:'MIMAT0020541',name:'MIMAT0020541'},
+			{id:'MIMAT0002876',name:'MIMAT0002876'},
+			{id:'MIMAT0002878',name:'MIMAT0002878'},
+			{id:'MIMAT0022701',name:'MIMAT0022701'},
+			{id:'MIMAT0002880',name:'MIMAT0002880'},
+			{id:'MIMAT0004778',name:'MIMAT0004778'},
+			{id:'MIMAT0004975',name:'MIMAT0004975'},
+			{id:'MIMAT0002881',name:'MIMAT0002881'},
+			{id:'MIMAT0021086',name:'MIMAT0021086'},
+			{id:'MIMAT0002882',name:'MIMAT0002882'},
+			{id:'MIMAT0002808',name:'MIMAT0002808'},
+			{id:'MIMAT0002823',name:'MIMAT0002823'},
+			{id:'MIMAT0002822',name:'MIMAT0002822'},
+			{id:'MIMAT0002877',name:'MIMAT0002877'},
+			{id:'MIMAT0005788',name:'MIMAT0005788'},
+			{id:'MIMAT0005789',name:'MIMAT0005789'},
+			{id:'MIMAT0002883',name:'MIMAT0002883'},
+			{id:'MIMAT0022702',name:'MIMAT0022702'},
+			{id:'MIMAT0015088',name:'MIMAT0015088'},
+			{id:'MIMAT0015087',name:'MIMAT0015087'},
+			{id:'MIMAT0002827',name:'MIMAT0002827'},
+			{id:'MIMAT0002826',name:'MIMAT0002826'},
+			{id:'MIMAT0004770',name:'MIMAT0004770'},
+			{id:'MIMAT0002859',name:'MIMAT0002859'},
+			{id:'MIMAT0002852',name:'MIMAT0002852'},
+			{id:'MIMAT0002857',name:'MIMAT0002857'},
+			{id:'MIMAT0002866',name:'MIMAT0002866'},
+			{id:'MIMAT0002863',name:'MIMAT0002863'},
+			{id:'MIMAT0002844',name:'MIMAT0002844'},
+			{id:'MIMAT0002848',name:'MIMAT0002848'},
+			{id:'MIMAT0002864',name:'MIMAT0002864'},
+			{id:'MIMAT0005456',name:'MIMAT0005456'},
+			{id:'MIMAT0005450',name:'MIMAT0005450'},
+			{id:'MIMAT0002842',name:'MIMAT0002842'},
+			{id:'MIMAT0002841',name:'MIMAT0002841'},
+			{id:'MIMAT0021125',name:'MIMAT0021125'},
+			{id:'MIMAT0021127',name:'MIMAT0021127'},
+			{id:'MIMAT0002869',name:'MIMAT0002869'},
+			{id:'MIMAT0005452',name:'MIMAT0005452'},
+			{id:'MIMAT0002837',name:'MIMAT0002837'},
+			{id:'MIMAT0005454',name:'MIMAT0005454'},
+			{id:'MIMAT0002832',name:'MIMAT0002832'},
+			{id:'MIMAT0002831',name:'MIMAT0002831'},
+			{id:'MIMAT0002853',name:'MIMAT0002853'},
+			{id:'MIMAT0002828',name:'MIMAT0002828'},
+			{id:'MIMAT0002834',name:'MIMAT0002834'},
+			{id:'MIMAT0002833',name:'MIMAT0002833'},
+			{id:'MIMAT0002843',name:'MIMAT0002843'},
+			{id:'MIMAT0002846',name:'MIMAT0002846'},
+			{id:'MIMAT0005455',name:'MIMAT0005455'},
+			{id:'MIMAT0002856',name:'MIMAT0002856'},
+			{id:'MIMAT0002855',name:'MIMAT0002855'},
+			{id:'MIMAT0002825',name:'MIMAT0002825'},
+			{id:'MIMAT0002830',name:'MIMAT0002830'},
+			{id:'MIMAT0002858',name:'MIMAT0002858'},
+			{id:'MIMAT0002867',name:'MIMAT0002867'},
+			{id:'MIMAT0002868',name:'MIMAT0002868'},
+			{id:'MIMAT0005451',name:'MIMAT0005451'},
+			{id:'MIMAT0002840',name:'MIMAT0002840'},
+			{id:'MIMAT0005449',name:'MIMAT0005449'},
+			{id:'MIMAT0002850',name:'MIMAT0002850'},
+			{id:'MIMAT0002849',name:'MIMAT0002849'},
+			{id:'MIMAT0002839',name:'MIMAT0002839'},
+			{id:'MIMAT0002838',name:'MIMAT0002838'},
+			{id:'MIMAT0002845',name:'MIMAT0002845'},
+			{id:'MIMAT0002836',name:'MIMAT0002836'},
+			{id:'MIMAT0002835',name:'MIMAT0002835'},
+			{id:'MIMAT0004780',name:'MIMAT0004780'},
+			{id:'MIMAT0002888',name:'MIMAT0002888'},
+			{id:'MIMAT0022705',name:'MIMAT0022705'},
+			{id:'MIMAT0003163',name:'MIMAT0003163'},
+			{id:'MIMAT0004920',name:'MIMAT0004920'},
+			{id:'MIMAT0004919',name:'MIMAT0004919'},
+			{id:'MIMAT0003389',name:'MIMAT0003389'},
+			{id:'MIMAT0004954',name:'MIMAT0004954'},
+			{id:'MIMAT0003165',name:'MIMAT0003165'},
+			{id:'MIMAT0004785',name:'MIMAT0004785'},
+			{id:'MIMAT0003323',name:'MIMAT0003323'},
+			{id:'MIMAT0005875',name:'MIMAT0005875'},
+			{id:'MIMAT0005919',name:'MIMAT0005919'},
+			{id:'MIMAT0003257',name:'MIMAT0003257'},
+			{id:'MIMAT0004800',name:'MIMAT0004800'},
+			{id:'MIMAT0003214',name:'MIMAT0003214'},
+			{id:'MIMAT0003233',name:'MIMAT0003233'},
+			{id:'MIMAT0003215',name:'MIMAT0003215'},
+			{id:'MIMAT0004793',name:'MIMAT0004793'},
+			{id:'MIMAT0003220',name:'MIMAT0003220'},
+			{id:'MIMAT0022270',name:'MIMAT0022270'},
+			{id:'MIMAT0022276',name:'MIMAT0022276'},
+			{id:'MIMAT0022287',name:'MIMAT0022287'},
+			{id:'MIMAT0022300',name:'MIMAT0022300'},
+			{id:'MIMAT0022706',name:'MIMAT0022706'},
+			{id:'MIMAT0022478',name:'MIMAT0022478'},
+			{id:'MIMAT0022479',name:'MIMAT0022479'},
+			{id:'MIMAT0022483',name:'MIMAT0022483'},
+			{id:'MIMAT0003238',name:'MIMAT0003238'},
+			{id:'MIMAT0003239',name:'MIMAT0003239'},
+			{id:'MIMAT0004795',name:'MIMAT0004795'},
+			{id:'MIMAT0003241',name:'MIMAT0003241'},
+			{id:'MIMAT0003242',name:'MIMAT0003242'},
+			{id:'MIMAT0003244',name:'MIMAT0003244'},
+			{id:'MIMAT0003245',name:'MIMAT0003245'},
+			{id:'MIMAT0003246',name:'MIMAT0003246'},
+			{id:'MIMAT0004797',name:'MIMAT0004797'},
+			{id:'MIMAT0003247',name:'MIMAT0003247'},
+			{id:'MIMAT0022708',name:'MIMAT0022708'},
+			{id:'MIMAT0003249',name:'MIMAT0003249'},
+			{id:'MIMAT0003250',name:'MIMAT0003250'},
+			{id:'MIMAT0003255',name:'MIMAT0003255'},
+			{id:'MIMAT0004799',name:'MIMAT0004799'},
+			{id:'MIMAT0004801',name:'MIMAT0004801'},
+			{id:'MIMAT0003258',name:'MIMAT0003258'},
+			{id:'MIMAT0003260',name:'MIMAT0003260'},
+			{id:'MIMAT0003261',name:'MIMAT0003261'},
+			{id:'MIMAT0003267',name:'MIMAT0003267'},
+			{id:'MIMAT0003271',name:'MIMAT0003271'},
+			{id:'MIMAT0003273',name:'MIMAT0003273'},
+			{id:'MIMAT0023713',name:'MIMAT0023713'},
+			{id:'MIMAT0003280',name:'MIMAT0003280'},
+			{id:'MIMAT0003281',name:'MIMAT0003281'},
+			{id:'MIMAT0003283',name:'MIMAT0003283'},
+			{id:'MIMAT0004805',name:'MIMAT0004805'},
+			{id:'MIMAT0003284',name:'MIMAT0003284'},
+			{id:'MIMAT0003289',name:'MIMAT0003289'},
+			{id:'MIMAT0004807',name:'MIMAT0004807'},
+			{id:'MIMAT0003293',name:'MIMAT0003293'},
+			{id:'MIMAT0004808',name:'MIMAT0004808'},
+			{id:'MIMAT0003294',name:'MIMAT0003294'},
+			{id:'MIMAT0003296',name:'MIMAT0003296'},
+			{id:'MIMAT0004809',name:'MIMAT0004809'},
+			{id:'MIMAT0004810',name:'MIMAT0004810'},
+			{id:'MIMAT0003308',name:'MIMAT0003308'},
+			{id:'MIMAT0003309',name:'MIMAT0003309'},
+			{id:'MIMAT0003311',name:'MIMAT0003311'},
+			{id:'MIMAT0020924',name:'MIMAT0020924'},
+			{id:'MIMAT0003312',name:'MIMAT0003312'},
+			{id:'MIMAT0018444',name:'MIMAT0018444'},
+			{id:'MIMAT0022736',name:'MIMAT0022736'},
+			{id:'MIMAT0003320',name:'MIMAT0003320'},
+			{id:'MIMAT0025464',name:'MIMAT0025464'},
+			{id:'MIMAT0025475',name:'MIMAT0025475'},
+			{id:'MIMAT0025474',name:'MIMAT0025474'},
+			{id:'MIMAT0003321',name:'MIMAT0003321'},
+			{id:'MIMAT0025481',name:'MIMAT0025481'},
+			{id:'MIMAT0003322',name:'MIMAT0003322'},
+			{id:'MIMAT0003328',name:'MIMAT0003328'},
+			{id:'MIMAT0004814',name:'MIMAT0004814'},
+			{id:'MIMAT0003330',name:'MIMAT0003330'},
+			{id:'MIMAT0003331',name:'MIMAT0003331'},
+			{id:'MIMAT0003332',name:'MIMAT0003332'},
+			{id:'MIMAT0003338',name:'MIMAT0003338'},
+			{id:'MIMAT0003324',name:'MIMAT0003324'},
+			{id:'MIMAT0003326',name:'MIMAT0003326'},
+			{id:'MIMAT0022272',name:'MIMAT0022272'},
+			{id:'MIMAT0022271',name:'MIMAT0022271'},
+			{id:'MIMAT0004952',name:'MIMAT0004952'},
+			{id:'MIMAT0003881',name:'MIMAT0003881'},
+			{id:'MIMAT0026640',name:'MIMAT0026640'},
+			{id:'MIMAT0010357',name:'MIMAT0010357'},
+			{id:'MIMAT0004819',name:'MIMAT0004819'},
+			{id:'MIMAT0003880',name:'MIMAT0003880'},
+			{id:'MIMAT0027345',name:'MIMAT0027345'},
+			{id:'MIMAT0027377',name:'MIMAT0027377'},
+			{id:'MIMAT0006790',name:'MIMAT0006790'},
+			{id:'MIMAT0004284',name:'MIMAT0004284'},
+			{id:'MIMAT0018204',name:'MIMAT0018204'},
+			{id:'MIMAT0027426',name:'MIMAT0027426'},
+			{id:'MIMAT0027433',name:'MIMAT0027433'},
+			{id:'MIMAT0027467',name:'MIMAT0027467'},
+			{id:'MIMAT0027474',name:'MIMAT0027474'},
+			{id:'MIMAT0027499',name:'MIMAT0027499'},
+			{id:'MIMAT0027511',name:'MIMAT0027511'},
+			{id:'MIMAT0027515',name:'MIMAT0027515'},
+			{id:'MIMAT0027532',name:'MIMAT0027532'},
+			{id:'MIMAT0027541',name:'MIMAT0027541'},
+			{id:'MIMAT0027547',name:'MIMAT0027547'},
+			{id:'MIMAT0027571',name:'MIMAT0027571'},
+			{id:'MIMAT0027578',name:'MIMAT0027578'},
+			{id:'MIMAT0027598',name:'MIMAT0027598'},
+			{id:'MIMAT0027605',name:'MIMAT0027605'},
+			{id:'MIMAT0027633',name:'MIMAT0027633'},
+			{id:'MIMAT0027650',name:'MIMAT0027650'},
+			{id:'MIMAT0027668',name:'MIMAT0027668'},
+			{id:'MIMAT0027687',name:'MIMAT0027687'},
+			{id:'MIMAT0004553',name:'MIMAT0004553'},
+			{id:'MIMAT0000252',name:'MIMAT0000252'},
+			{id:'MIMAT0004927',name:'MIMAT0004927'},
+			{id:'MIMAT0004926',name:'MIMAT0004926'},
+			{id:'MIMAT0028216',name:'MIMAT0028216'},
+			{id:'MIMAT0004946',name:'MIMAT0004946'},
+			{id:'MIMAT0004945',name:'MIMAT0004945'},
+			{id:'MIMAT0003879',name:'MIMAT0003879'},
+			{id:'MIMAT0004957',name:'MIMAT0004957'},
+			{id:'MIMAT0010364',name:'MIMAT0010364'},
+			{id:'MIMAT0003945',name:'MIMAT0003945'},
+			{id:'MIMAT0003888',name:'MIMAT0003888'},
+			{id:'MIMAT0022714',name:'MIMAT0022714'},
+			{id:'MIMAT0003883',name:'MIMAT0003883'},
+			{id:'MIMAT0003882',name:'MIMAT0003882'},
+			{id:'MIMAT0003886',name:'MIMAT0003886'},
+			{id:'MIMAT0003948',name:'MIMAT0003948'},
+			{id:'MIMAT0030428',name:'MIMAT0030428'},
+			{id:'MIMAT0004185',name:'MIMAT0004185'},
+			{id:'MIMAT0022717',name:'MIMAT0022717'},
+			{id:'MIMAT0004953',name:'MIMAT0004953'},
+			{id:'MIMAT0004911',name:'MIMAT0004911'},
+			{id:'MIMAT0004922',name:'MIMAT0004922'},
+			{id:'MIMAT0004924',name:'MIMAT0004924'},
+			{id:'MIMAT0004949',name:'MIMAT0004949'},
+			{id:'MIMAT0004948',name:'MIMAT0004948'},
+			{id:'MIMAT0004947',name:'MIMAT0004947'},
+			{id:'MIMAT0004951',name:'MIMAT0004951'},
+			{id:'MIMAT0004916',name:'MIMAT0004916'},
+			{id:'MIMAT0004921',name:'MIMAT0004921'},
+			{id:'MIMAT0004918',name:'MIMAT0004918'},
+			{id:'MIMAT0025858',name:'MIMAT0025858'},
+			{id:'MIMAT0025857',name:'MIMAT0025857'},
+			{id:'MIMAT0000442',name:'MIMAT0000442'},
+			{id:'MIMAT0000441',name:'MIMAT0000441'},
+			{id:'MIMAT0004507',name:'MIMAT0004507'},
+			{id:'MIMAT0000092',name:'MIMAT0000092'},
+			{id:'MIMAT0003218',name:'MIMAT0003218'},
+			{id:'MIMAT0004509',name:'MIMAT0004509'},
+			{id:'MIMAT0000093',name:'MIMAT0000093'},
+			{id:'MIMAT0004977',name:'MIMAT0004977'},
+			{id:'MIMAT0004978',name:'MIMAT0004978'},
+			{id:'MIMAT0004982',name:'MIMAT0004982'},
+			{id:'MIMAT0004983',name:'MIMAT0004983'},
+			{id:'MIMAT0004984',name:'MIMAT0004984'},
+			{id:'MIMAT0026734',name:'MIMAT0026734'},
+			{id:'MIMAT0004985',name:'MIMAT0004985'},
+			{id:'MIMAT0004987',name:'MIMAT0004987'},
+			{id:'MIMAT0000094',name:'MIMAT0000094'},
+			{id:'MIMAT0000095',name:'MIMAT0000095'},
+			{id:'MIMAT0022842',name:'MIMAT0022842'},
+			{id:'MIMAT0000096',name:'MIMAT0000096'},
+			{id:'MIMAT0000097',name:'MIMAT0000097'},
+			{id:'MIMAT0004678',name:'MIMAT0004678'},
+			{id:'MIMAT0000689',name:'MIMAT0000689'}
+		];
+		
+		$('#genename').selectPage({
+			showField : 'name',
+			keyField : 'id',
+			data : tag_data,
+			lang: 'en',
+			noResultClean : true
+		});
+		
+		SyntaxHighlighter.all();
+	});
+</script>
+
+
+<script>
+    wow = new WOW(
+      {
+        animateClass: 'animated',
+        offset:100
+      }
+    );
+    wow.init();
+</script>
+
+<script>
+function load(){
+	$("#graph_qi").fadeOut(1);
+}
+
+function show_qi(){
+	$("#graph_qi").fadeIn(1);
+}
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,454 @@
+<!doctype html>
+<html lang="zxx">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="assets/css/animate.min.css">
+<link rel="stylesheet" href="assets/fonts/flaticon.css">
+<link rel="stylesheet" href="assets/css/boxicons.min.css">
+<link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+<link rel="stylesheet" href="assets/css/owl.theme.default.min.css">
+<link rel="stylesheet" href="assets/css/magnific-popup.css">
+<link rel="stylesheet" href="assets/css/nice-select.min.css">
+<link rel="stylesheet" href="assets/css/meanmenu.css">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/responsive.css">
+<link rel="icon" type="image/png" href="assets/images/favicon.png">
+<title>ExMdb : FAQ</title>
+
+	<style>
+
+  /* Example: Lazy Lightense */
+  .lightense-lazy {
+    filter: blur(16px);
+    transform: scale(1.2);
+  }
+
+  .lightense-lazy-wrap {
+    position: relative;
+    width: 300px;
+    height: 115px;
+    margin: 0 auto;
+  }
+
+  .lightense-lazy-thumb {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    opacity: 1;
+    transition: opacity 1s ease;
+  }
+
+  .lightense-lazy-large {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 1s ease;
+  }
+
+  .lightense-lazy-wrap.on .lightense-lazy-thumb {
+    opacity: 0;
+  }
+
+  .lightense-lazy-wrap.on .lightense-lazy-large {
+    opacity: 1;
+  }
+</style>
+
+</head>
+<body>
+<div class="preloader">
+  <div class="d-table">
+    <div class="d-table-cell">
+      <div class="spinner"></div>
+    </div>
+  </div>
+</div>
+
+<div class="navbar-area" data-step="1" data-intro="This is a tooltip!">
+  <div class="mobile-nav"><a href="index.html" class="logo "><img class="no-lightense" src="assets/images/logos/logo-1.png" alt="Logo"></a></div>
+  <div class="main-nav">
+    <div class="container">
+      <nav class="navbar navbar-expand-md navbar-light "><a class="navbar-brand" href="index.html"><img src="assets/images/logos/logo-1.png" alt="Logo" class="no-lightense"></a>
+        <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
+          <ul class="navbar-nav m-auto" style="z-index:100">
+            <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+            <li class="nav-item"><a href="exmdb_browse.jsp" target="_blank" class="nav-link">Browse</a></li>
+            <li class="nav-item"><a href="#" class="nav-link">Search <i class='bx bx-caret-down'></i></a>
+              <ul class="dropdown-menu">
+                <li class="nav-item"><a href="exmdb_search_highput.jsp" class="nav-link" target="_blank">Search [ High throughput ]</a></li>
+                <li class="nav-item"><a href="exmdb_search_exp.jsp" class="nav-link" target="_blank">Search [ Experimental validation ]</a></li>
+                <li class="nav-item"><a href="exmdb_search_biomarker.jsp" class="nav-link" target="_blank">Search [ Cancer Biomarkers ]</a></li>
+                <li class="nav-item"><a href="exmdb_search_scdataset.jsp" class="nav-link" target="_blank">Search [ Single-cell ]</a></li>
+              </ul>
+            </li>
+            <li class="nav-item"><a href="#" class="nav-link">Tools <i class='bx bx-caret-down'></i></a>
+              <ul class="dropdown-menu">
+                <li class="nav-item"><a href="exmdb_cell_out.jsp" target="_blank" class="nav-link">ExMdb-Cellloaction </a></li>
+                <li class="nav-item"><a href="exmdb_imm_out.jsp" target="_blank" class="nav-link">ExMdb-Immunity </a></li><li class="nav-item"><a href="#" class="nav-link">ExMdb-Survival Tools<i class='bx bx-caret-down'></i></a><ul class="dropdown-menu"><li class="nav-item"><a href="exmdb_survival_out.jsp" target="_blank" class="nav-link" style="text-transform: none;">mRNA-Survival Analyze</a></li><li class="nav-item"><a href="exmdb_survival_miRNA_out.jsp" target="_blank" class="nav-link" style="text-transform: none;">miRNA-Survival Analyze</a></li> <li class="nav-item"><a href="exmdb_survival_out.jsp" target="_blank" class="nav-link" style="text-transform: none;">lncRNA-Survival Analyze</a></li></ul></li>
+                <li class="nav-item"><a href="exmdb_net_out.jsp" target="_blank" class="nav-link">ExMdb-Network </a></li><li class="nav-item"><a href="exmdb_blast_out.jsp" target="_blank" class="nav-link">ExMdb-BLAST </a></li><li class="nav-item"><a href="exmdb_function_time.jsp" target="_blank" class="nav-link">ExMdb-Pseudotime pathway</a></li><li class="nav-item"><a href="exmdb_single_vis.jsp" target="_blank" class="nav-link">ExMdb-Single Cell Visualization</a></li>
+				<li class="nav-item"><a href="#" class="nav-link">ExMdb-FunctionEnrichment <i class='bx bx-caret-down'></i></a><ul class="dropdown-menu"><li class="nav-item"><a href="exmdb_function_mRNA_out.jsp" target="_blank" class="nav-link" style="text-transform: none;">mRNA-FunctionEnrichment</a></li><li class="nav-item"><a href="exmdb_function_out_miRNA.jsp" target="_blank" class="nav-link" style="text-transform: none;">miRNA-FunctionEnrichment</a></li> <li class="nav-item"><a href="exmdb_function_out.jsp" target="_blank" class="nav-link" style="text-transform: none;">lncRNA-FunctionEnrichment</a></li></ul></li>
+              </ul>
+            </li>
+
+
+            <li class="nav-item"><a href="exmdb_statistic.jsp" target="_blank" class="nav-link">Statistic </a></li><li class="nav-item"><a href="exmdb_help.html" target="_blank" class="nav-link active">Help </a></li>
+            
+            <li class="nav-item"><a href="exmdb_download.html" target="_blank" class="nav-link">Download </a></li><li class="nav-item"><a href="exmdb_contact.html" target="_blank" class="nav-link">Contact Us</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </div>
+  <div class="side-nav-responsive">
+    <div class="container-max">
+      <div class="dot-menu">
+        <div class="circle-inner">
+          <div class="in-circle circle-one"></div>
+          <div class="in-circle circle-two"></div>
+          <div class="in-circle circle-three"></div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="side-nav-inner">
+          <div class="side-nav justify-content-center align-items-center">
+            <div class="side-nav-item nav-side">
+              <div class="search-box"><i class='bx bx-search'></i></div>
+              <div class="get-btn"><a href="contact.html" class="default-btn btn-bg-two border-radius-50">Get A Quote <i class='bx bx-chevron-right'></i></a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="search-overlay">
+  <div class="d-table">
+    <div class="d-table-cell">
+      <div class="search-layer"></div>
+      <div class="search-layer"></div>
+      <div class="search-layer"></div>
+      <div class="search-close"><span class="search-close-line"></span><span class="search-close-line"></span></div>
+      <div class="search-form">
+        <form>
+          <input type="text" class="input-search" placeholder="Search here...">
+          <button type="submit"><i class='bx bx-search'></i></button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="inner-banner">
+  <div class="container">
+    <div class="inner-title text-center">
+      <h3>ExMdb - FAQ</h3>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><i class='bx bx-chevrons-right'></i></li>
+        <li>FAQ</li>
+      </ul>
+    </div>
+  </div>
+  <div class="inner-shape"><img src="assets/images/shape/inner-shape.png" alt="Images"></div>
+</div>
+<div class="faq-area pt-50 pb-50">
+  <div class="container">
+    <div class="section-title text-center">
+      <h2>Frequently Asked Questions</h2>
+      <p class="margin-auto">We are the agency who always gives you a priority on the free of question and you can easily make a question on the bunch.</p>
+    </div>
+    <div class="row pt-45">
+      <div class="col-lg-6">
+        <div class="faq-content">
+          <div class="faq-accordion">
+            <ul class="accordion">
+            
+              <li class="accordion-item"><a class="accordion-title" href="javascript:void(0)"><i class='bx bx-plus'></i>Background of ExMdb </a>
+                <div class="accordion-content">
+					<p>
+					<b style="font-size:25px">E</b> xosomes are a nano-sized vesicle structure derived from cells, which can be derived from normal cells and tumor cells of the body, and are distributed in various body fluids such as blood, saliva, urine, breast milk and so on. It contain an abundant product of different RNA species that can regulate the behavior of recipient cells and can be used as circulating biomarkers for diseases. In recent years, due to the constant understanding and study of exosomes, research on exosomes has become a hot spot. Therefore, the collection of exosome data will be crucial for its next research, prevention and diagnosis.In this study, we established ExMdb, a manually curated database which aims at providing data support for the study of exosome RNA. ExMdb provides a user-friendly interface for convenient browsing, retrieval and downloading of dataset. A submission page is also included to allow researchers to submit newly exosome RNA to cancer data.
+					</p>
+                </div>
+              </li>
+
+
+              <li class="accordion-item"><a class="accordion-title" href="javascript:void(0)"><i class='bx bx-plus'></i>Quick start in ExMdb </a>
+                <div class="accordion-content">
+                  <img src="img/help/index_2.png" data-lightense-background="rgba(23, 29, 54, .8)">
+                  <br>
+                  <p>A. ExMdb navigation bar, access the corresponding interface / function by clicking the link / button. </p>
+                  <p>B. Quick button, click the corresponding button to quickly start ExMdb. </p>
+                  <p>C. Click the button to expand the function list. </p>
+                  <p>D. Function list: contains the main functions and analysis tools of ExMdb. </p>
+                  <p>E. Article citations and addresses. </p>
+                  <p>F. Our other works. </p>
+                </div>
+              </li>
+              
+              <li class="accordion-item"><a class="accordion-title" href="javascript:void(0)"><i class='bx bx-plus'></i>Quick Search of ExMdb </a>
+                <div class="accordion-content">
+					<img src="img/help/QuickSearch_2.png" data-lightense-background="rgba(23, 29, 54, .8)">
+					<br>
+	                  <p>A. Click the "Quick Start" button or magnifying icon for quick to use. </p>
+	                  <p>B. Click on the preset gene to submit keywords to search box. </p>
+	                  <p>C. ExMdb hotspot function display, click the link to use the function. </p>
+                </div>
+              </li>
+              
+              <li class="accordion-item"><a class="accordion-title" href="javascript:void(0)"><i class='bx bx-plus'></i>ExMdb-Browse Overview & Quick Search </a>
+                <div class="accordion-content">
+                  <img src="img/help/Browse_2.png" data-lightense-background="rgba(23, 29, 54, .8)">
+                  <br>
+                  <p>A. ExMdb Quick list, click the corresponding entry to quickly access the results. </p>
+                  <p>B. Quick query results. </p>
+                  <p>C. External Links. </p>
+                </div>
+              </li>
+              <li class="accordion-item"><a class="accordion-title" href="javascript:void(0)"><i class='bx bx-plus'></i>ExMdb-Browse high-throughput data Query </a>
+                <div class="accordion-content">
+                  <img src="img/help/Browse_Highput_2.png" data-lightense-background="rgba(23, 29, 54, .8)">
+                  <br>
+                  <p>A. Click on the corresponding data entry. </p>
+                  <p>B. Click the Details button for additional analysis. </p>
+                  <p>C. Data details. </p>
+                </div>
+              </li>
+              <li class="accordion-item"><a class="accordion-title" href="javascript:void(0)"><i class='bx bx-plus'></i>ExMdb-Browse experimental verification data Query </a>
+                <div class="accordion-content">
+                  <img src="img/help/Browse_Exp_2.png" data-lightense-background="rgba(23, 29, 54, .8)">
+                  <br>
+                  <p>A. Click on the corresponding data entry. </p>
+                  <p>B. Results data table, click the icon to view the details. </p>
+                  <p>C. Statistical table of experimental validation data [ by disease classification ]. </p>
+                </div>
+              </li>
+              <li class="accordion-item"><a class="accordion-title" href="javascript:void(0)"><i class='bx bx-plus'></i>ExMdb-Browse Cancer Hallmarker Query </a>
+                <div class="accordion-content">
+                  <img src="img/help/Browse_hallmarker_2.png" data-lightense-background="rgba(23, 29, 54, .8)">
+                  <br>
+                  <p>A. ExMdb Quick list, click the corresponding entry to quickly access the results. </p>
+                  <p>B. Key words. </p>
+                  <p>C. Results data table, click the icon to view the details. </p>
+                </div>
+              </li>
+              <li class="accordion-item"><a class="accordion-title" href="javascript:void(0)"><i class='bx bx-plus'></i>ExMdb-Browse Single-cell data Query</a>
+                <div class="accordion-content">
+                  <img src="img/help/Browse_sc_2.png" data-lightense-background="rgba(23, 29, 54, .8)">
+                  <br>
+                  <p>A. Click on the corresponding data entry. </p>
+                  <p>B. Data interface. </p>
+                  <p>C. Data details. </p>
+                </div>
+              </li>
+              <li class="accordion-item"><a class="accordion-title" href="javascript:void(0)"><i class='bx bx-plus'></i>ExMdb-Browse cell location Query </a>
+                <div class="accordion-content">
+                  <img src="img/help/Browse_loca_2.png" data-lightense-background="rgba(23, 29, 54, .8)">
+                  <br>
+                  <p>A. Enter gene. </p>
+                  <p>B. Expand Detailed Subcellular Localization Data Sheet. </p>
+                  <p>C. Gene subcellular localization map. </p>
+                </div>
+              </li>
+              <li class="accordion-item"><a class="accordion-title" href="javascript:void(0)"><i class='bx bx-plus'></i>ExMdb-Search Summary </a>
+                <div class="accordion-content">
+                  <img src="img/help/Search_All.png" data-lightense-background="rgba(23, 29, 54, .8)">
+                  <br>
+                  <p>A. Enter keywords for quickly query of high-throughput data. </p>
+                  <p>B. In the advanced search, enter the keyword and dataset ID. </p>
+                  <p>C. Adjust the P-value threshold. </p>
+                  <p>D. Enter keywords for quickly query of [ Experimental ] &  [ Biomarker ]. </p>
+                  <p>E. In the advanced search, enter the keyword. </p>
+                  <p>F. Choose experimental methods.</p>
+                  <p>G. Enter keywords for quickly query of [ SingleCell Dataset]. </p>
+                  <p>H. In the advanced search, enter the keyword & Dataset ID. </p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="faq-content">
+          <div class="faq-accordion">
+            <ul class="accordion">
+              
+              
+              <li class="accordion-item"><a class="accordion-title" href="javascript:void(0)"><i class='bx bx-plus'></i>ExMdb-Search [ High throughput data ] </a>
+                <div class="accordion-content">
+                  <img src="img/help/High_body.png" data-lightense-background="rgba(23, 29, 54, .8)">
+                  <br>
+                  <p>A. Click the corresponding organ to enter the organ-data interface.</p>
+                  <p>B. Histogram of search genes in normal vs cancer samples in the dataset. </p>
+                  <p>C. ExMdb high-throughput data overview.</p>
+                  <p>D. Result form, click "Detail" on the right to get detailed information. </p>
+                  <p>E. Function List, click the corresponding node to quickly scroll to the result</p>
+                </div>
+              </li>
+              <li class="accordion-item"><a class="accordion-title" href="javascript:void(0)"><i class='bx bx-plus'></i>ExMdb-Search [ Experimental ] &  [ Biomarker ] </a>
+                <div class="accordion-content">
+                  <img src="img/help/Biomarker_Exp.png" data-lightense-background="rgba(23, 29, 54, .8)">
+                  <br>
+                  <p>A. Biomarker DataTable.</p>
+                  <p>B. Gene Information [Experimental]. </p>
+                  <p>C. Click the "Detail" button for more details.</p>
+                  <p>D. Function List, click the corresponding node to quickly scroll to the result. </p>
+                  <p>E. Biomarker Radar Chart.</p>
+                  <p>F. Detailed data information.</p>
+                  <p>G. Function List, click the corresponding node to quickly scroll to the result.</p>
+                  <p>H. Detailed data information.</p>
+                </div>
+              </li>
+              <li class="accordion-item"><a class="accordion-title" href="javascript:void(0)"><i class='bx bx-plus'></i>ExMdb-Search [ Single Cell DataSet ] </a>
+                <div class="accordion-content">
+                  <img src="img/help/SC_table_All.png" data-lightense-background="rgba(23, 29, 54, .8)">
+                  <br>
+                  <p>A. Single Cell Data Information Overview Data table.</p>
+                  <p>B. Click the "Detail" button for more details. </p>
+                  <p>C. Function List, click the corresponding node to quickly scroll to the result.</p>
+                  <p>D. Detailed data information. </p>
+                </div>
+              </li>
+              <li class="accordion-item"><a class="accordion-title" href="javascript:void(0)"><i class='bx bx-plus'></i>ExMdb-Tools [ ExMdb-celllocation ] </a>
+                <div class="accordion-content">
+                  <img src="img/help/Tools_Celllocation_2.png" data-lightense-background="rgba(23, 29, 54, .8)">
+                  <br>
+                  <p>A. Enter keywords for quickly query.</p>
+                  <p>B. Expand Detailed Subcellular Localization Data Sheet.</p>
+                  <p>C. Gene subcellular localization map.</p>
+                  <p>D. Detailed data information. </p>
+                </div>
+              </li>
+              <li class="accordion-item"><a class="accordion-title" href="javascript:void(0)"><i class='bx bx-plus'></i>ExMdb-Tools [ ExMdb-BLAST ] </a>
+                <div class="accordion-content">
+                  <img src="img/help/Tools_Blast_2.png" data-lightense-background="rgba(23, 29, 54, .8)">
+                  <br>
+                  <p>A. Submit gene sequences to view BLAST results.</p>
+                  <p>B. Submit protein sequence to view BLAST results.</p>
+                  <p>C. Click to view all records of this gene in ExMdb.</p>
+                  <p>D. BLAST result table. </p>
+                </div>
+              </li>
+              <li class="accordion-item"><a class="accordion-title" href="javascript:void(0)"><i class='bx bx-plus'></i>ExMdb-Tools [ ExMdb-immunity ] </a>
+                <div class="accordion-content">
+                  <img src="img/help/Tools_imm_2.png" data-lightense-background="rgba(23, 29, 54, .8)">
+                  <br>
+                  <p>A. Selection of datasets and analysis methods.</p>
+                  <p>B. Sample cell infiltration ratio chart.</p>
+                  <p>C. Click to view all records of this gene in ExMdb.</p>
+                  <p>D. BLAST result table. </p>
+                </div>
+              </li>
+              <li class="accordion-item"><a class="accordion-title" href="javascript:void(0)"><i class='bx bx-plus'></i>ExMdb-Tools [ ExMdb-Network ] </a>
+                <div class="accordion-content">
+                  <img src="img/help/Tools_net_2.png" data-lightense-background="rgba(23, 29, 54, .8)">
+                  <br>
+                  <p>A. Input mRNA, miRNA, lncRNA. [Multiple choices].</p>
+                  <p>B. Adjust network properties.</p>
+                  <p>C. Network properties and dataset sources.</p>
+                  <p>D. RNA interaction network. </p>
+                </div>
+              </li>
+              <li class="accordion-item"><a class="accordion-title" href="javascript:void(0)"><i class='bx bx-plus'></i>ExMdb-Tools [ ExMdb-Pseudotime Pathway ] </a>
+                <div class="accordion-content">
+                  <img src="img/help/Tools_pse_2.png" data-lightense-background="rgba(23, 29, 54, .8)">
+                  <br>
+                  <p>A. Select Enrichment Pathway Type.</p>
+                  <p>B. Select multiple enrichment pathways.</p>
+                  <p>C. Set dataset/split time/network properties.</p>
+                  <p>D. Pseudotime Pathway result. </p>
+                </div>
+              </li>
+              <li class="accordion-item"><a class="accordion-title" href="javascript:void(0)"><i class='bx bx-plus'></i>ExMdb-Tools [ ExMdb-Survival ] </a>
+                <div class="accordion-content">
+                  <img src="img/help/Tools_Survival_2.png" data-lightense-background="rgba(23, 29, 54, .8)">
+                  <br>
+                  <p>A. input gene, dataset, curve properties [color/edge width]</p>
+                  <p>B. Survival curve graph [ by mean/median ]</p>
+                </div>
+              </li>
+
+              <li class="accordion-item"><a class="accordion-title" href="javascript:void(0)"><i class='bx bx-plus'></i>ExMdb-Tools [ ExMdb-Single Cell Visualization Tools ] </a>
+                <div class="accordion-content">
+                  <img src="img/help/Tools_vis_2.png" data-lightense-background="rgba(23, 29, 54, .8)">
+                  <br>
+                  <p>A. input gene, dataset, Graph Properties.</p>
+                  <p>B. Seurat results scatter plot.</p>
+                  <p>C. input gene, dataset, Graph Properties.</p>
+                  <p>D. Monocle results scatter plot.</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<footer class="footer-area footer-bg">
+  <div class="container">
+    <div class="copy-right-area">
+      <div class="copy-right-text">
+        <p>2022,CopyRight © HMU. College of Bioinformatics Science and Technology, Harbin, China.</p>
+      </div>
+    </div>
+  </div>
+</footer>
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/owl.carousel.min.js"></script>
+<script src="assets/js/jquery.magnific-popup.min.js"></script>
+<script src="assets/js/jquery.nice-select.min.js"></script>
+<script src="assets/js/wow.min.js"></script>
+<script src="assets/js/meanmenu.js"></script>
+<script src="assets/js/jquery.ajaxchimp.min.js"></script>
+<script src="assets/js/form-validator.min.js"></script>
+<script src="assets/js/contact-form-script.js"></script>
+<script src="assets/js/custom.js"></script>
+
+<script src="img_js/lightense.js"></script>
+	<script>
+		  // Init Lightense
+		  window.addEventListener('load', function () {
+		    Lightense('img:not(.no-lightense),.lightense');
+		  }, false);
+
+		  // Example: Lazy Lightense
+		  document.addEventListener('DOMContentLoaded', function (e) {
+		    function createDom (type, cssClass) {
+		      var div = document.createElement(type);
+		      div.className = cssClass;
+		      return div;
+		    }
+
+		    var thumb = document.querySelector('.lightense-lazy');
+		    var original = new Image();
+
+		    // Init wrapper
+		    var wrap = createDom('div', 'lightense-lazy-wrap');
+		    thumb.parentNode.insertBefore(wrap, thumb);
+		    wrap.appendChild(thumb);
+
+		    // Wrap thumbnail
+		    var thumbWrap = createDom('div', 'lightense-lazy-thumb');
+		    thumbWrap.appendChild(thumb);
+		    wrap.appendChild(thumbWrap);
+
+		    // Wrap original
+		    var originalWrap = createDom('div', 'lightense-lazy-large');
+		    original.src = thumb.dataset.original;
+		    originalWrap.appendChild(original);
+		    wrap.appendChild(originalWrap);
+
+		    // Load original image
+		    original.addEventListener('load', function () {
+		      wrap.classList.add('on');
+		    }, false);
+		  });
+		</script>
+</body>
+</html>
