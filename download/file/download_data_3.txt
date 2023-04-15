@@ -1,0 +1,65 @@
+GSE106817	GSE106817_BRCA	Breast Cancer	115 Breast Cancer + 2759 normal	30333487	Bulk	GSE106817_BRCA	GPL21263 3D-Gene Human miRNA V21_1.0.0
+GSE106817	GSE106817_CRC	Colorectal Cancer	115 Colorectal Cancer + 2759 normal	30333487	Bulk	GSE106817_CRC	GPL21263 3D-Gene Human miRNA V21_1.0.0
+GSE106817	GSE106817_ESCA	Esophageal Cancer	88 Esophageal Cancer + 2759 normal	30333487	Bulk	GSE106817_ESCA	GPL21263 3D-Gene Human miRNA V21_1.0.0
+GSE106817	GSE106817_GC	Gastric Cancer	115 Gastric Cancer + 2759 normal	30333487	Bulk	GSE106817_GC	GPL21263 3D-Gene Human miRNA V21_1.0.0
+GSE106817	GSE106817_HCC	Hepatocellular Carcinoma	115 Hepatocellular Carcinoma + 2759 normal	30333487	Bulk	GSE106817_HCC	GPL21263 3D-Gene Human miRNA V21_1.0.0
+GSE106817	GSE106817_Lung	Lung Cancer	115 Lung Cancer + 2759 normal	30333487	Bulk	GSE106817_Lung	GPL21263 3D-Gene Human miRNA V21_1.0.0
+GSE106817	GSE106817_Ov	Ovarian Cancer	320 Ovarian Cancer + 2759 normal	30333487	Bulk	GSE106817_Ov	GPL21263 3D-Gene Human miRNA V21_1.0.0
+GSE106817	GSE106817_PAAD	Pancreatic Cancer	115 Pancreatic Cancer + 2759 normal	30333487	Bulk	GSE106817_PAAD	GPL21263 3D-Gene Human miRNA V21_1.0.0
+GSE106817	GSE106817_SARC	Sarcoma	115 Sarcoma + 2759 normal	30333487	Bulk	GSE106817_SARC	GPL21263 3D-Gene Human miRNA V21_1.0.0
+GSE110271	GSE110271	multiple myeloma	9 multiple myeloma + 2 normal	31698453	Bulk	GSE110271	GPL13987 Taqman Array Human MicroRNA A Card v2.0
+GSE112496	GSE112496	Esophageal Squamous Cell Carcinoma	5 Esophageal Squamous Cell Carcinoma + 5 normal	33747034	Bulk	GSE112496	GPL21825 074301 Arraystar Human CircRNA microarray V2
+GSE112840	GSE112840	Esophageal Squamous Cell Carcinoma	52 Esophageal Squamous Cell Carcinoma + 52 normal	30719423	Bulk	GSE112840	GPL23365 Agilent-046064 Human miRNA Microarray, Release 19.0, 8x60K (miRNA_ID version)
+GSE113486	GSE113486_BC	Breast Cancer	40 Breast Cancer  + 100 normal	30382619	Bulk	GSE113486_BC	GPL21263 3D-Gene Human miRNA V21_1.0.0
+GSE113486	GSE113486_Biliary	Biliary Tract Cancer	40 Biliary Tract Cancer + 100 normal	30382619	Bulk	GSE113486_Biliary	GPL21263 3D-Gene Human miRNA V21_1.0.0
+GSE113486	GSE113486_Bladder	Bladder Cancer 	392 Bladder Cancer  + 100 normal	30382619	Bulk	GSE113486_Bladder	GPL21263 3D-Gene Human miRNA V21_1.0.0
+GSE113486	GSE113486_CRC	Colorectal Cancer 	40 Colorectal Cancer  + 100 normal	30382619	Bulk	GSE113486_CRC	GPL21263 3D-Gene Human miRNA V21_1.0.0
+GSE113486	GSE113486_Esophageal	Esophageal Cancer	40 Esophageal Cancer + 100 normal	30382619	Bulk	GSE113486_Esophageal	GPL21263 3D-Gene Human miRNA V21_1.0.0
+GSE113486	GSE113486_GC	Gastric Cancer	40 Gastric Cancer + 100 normal	30382619	Bulk	GSE113486_GC	GPL21263 3D-Gene Human miRNA V21_1.0.0
+GSE113486	GSE113486_Glioma	Glioma	40 Glioma + 100 normal	30382619	Bulk	GSE113486_Glioma	GPL21263 3D-Gene Human miRNA V21_1.0.0
+GSE113486	GSE113486_Hepatocellular	Hepatocellular Carcinoma	40 Hepatocellular Carcinoma + 100 normal	30382619	Bulk	GSE113486_Hepatocellular	GPL21263 3D-Gene Human miRNA V21_1.0.0
+GSE113486	GSE113486_Lung	Lung Cancer	40 Lung Cancer + 100 normal	30382619	Bulk	GSE113486_Lung	GPL21263 3D-Gene Human miRNA V21_1.0.0
+GSE113486	GSE113486_Ov	Ovarian Cancer	40 Ovarian Cancer  + 100 normal	30382619	Bulk	GSE113486_Ov	GPL21263 3D-Gene Human miRNA V21_1.0.0
+GSE113486	GSE113486_Pancreatic	Pancreatic Cancer	40 Pancreatic Cancer + 100  normal	30382619	Bulk	GSE113486_Pancreatic	GPL21263 3D-Gene Human miRNA V21_1.0.0
+GSE113486	GSE113486_Prostate	Prostate Cancer	40 Prostate Cancer + 100 normal	30382619	Bulk	GSE113486_Prostate	GPL21263 3D-Gene Human miRNA V21_1.0.0
+GSE113486	GSE113486_Sarcoma	Sarcoma	40 Sarcoma  + 100 normal	30382619	Bulk	GSE113486_Sarcoma	GPL21263 3D-Gene Human miRNA V21_1.0.0
+GSE118782	GSE118782	breast cancer	30 breast cancer + 10 normal	n/a	Bulk	GSE118782	GPL8786 [miRNA-1] Affymetrix Multispecies miRNA-1 Array
+GSE122488	GSE122488	glioblastoma 	22 glioblastoma  + 16 normal	30564636/32668800	Bulk	GSE122488	GPL11154 Illumina HiSeq 2000 (Homo sapiens)
+GSE122497	GSE122497	Esophageal Squamous Cell Carcinoma	566 esophageal squamous cell carcinoma + 4965 normal	31125107	Bulk	GSE122497	GPL21263 3D-Gene Human miRNA V21_1.0.0
+GSE124158	GSE124158_Bone	bone and soft tissue sarcomas	892 bone and soft tissue sarcomas + 275 normal	30898996	Bulk	GSE124158_Bone	GPL18941,GPL21263 3D-Gene Human miRNA V21_1.0.0
+GSE124158	GSE124158_CRC	Colorectal Cancer	30 Colorectal Cancer + 275 normal	30898996	Bulk	GSE124158_CRC	GPL18941,GPL21263 3D-Gene Human miRNA V21_1.0.0
+GSE124158	GSE124158_ESCA	Esophageal Cancer 	30 Esophageal Cancer + 275 normal	30898996	Bulk	GSE124158_ESCA	GPL18941,GPL21263 3D-Gene Human miRNA V21_1.0.0
+GSE124158	GSE124158_GC	Gastric Cancer	30 Gastric Cancer + 275 normal	30898996	Bulk	GSE124158_GC	GPL18941,GPL21263 3D-Gene Human miRNA V21_1.0.0
+GSE124158	GSE124158_Glioma	Glioma	30 Glioma  + 275 normal	30898996	Bulk	GSE124158_Glioma	GPL18941,GPL21263 3D-Gene Human miRNA V21_1.0.0
+GSE124158	GSE124158_HCC	Hepatocellular Carcinoma	30 Hepatocellular Carcinoma  + 275 normal	30898996	Bulk	GSE124158_HCC	GPL18941,GPL21263 3D-Gene Human miRNA V21_1.0.0
+GSE124158	GSE124158_Pancreatic	Pancreatic Cancer 	30 Pancreatic Cancer + 275 normal	30898996	Bulk	GSE124158_Pancreatic	GPL18941,GPL21263 3D-Gene Human miRNA V21_1.0.0
+GSE124158	GSE124158_Lung	Lung Cancer 	30 Lung Cancer + 275 normal	30898996	Bulk	GSE124158_Lung	GPL18941,GPL21263 3D-Gene Human miRNA V21_1.0.0
+GSE125442	GSE125442	renal cell carcinoma	10 renal cell carcinoma + 10 normal	n/a	Bulk	GSE125442	GPL21290 Illumina HiSeq 3000 (Homo sapiens)
+GSE126399	GSE126399	gastric cancer	12 gastric cancer + 10 normal	n/a	Bulk	GSE126399	GPL18402 Agilent-046064 Unrestricted_Human_miRNA_V19.0_Microarray (miRNA ID version)
+GSE130512	GSE130512	tyriod cancer	16 tyriod cancer + 8 normal	32508877	Bulk	GSE130512	GPL11154 Illumina HiSeq 2000 (Homo sapiens)
+GSE130654	GSE130654	gastric cancer	36 gastric cancer + 12 normal	32256526	Bulk	GSE130654	GPL11154 Illumina HiSeq 2000 (Homo sapiens)
+GSE133684	GSE133684	pancreatic ductal adenocarcinoma	284 pancreatic ductal adenocarcinoma + 117 normal	31562239	Bulk	GSE133684	GPL20795 HiSeq X Ten (Homo sapiens)
+GSE136321	GSE136321	prostate cancer	24 prostate cancer + 24 normal	33490068	Bulk	GSE136321	GPL18573 Illumina NextSeq 500 (Homo sapiens)
+GSE137140	GSE137140	lung cancer	2178 lung cancer + 1746 normal	32193503	Bulk	GSE137140	GPL21263 3D-Gene Human miRNA V21_1.0.0
+GSE138740	GSE138740	prostate cancer	146 prostate cancer + 89 normal	32191585	Bulk	GSE138740	GPL21572 [miRNA-4] Affymetrix Multispecies miRNA-4 Array [ProbeSet ID version]
+GSE139031	GSE139031	Glioma	423 Glioma + 157 normal	31808923	Bulk	GSE139031	GPL21263 3D-Gene Human miRNA V21_1.0.0
+GSE144521	GSE144521	cholangiocarcinoma	35 cholangiocarcinoma + 61 normal	32183400	Bulk	GSE144521	GPL14951 Illumina HumanHT-12 WG-DASL V4.0 R2 expression beadchip
+GSE149200	GSE149200	colorectal cancer	5 colorectal cancer + 5 Health Sample	32626660	Bulk	GSE149200	GPL20301 Illumina HiSeq 4000 (Homo sapiens)
+GSE159177	GSE159177	prostate cancer	278 prostate cancer + 187 normal	32191585	Bulk	GSE159177	GPL21572 [miRNA-4] Affymetrix Multispecies miRNA-4 Array [ProbeSet ID version]
+GSE164174	GSE164174_GC	gastric cancer	1423 gastric cancer + 1417 normal	33743111	Bulk	GSE164174_GC	GPL21263 3D-Gene Human miRNA V21_1.0.0
+GSE164174	GSE164174_ESCA	esophageal cancers	1423 esophageal cancers + 1417 normal	33743111	Bulk	GSE164174_ESCA	GPL21263 3D-Gene Human miRNA V21_1.0.0
+GSE164174	GSE164174_CRC	colorectal cancers	1423 colorectal cancers + 1417 normal	33743111	Bulk	GSE164174_CRC	GPL21263 3D-Gene Human miRNA V21_1.0.0
+GSE37472	GSE37472	oral cancer	50 oral cancer + 26 normal	23342275	Bulk	GSE37472	GPL15476 Exiqon microRNA Ready-to-Use PCR, Human panel I+II, V2.M
+GSE41922	GSE41922	breast cancer	32 breast cancer + 22 normal	23797906	Bulk	GSE41922	GPL16224 Exiqon LNA RT-PCR Human panels (1 & 2)
+GSE63108	GSE63108	oesophageal adenocarcinoma	28 oesophageal adenocarcinoma + 19 normal	25943911	Bulk	GSE63108	GPL17485 TaqMan® OpenArray® Human MicroRNA Panel (miRBase v14)
+GSE67075	GSE67075	colorectal cancer	18 colorectal cancer + 30 normal	25924769	Bulk	GSE67075	GPL17853 TaqMan® Array Human MicroRNA Cards Set v2.0 A/B
+GSE73002	GSE73002	breast cancer	1280 breast cancer + 2686 normal	26749252	Bulk	GSE73002	GPL18941 3D-Gene Human miRNA V20_1.0.0
+GSE76449	GSE76449	ovarian Cancer	24 Ovarian Cancer + 4 normal	27742688	Bulk	GSE76449	GPL19117 [miRNA-4] Affymetrix Multispecies miRNA-4 Array
+GSE85589	GSE85589_CC	colorectal cancer	5 colorectal cancer + 19 normal	33498271	Bulk	GSE85589_CC	GPL19117 [miRNA-4] Affymetrix Multispecies miRNA-4 Array
+GSE85589	GSE85589_SC	stomach cancer	7 stomach cancer + 19 normal	33498271	Bulk	GSE85589_SC	GPL19117 [miRNA-4] Affymetrix Multispecies miRNA-4 Array
+GSE85589	GSE85589_PC	pancreatic cancers	88 pancreatic cancers  + 19 normal	33498271	Bulk	GSE85589_PC	GPL19117 [miRNA-4] Affymetrix Multispecies miRNA-4 Array
+GSE85589	GSE85589_ICC	cholangiocarcinoma 	101 cholangiocarcinoma  + 19 normal	33498271	Bulk	GSE85589_ICC	GPL19117 [miRNA-4] Affymetrix Multispecies miRNA-4 Array
+GSE104926	GSE104926_esophagitis	esophageal	6 Esophagitis Cancer + 6 normal	32043367	Bulk	GSE104926_esophagitis	GPL21290 Illumina HiSeq 3000 (Homo sapiens)
+GSE104926	GSE104926_ESCA	esophageal	6 Esophagitis Cancer + 6 normal	32043367	Bulk	GSE104926_ESCA	GPL21290 Illumina HiSeq 3000 (Homo sapiens)
+GSE106804	GSE106804	glioma	8 glioblastoma + 6 normal	29330365	Bulk	GSE106804	GPL18573 Illumina NextSeq 500 (Homo sapiens)
+GSE93070	GSE93070	breast	2 MRC5 exoRNA + 2 Cocx exoRNA	28709002	Bulk	GSE93070	GPL18573 Illumina NextSeq 500 (Homo sapiens)

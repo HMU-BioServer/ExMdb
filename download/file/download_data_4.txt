@@ -1,0 +1,27 @@
+GSE145281	BLCA_GSE145281_aPDL1	Bladder Urothelial Carcinoma	10 sample	32405063	Single Cell	BLCA_GSE145281_aPDL1_count	10x Genomics
+GSE111014	CLL_GSE111014	Chronic lymphocytic leukemia	4 sample	31996669	Single Cell	CLL_GSE111014_count	10x Genomics
+GSE145281	KIRC_GSE145281_aPDL1	Kidney Renal Clear Cell Carcinoma	4 sample	32405063	Single Cell	KIRC_GSE145281_aPDL1_count	10x Genomics
+GSE117988	MCC_GSE117988_aPD1aCTLA4	Merkel cell carcinoma	1 sample	30250229	Single Cell	MCC_GSE117988_aPD1aCTLA4_count	10x Genomics
+GSE118056	MCC_GSE118056_aPDL1	Merkel cell carcinoma	1 sample	30250229	Single Cell	MCC_GSE118056_aPDL1_count	10x Genomics
+GSE127471	NSCLC_GSE127471	Non-small Cell Lung Cancer	1 sample	31061481	Single Cell	NSCLC_GSE127471_count	10x Genomics
+NA	PBMC_30K_10X	Peripheral Blood Mononuclear Cell	1 sample	NA	Single Cell	PBMC_30K_10X_count	10x Genomics
+NA	PBMC_8K_10X	Peripheral Blood Mononuclear Cell	1 sample	NA	Single Cell	PBMC_8K_10X_count	10x Genomics
+GSE67980	PC_GSE67980	Prostate cancer	13 sample	26383955	Single Cell	PC_GSE67980_count	AB 5500xl Genetic Analyzer
+GSE157743	MEL_GSE157743	Melanoma	22 sample	33203734	Single Cell	MEL_GSE157743_count	Smart-seq2
+GSE168212	COVID19_GSE168212	COVID-19	1 sample	NA	Single Cell	COVID19_GSE168212_count	10x Genomics
+GSE166992	COVID19_GSE166992	COVID-19	9 sample	33691089	Single Cell	COVID19_GSE166992_count	10x Genomics
+GSE154567	COVID19_GSE154567_severe	COVID-19	3 sample	33357411	Single Cell	COVID19_GSE154567_severe_count	10x Genomics
+GSE154567	COVID19_GSE154567_moderate	COVID-19	3 sample	33357411	Single Cell	COVID19_GSE154567_moderate_count	10x Genomics
+GSE154567	COVID19_GSE154567_recovery	COVID-19	3 sample	33357411	Single Cell	COVID19_GSE154567_recovery_count	10x Genomics
+GSE167118	COVID19_GSE167118_BALF_moderate	COVID-19	2 sample	33622974	Single Cell	COVID19_GSE167118_BALF_moderate_count	10x Genomics
+GSE167118	COVID19_GSE167118_BALF_severe	COVID-19	6 sample	33622974	Single Cell	COVID19_GSE167118_BALF_severe_count	10x Genomics
+GSE167118	COVID19_GSE167118_blood_moderate	COVID-19	1 sample	33622974	Single Cell	COVID19_GSE167118_blood_moderate_count	10x Genomics
+GSE167118	COVID19_GSE167118_blood_severe	COVID-19	6 sample	33622974	Single Cell	COVID19_GSE167118_blood_severe_count	10x Genomics
+GSE167118	BP_GSE167118_BALF_moderate	Bacterial pneumonia	3 sample	33622974	Single Cell	BP_GSE167118_BALF_moderate_count	10x Genomics
+GSE167118	BP_GSE167118_BALF_no	Bacterial pneumonia	1 sample	33622974	Single Cell	BP_GSE167118_BALF_no_count	10x Genomics
+GSE167118	BP_GSE167118_blood_moderate	Bacterial pneumonia	3 sample	33622974	Single Cell	BP_GSE167118_blood_moderate_count	10x Genomics
+GSE167118	BP_GSE167118_blood_no	Bacterial pneumonia	1 sample	33622974	Single Cell	BP_GSE167118_blood_no_count	10x Genomics
+GSE169503	COVID19_GSE169503	COVID-19	4 sample	33972535	Single Cell	COVID19_GSE169503_count	10x Genomics
+GSE142016	SLE_GSE142016	Systemic lupus erythematosus	3 sample	31754025	Single Cell	SLE_GSE142016_count	10x Genomics
+GSE107747	LIHC_GSE107747	Liver Hepatocellular Carcinoma	2 sample	30068984	Single Cell	LIHC_GSE107747_count	10x Genomics
+GSE124899	Lymphoma_GSE124899	Cutaneous T-cell lymphoma	2 sample	30718356	Single Cell	Lymphoma_GSE124899_count	10x Genomics
